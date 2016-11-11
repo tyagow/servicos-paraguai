@@ -16,8 +16,22 @@ class Store(models.Model):
     plan = models.CharField(max_length=1, default='F', choices=PLANS)
     category = models.ForeignKey('Category', null=True)
 
+    class Meta:
+        verbose_name = 'Loja'
+        verbose_name_plural = 'Lojas'
+
+    def __str__(self):
+        return self.name
+
 
 class Category(models.Model):
-    parent = models.ForeignKey('self', null=True)
+    parent = models.ForeignKey('self', null=True, blank=True)
     name = models.CharField(max_length=60)
-    logo = models.URLField(null=True)
+    logo = models.URLField(null=True, blank=True)
+
+    class Meta:
+        verbose_name = 'Categoria'
+        verbose_name_plural = 'Categorias'
+
+    def __str__(self):
+        return self.name
