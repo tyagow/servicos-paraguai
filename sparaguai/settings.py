@@ -40,7 +40,6 @@ INSTALLED_APPS = [
 
     #project apps
     'core',
-    'services',
 
     #external apps
     'test_without_migrations',

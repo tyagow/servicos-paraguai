@@ -1,3 +1,5 @@
 from django.contrib import admin
+from core.models import Loja
 
-# Register your models here.
+
+admin.site.register(Loja)
