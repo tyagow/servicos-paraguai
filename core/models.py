@@ -1,7 +1,7 @@
 from django.db import models
 
 
-class Loja(models.Model):
+class Store(models.Model):
     PLANS = (
         ('F', 'Plano Free'),
         ('M', 'Plano Mensal'),

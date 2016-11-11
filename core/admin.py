@@ -1,5 +1,5 @@
 from django.contrib import admin
-from core.models import Loja
+from core.models import Store, Category
 
-
-admin.site.register(Loja)
+admin.site.register(Store)
+admin.site.register(Category)
