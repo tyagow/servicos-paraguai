@@ -1,4 +1,5 @@
 from django.db import models
+from django.utils import timezone
 
 
 class Store(models.Model):
@@ -56,3 +57,24 @@ class Category(models.Model):
         if self.parent is not None:
             return False
         return True
+
+
+class Advertisement(models.Model):
+    KINDS = (
+        ('F', 'Anuncio Free'),
+        ('M', 'Anuncio Medio'),
+        ('T', 'Anuncio Top'),
+
+    )
+    store = models.ForeignKey('Store')
+    expires_at = models.DateTimeField()
+    website = models.URLField()
+    img = models.URLField()
+    kind = models.CharField(max_length=1, default='F', choices=KINDS)
+
+    class Meta:
+        verbose_name = 'Anúncio'
+        verbose_name_plural = 'Anúncios'
+
+    def __str__(self):
+        return "{} Anúncio".format(self.store.name)
