@@ -7,7 +7,8 @@ class LojaModelTest(TestCase):
         self.obj = Store.objects.create(
             name='Fast Way',
             website='www.fastway.com',
-            phone='+595 61 500 763'
+            phone='+595 61 500 763',
+            slug='fast-way',
         )
 
     def test_create(self):
