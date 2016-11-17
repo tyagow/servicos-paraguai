@@ -40,6 +40,11 @@ class Telefone(models.Model):
     numero = models.CharField(max_length=15)
 
 
+class Foto(models.Model):
+    estabelecimento = models.ForeignKey('Estabelecimento')
+    foto = models.ImageField()
+
+
 class CategoryManager(models.Manager):
     def all(self):
         qs = super(CategoryManager, self).filter(parent=None)
@@ -50,7 +55,7 @@ class Categoria(models.Model):
     parent = models.ForeignKey('self', verbose_name='Categoria', null=True, blank=True)
     nome = models.CharField(max_length=60)
     slug = models.SlugField()
-    logo = models.URLField(null=True, blank=True)
+    logo = models.ImageField(null=True, blank=True)
 
     objects = CategoryManager()
 

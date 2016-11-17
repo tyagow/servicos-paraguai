@@ -1,15 +1,20 @@
 from django.contrib import admin
-from core.models import Estabelecimento, Categoria, Telefone
+from core.models import Estabelecimento, Categoria, Telefone, Foto
 
 
 class TelefoneInLine(admin.TabularInline):
     model = Telefone
 
 
+class FotoInLine(admin.TabularInline):
+    model = Foto
+
+
 class EstabelecimentoAdmin(admin.ModelAdmin):
     prepopulated_fields = {'slug': ('nome',)}
     list_display = ['nome', 'website', 'categoria', 'plano']
     inlines = [
+        FotoInLine,
         TelefoneInLine,
     ]
 
