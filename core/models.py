@@ -2,30 +2,35 @@ from django.db import models
 from django.utils import timezone
 
 
-class Store(models.Model):
-    PLANS = (
+class Estabelecimento(models.Model):
+    PLANOS = (
         ('F', 'Plano Free'),
         ('M', 'Plano Mensal'),
         ('T', 'Plano Tri mestral'),
     )
-    name = models.CharField(max_length=120)
-    phone = models.CharField(max_length=15)
+    nome = models.CharField(max_length=120)
     website = models.URLField()
     slug = models.SlugField()
-    address = models.CharField(max_length=60)
-    city = models.CharField(max_length=50)
+    logo = models.ImageField()
+    endereco = models.CharField(max_length=60)
+    cidade = models.CharField(max_length=50)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(null=True)
-    plan = models.CharField(max_length=1, default='F', choices=PLANS)
-    category = models.ForeignKey('Category', null=True, blank=True)
+    plano = models.CharField(max_length=1, default='F', choices=PLANOS)
+    categoria = models.ForeignKey('Categoria', null=True, blank=True)
 
     class Meta:
-        verbose_name = 'Loja'
-        verbose_name_plural = 'Lojas'
-        ordering = ['name']
+        verbose_name = 'Estabelecimento'
+        verbose_name_plural = 'Estabelecimentos'
+        ordering = ['nome']
 
     def __str__(self):
-        return self.name
+        return self.nome
+
+
+class Telefone(models.Model):
+    estabelecimento = models.ForeignKey('Estabelecimento', related_name='estabelecimento')
+    numero = models.CharField(max_length=15)
 
 
 class CategoryManager(models.Manager):
@@ -34,9 +39,9 @@ class CategoryManager(models.Manager):
         return qs
 
 
-class Category(models.Model):
+class Categoria(models.Model):
     parent = models.ForeignKey('self', verbose_name='Categoria', null=True, blank=True)
-    name = models.CharField(max_length=60)
+    nome = models.CharField(max_length=60)
     slug = models.SlugField()
     logo = models.URLField(null=True, blank=True)
 
@@ -47,34 +52,13 @@ class Category(models.Model):
         verbose_name_plural = 'Categorias'
 
     def __str__(self):
-        return self.name
+        return self.nome
 
-    def children(self):
-        return Category.objects.filter(parent=self)
+    def subcategorias(self):
+        return Categoria.objects.filter(parent=self)
 
     @property
     def is_parent(self):
         if self.parent is not None:
             return False
         return True
-
-
-class Advertisement(models.Model):
-    KINDS = (
-        ('F', 'Anuncio Free'),
-        ('M', 'Anuncio Medio'),
-        ('T', 'Anuncio Top'),
-
-    )
-    store = models.ForeignKey('Store')
-    expires_at = models.DateTimeField()
-    website = models.URLField()
-    img = models.URLField()
-    kind = models.CharField(max_length=1, default='F', choices=KINDS)
-
-    class Meta:
-        verbose_name = 'Anúncio'
-        verbose_name_plural = 'Anúncios'
-
-    def __str__(self):
-        return "{} Anúncio".format(self.store.name)

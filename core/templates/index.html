@@ -45,20 +45,20 @@
             <div class="container">
                 <div class="row text-align-center container desktop-12">
                     <div class="row">
-                        {% for c in categories %}
+                        {% for c in categorias %}
                             {% if forloop.counter|divisibleby:4 %}
                                 <div class="row">
                             {% endif %}
                         <div class="desktop-4">
                             <h4>
                                 <a href="{{ c.slug }}">
-                                    {{ c.name }}
+                                    {{ c.nome }}
                                 </a>
                             </h4>
-                            {% for child in c.children %}
+                            {% for child in c.subcategorias %}
                                 <p>
                                     <a href="{{ child.slug }}">
-                                        {{ child.name }}
+                                        {{ child.nome }}
                                     </a>
                                 </p>
                             {% endfor %}

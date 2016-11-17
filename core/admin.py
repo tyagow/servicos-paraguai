@@ -1,25 +1,22 @@
 from django.contrib import admin
-from core.models import Store, Category, Advertisement
+from core.models import Estabelecimento, Categoria, Telefone
 
 
-class StoreAdmin(admin.ModelAdmin):
-    prepopulated_fields = {'slug': ('name',)}
-    list_display = ['name', 'phone', 'website', 'category', 'plan']
+class TelefoneInLine(admin.TabularInline):
+    model = Telefone
+
+
+class EstabelecimentoAdmin(admin.ModelAdmin):
+    prepopulated_fields = {'slug': ('nome',)}
+    list_display = ['nome', 'website', 'categoria', 'plano']
+    inlines = [
+        TelefoneInLine,
+    ]
 
 
 class CategoryAdmin(admin.ModelAdmin):
-    prepopulated_fields = {'slug': ('name',)}
+    prepopulated_fields = {'slug': ('nome',)}
 
 
-class AdvertisementAdmin(admin.ModelAdmin):
-    list_display = ['store', 'expires_at', 'photo_img', 'kind']
-
-    def photo_img(self, obj):
-        return '<img width="42px" height="32px" src="{}" />'.format(obj.img)
-
-    photo_img.allow_tags = True
-    photo_img.short_description = "Anúncio"
-
-admin.site.register(Store, StoreAdmin)
-admin.site.register(Category, CategoryAdmin)
-admin.site.register(Advertisement, AdvertisementAdmin)
+admin.site.register(Estabelecimento, EstabelecimentoAdmin)
+admin.site.register(Categoria, CategoryAdmin)
