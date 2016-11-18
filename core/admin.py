@@ -12,7 +12,7 @@ class FotoInLine(admin.TabularInline):
 
 class EstabelecimentoAdmin(admin.ModelAdmin):
     prepopulated_fields = {'slug': ('nome',)}
-    list_display = ['nome', 'website', 'categoria', 'plano']
+    list_display = ['nome', 'website', 'categoria']
     inlines = [
         FotoInLine,
         TelefoneInLine,

@@ -8,7 +8,6 @@ class LojaModelTest(TestCase):
         self.obj = Estabelecimento.objects.create(
             nome='Fast Way',
             website='www.fastway.com',
-            telefone='+595 61 500 763',
             slug='fast-way',
         )
 
@@ -22,5 +21,3 @@ class CategoryModelTest(TestCase):
             nome='Alimentação'
         )
         self.assertTrue(Categoria.objects.exists())
-
-

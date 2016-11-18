@@ -1,13 +1,8 @@
 from django.db import models
-from django.utils import timezone
 
 
 class Estabelecimento(models.Model):
-    PLANOS = (
-        ('F', 'Plano Free'),
-        ('M', 'Plano Mensal'),
-        ('T', 'Plano Tri mestral'),
-    )
+
     CIDADES = (
         ('E', 'Ciudad del Este'),
         ('P', 'Pedro Juan Caballero'),
@@ -23,7 +18,6 @@ class Estabelecimento(models.Model):
     cidade = models.CharField(max_length=1, choices=CIDADES)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(null=True)
-    plano = models.CharField(max_length=1, default='F', choices=PLANOS)
     categoria = models.ForeignKey('Categoria', null=True, blank=True)
 
     class Meta:
@@ -36,13 +30,19 @@ class Estabelecimento(models.Model):
 
 
 class Telefone(models.Model):
-    estabelecimento = models.ForeignKey('Estabelecimento', related_name='estabelecimento')
+    estabelecimento = models.ForeignKey('Estabelecimento', related_name='telefone')
     numero = models.CharField(max_length=15)
+
+    def __str__(self):
+        return self.numero
 
 
 class Foto(models.Model):
     estabelecimento = models.ForeignKey('Estabelecimento')
     foto = models.ImageField()
+
+    def __str__(self):
+        return self.foto
 
 
 class CategoryManager(models.Manager):
