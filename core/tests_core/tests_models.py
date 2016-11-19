@@ -9,6 +9,7 @@ class EstabelecimentoModelTest(TestCase):
             nome='Fast Way',
             website='www.fastway.com',
             slug='fast-way',
+            endereco='Avda. Rogelio Benitez, 061 500 763',
         )
 
     def test_create(self):

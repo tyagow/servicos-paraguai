@@ -5,9 +5,14 @@ from core.models import Estabelecimento, Categoria
 
 
 class HomeTest(TestCase):
+    def setUp(self):
+        self.response = self.client.get(r('home'))
+
     def test_get(self):
-        response = self.client.get(r('home'))
-        self.assertEqual(200, response.status_code)
+        self.assertEqual(200, self.response.status_code)
+
+    def test_input_search(self):
+        self.assertContains(self.response, '<input')
 
 
 class CategoriaDetailGet(TestCase):
@@ -72,3 +77,11 @@ class EstabelecimentoDetailGet(TestCase):
         for expected in contents:
             with self.subTest():
                 self.assertContains(self.response, expected)
+
+
+class BuscaGet(TestCase):
+    def setUp(self):
+        self.response = self.client.get(r('busca', s='alimentação'))
+
+    def test_get(self):
+        self.assertEqual(200, self.response.status_code)

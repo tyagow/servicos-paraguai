@@ -15,11 +15,12 @@ Including another URLconf
 """
 from django.conf.urls import url
 from django.contrib import admin
-from core.views import home, estabelecimento_detail, categoria_detail
+from core.views import home, estabelecimento_detail, categoria_detail, busca
 
 urlpatterns = [
     url(r'^$', home, name='home'),
     url(r'^estabelecimento/(?P<slug>[\w-]+)$', estabelecimento_detail, name='estabelecimento_detail'),
     url(r'^categoria/(?P<slug>[\w-]+)$', categoria_detail, name='categoria_detail'),
+    url(r'^busca/', busca, name='busca'),
     url(r'^admin/', admin.site.urls),
 ]

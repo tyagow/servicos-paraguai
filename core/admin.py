@@ -4,14 +4,19 @@ from core.models import Estabelecimento, Categoria, Telefone, Foto
 
 class TelefoneInLine(admin.TabularInline):
     model = Telefone
+    extra = 1
+    min_num = 0
 
 
 class FotoInLine(admin.TabularInline):
     model = Foto
+    extra = 1
+    min_num = 0
 
 
 class EstabelecimentoAdmin(admin.ModelAdmin):
     prepopulated_fields = {'slug': ('nome',)}
+    exclude = ['lat', 'long']
     list_display = ['nome', 'website', 'categoria']
     inlines = [
         FotoInLine,

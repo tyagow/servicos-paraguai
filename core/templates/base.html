@@ -16,12 +16,21 @@
 
         <!-- CSS -->
 
+
+
         <link rel="stylesheet" href="{% static 'css/font-awesome.min.css' %}">
-        <link rel="stylesheet" href="{% static 'css/basalstyle/style.min.css' %}">
+{#        <link rel="stylesheet" href="{% static 'css/basalstyle/style.min.css' %}">#}
         <link rel="stylesheet" href="{% static 'css/main.css' %}">
 
         <link href='http://fonts.googleapis.com/css?family=Economica:400,700' rel='stylesheet' type='text/css'>
 
+
+
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDmUcdaBTyLKKzApePTz7OIU0BFoGjOapY"></script>
 
         <script src="{% static 'js/jquery-1.11.0.min.js' %}"></script>
         <script src="{% static 'js/jquery.stellar.min.js' %}"></script>
@@ -30,17 +39,23 @@
         <script src="{% static 'js/main.js' %}"></script>
 
 
+
+
 	</head>
 
 	<body>
 
     <!-- TOP -->
     <nav id="top" data-stellar-background-ratio="0.5">
-        <div class="countdown text-align-center row desktop-12 container">
-            <h1 class="titulo">Serviços Paraguai</h1>
+        <div class="container">
+            <div class="countdown text-align-center row col-md-12">
+                <h1 class="titulo"><a href="{% url 'home' %}">Serviços Paraguai</a></h1>
+            </div>
         </div>
     </nav>
-    {% block content %}
-    {% endblock %}
+    <div class="container">
+            {% block content %}
+            {% endblock %}
+    </div>
     </body>
 </html>

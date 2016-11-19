@@ -1,4 +1,4 @@
-/* Customização */
+/*!* Customização *!*/
 
 @font-face {
     font-family: 'sinkin_sans200_x_light';
@@ -59,10 +59,17 @@
     font-style: normal;
 
 }
-
+html {
+    height: 100%;
+}
 body {
     font-family: 'sinkin_sans300_light', serif;
+    background-color: #d8dbe2;
+    text-align:center;
+    min-height: 100%;
+    margin:0;
 }
+
 
 /* Titulagem */
 h1, h2, h3, h4, h5, h6 {
@@ -117,59 +124,6 @@ dl {
     padding: 7px 0 17px;
 }
 
-.nav-inline li a {
-    font-size: 1.2em;
-    font-weight: 700;
-}
-
-.btn-basic,
-.btn-basic:visited,
-input[type="submit"] {
-    margin: 0.5em 0;
-}
-
-section header h2 {
-    color: #C5CDCD;
-    font-size: 20px;
-    padding: 15px 0 0 0;
-    min-height: 60px;
-    text-transform: uppercase;
-}
-
-
-
-/* Header */
-
-.header-frame  {
-    background-color: #3498db;
-}
-
-.header-frame-absolute {
-    padding: 30px 0;
-    width: 100%;
-    position: absolute;
-    z-index: 1000;
-    background-color: transparent;
-    transition: padding 1s, background-color 1s;
-}
-
-.header-frame-fixed {
-    padding: 0;
-    position: fixed;
-    background-color: #3498db;
-}
-
-.site-logo h1 a {
-    line-height: 200px;
-    width: 131px;
-    height: 55px;
-    margin: 1px 0 0 -9px;
-    padding: 0;
-    display: block;
-    overflow: hidden;
-    background: rgba(0, 0, 0, 0) url("../img/logo.png") no-repeat scroll left bottom;
-}
-
 
 @media all and (min-width:900px) {
 
@@ -198,26 +152,20 @@ section header h2 {
     }
 
 }
-/* Contents */
 
-
-/* Applying white text on a darker barckground */
-
-#register {
-    color: #000;
-}
 .body-container {
     max-height: 100%;
     height:100%;
-    background-color: #f3f4d7;
+    background-color: #dfe0e2;
 }
 #top {
     display:table;
     width:100%;
     max-height: 150px;
     height:50px;
+    text-align: center;
     background:bottom center no-repeat;
-    background-color: #191923;
+    background-color: #eb5160;
     /*-webkit-background-size: cover;*/
     /*-moz-background-size: cover;*/
     /*-o-background-size: cover;*/
@@ -225,32 +173,45 @@ section header h2 {
     position:relative;
 
 }
-.titulo {
-    color: #f39237;
-}
-.categories a {
-    color: #0e79b2;
-}
-.countdown h1 {
-    font-family: "sinkin_sans600_semibold";
-    font-size: 30px;
-    font-weight: bold;
-    line-height: 60px;
-    padding-top: 10px;
-}
 
-.countdown h3 {
-    font-family: "sinkin_sans600_semibold";
-    font-size: 25px;
-    font-weight: 400;
-    padding-top: 0;
+.titulo a {
+    color: #071013;
+    font-weight: bold;
 }
+.categorias-titulo {
+    font-weight: bold;
+    color: #230f11;
+
+}
+.sub-categorias-titulo {
+    color: #230f11;
+
+}
+.titulo a:hover {
+    text-decoration: none;
+    color: #230f11;
+
+}
+.titulo_estabelecimento {
+    font-size: 24px;
+}
+/*.categories a {*/
+    /*color: #0e79b2;*/
+/*}*/
+/*.countdown h1 {*/
+    /*font-family: "sinkin_sans600_semibold";*/
+    /*font-size: 30px;*/
+    /*font-weight: bold;*/
+    /*line-height: 60px;*/
+    /*padding-top: 10px;*/
+/*}*/
+
 
 
 @media all and (min-width:900px) {
 
     .venue {
-        margin-top: 60px;
+        margin-top: -60px;
     }
 
     #map-canvas {
@@ -263,18 +224,140 @@ section header h2 {
 
 }
 
-.alert {
-    padding: 0 15px;
-    margin-bottom: 1rem;
-    border: 1px solid transparent;
-    border-radius: .25rem;
+/*.alert {*/
+    /*padding: 0 15px;*/
+    /*margin-bottom: 1rem;*/
+    /*border: 1px solid transparent;*/
+    /*border-radius: .25rem;*/
+/*}*/
+/*.alert p {*/
+    /*padding: 7px 0 7px;*/
+/*}*/
+/*.alert.success {*/
+    /*color: #3c763d;*/
+    /*background-color: #dff0d8;*/
+    /*border-color: #d0e9c6;*/
+/*}*/
+
+
+/*!* Search form*!*/
+
+/*!* CRS Custom Style Sheet: created 08/21/2013 jnp *!*/
+
+/*!* This overrides BT3's wider (1170px) layout for larger monitors - jnp 20130821 *!*/
+ @media (min-width: 1200px) {
+    .container {
+        max-width: 970px;
+    }
 }
-.alert p {
-    padding: 7px 0 7px;
+/* These style the container */
+ body {
+    background-color: #d3d2d1;
+    padding-top: 0px;
+    padding-bottom: 15px;
 }
-.alert.success {
-    color: #3c763d;
-    background-color: #dff0d8;
-    border-color: #d0e9c6;
+body > .container {
+    padding: 0 0 0 0;
+    background-color: #ffffff;
+    border: 0 solid transparent;
+    border-radius: 4px;
+    -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
+}
+/* This creates an alert spanning the full container */
+ .row.alert {
+    margin-right: 0;
+    margin-left: 0;
+    margin-bottom: 0;
+    border: 0 solid transparent;
+    border-radius: 0;
+}
+/* This removes the rounded corners from the bottom edge of the navbar */
+ .navbar {
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+}
+/* This removes the space below the panel so the search can have a uniform background */
+ .navbar-default {
+    margin-bottom: 0;
+}
+
+/* This removes the rounded corners from the jumbotron */
+ .container .jumbotron {
+    border-radius: 0;
+}
+/* This creates the outside gutter between panels and container */
+ .row.main {
+    margin-right: 0;
+    margin-left: 0;
+}
+
+.photo {
+    width: 64px;
+}
+
+
+/*!* center search *!*/
+
+.global-search {
+text-align:center;
+padding:10px;
+}
+.global-search * {
+display:inline-block;
+margin-bottom:0;
+}
+
+.global-search .form-control {
+  width:120px;
+}
+
+.global-search a {
+display:block;
+padding-top:10px;
+}
+
+
+
+@media (min-width:400px){
+.global-search {
+padding: 20px 0;
+text-align:center;
+}
+
+.global-search .form-control {
+width:300px;
+}
+
+}
+
+/* VENUE */
+
+#venue {
+    position: relative;
+    margin: auto;
+}
+
+.venue-address {
+    min-height: 300px;
+    background: rgba(52, 152, 219, 0.85) none repeat scroll 0 0;
+}
+
+.venue-address .address {
+    padding-left: 30px;
+    position: relative;
+}
+
+.venue-address .address .fa {
+    position: absolute;
+    left: 0;
+}
+
+#map-canvas {
+    width: 100%;
+    min-height: 300px;
+    position: relative;
+    top: 0;
+    z-index: 0;
 }
 

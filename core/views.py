@@ -1,4 +1,4 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 
 # Create your views here.
 
@@ -16,6 +16,15 @@ def estabelecimento_detail(request, slug):
 
 
 def categoria_detail(request, slug):
-    categoria = get_object_or_404(Categoria, slug=slug)
+    categoria = Categoria.objects.get(slug=slug)
     estabelecimentos = Estabelecimento.objects.filter(categoria=categoria)
     return render(request, 'core/categoria_detail.html', {'categoria': categoria, 'estabelecimentos': estabelecimentos})
+
+
+def busca(request):
+    context = {'estabelecimentos': None}
+    if 's' in request.GET:
+        context = {'estabelecimentos': Estabelecimento.objects.filter(nome__contains=request.GET['s'])}
+
+    return render(request, 'core/busca_resultado.html', context)
+

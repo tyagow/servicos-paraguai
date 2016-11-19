@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block content %}
+        <section id="categories">
+            <div class="container">
+                <div class="text-align-center col-md-12">
+                    <div class="row">
+
+                        {% for item in estabelecimentos %}
+                            {% if forloop.counter|divisibleby:4 %}
+                                <div class="row">
+                            {% endif %}
+                        <div class="col-md-4">
+
+                            <a class="titulo_estabelecimento" {{ item.get_absolute_url }}>
+                                {{ item.nome }}
+                            </a>
+                            |
+                            <a href="{{ item.categoria.get_absolute_url }}">
+                                {{ item.categoria}}
+                            </a>
+                        </div>
+                        {% if forloop.counter|divisibleby:3 %}
+                            </div>
+                        {% endif %}
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </section>
+{% endblock %}

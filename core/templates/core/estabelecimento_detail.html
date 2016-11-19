@@ -2,16 +2,33 @@
 
 {% block content %}
     <section>
-        <div class="estabelecimento content row padding-bottom-3 desktop-8 container">
-            <h2><a href="{{ estabelecimento.website }}">{{ estabelecimento.nome }}</a></h2>
-            <img src="{{ estabelecimento.logo }}" alt="" class="photo">
-            <p>
-                {{ estabelecimento.endereco }}, {{ estabelecimento.get_cidade_display }}
-            </p>
+        <div class="estabelecimento content row padding-bottom-3 col-md-8 container">
+            <h2>{% if estabelecimento.logo %}<img src="{{ estabelecimento.logo.url }}" alt="" class="photo">{% endif %}    <a href="{{ estabelecimento.website }}">{{ estabelecimento.nome }}</a></h2>
+
             <p>
                 {{ estabelecimento.descricao|linebreaks }}
             </p>
 
+        </div>
+    </section>
+
+
+    <!-- VENUE -->
+    <section id="venue">
+        <div class="row min-h-10">
+
+            <div id="map-canvas"></div>
+            <div class="row col-md-12 container">
+                <div class="venue row">
+                    <div class="venue-address col-md-4 gutter">
+                        <p class="address">
+                            <i class="fa fa-2x fa-map-marker fa-inverse"></i>
+                                {{ estabelecimento.endereco }} <br>
+                             {{ estabelecimento.get_cidade_display }}
+                        </p>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 {% endblock %}

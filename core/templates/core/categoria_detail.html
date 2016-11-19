@@ -1,15 +1,17 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <section>
-        <div class="categoria content row padding-bottom-3 desktop-8 container">
-            <h2>{{ categoria.nome }}</h2>
-            <img src="{{ categoria.logo }}" alt="" class="photo">
-            {% for estabelecimento in estabelecimentos %}
-                <div class="row">
-                    <p><a href="{{ estabelecimento.get_absolute_url }}">{{ estabelecimento.nome }}</a></p>
-                </div>
-            {% endfor %}
-        </div>
-    </section>
+        <section>
+            <div class="categoria col-md-8 col-md-offset-2">
+                <h2>{{ categoria.nome }}</h2>
+                {% if  categoria.logo %}
+                    <img src="{{ categoria.logo.url }}" alt="" class="photo">
+                {% endif %}
+                {% for estabelecimento in estabelecimentos %}
+                    <div class="row">
+                        <p><a href="{{ estabelecimento.get_absolute_url }}">  {{ estabelecimento.nome }}</a></p>
+                    </div>
+                {% endfor %}
+            </div>
+        </section>
 {% endblock %}
