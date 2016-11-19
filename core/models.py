@@ -11,7 +11,7 @@ class Estabelecimento(models.Model):
     )
     nome = models.CharField(max_length=120)
     website = models.URLField()
-    slug = models.SlugField()
+    slug = models.SlugField(unique=True)
     logo = models.ImageField()
     descricao = models.TextField()
     endereco = models.CharField(max_length=60)
@@ -40,9 +40,6 @@ class Telefone(models.Model):
 class Foto(models.Model):
     estabelecimento = models.ForeignKey('Estabelecimento')
     foto = models.ImageField()
-
-    def __str__(self):
-        return self.foto
 
 
 class CategoryManager(models.Manager):

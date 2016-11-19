@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <section>
+        <div class="estabelecimento content row padding-bottom-3 desktop-8 container">
+            <h2><a href="{{ estabelecimento.website }}">{{ estabelecimento.nome }}</a></h2>
+            <img src="{{ estabelecimento.logo }}" alt="" class="photo">
+            <p>
+                {{ estabelecimento.endereco }}, {{ estabelecimento.get_cidade_display }}
+            </p>
+            <p>
+                {{ estabelecimento.descricao|linebreaks }}
+            </p>
+
+        </div>
+    </section>
+{% endblock %}

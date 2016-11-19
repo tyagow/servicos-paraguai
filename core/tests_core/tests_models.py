@@ -3,7 +3,7 @@ from django.test import TestCase
 from core.models import Estabelecimento, Categoria
 
 
-class LojaModelTest(TestCase):
+class EstabelecimentoModelTest(TestCase):
     def setUp(self):
         self.obj = Estabelecimento.objects.create(
             nome='Fast Way',
@@ -21,3 +21,5 @@ class CategoryModelTest(TestCase):
             nome='Alimentação'
         )
         self.assertTrue(Categoria.objects.exists())
+
+
