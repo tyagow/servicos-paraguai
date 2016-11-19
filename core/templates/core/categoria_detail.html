@@ -3,13 +3,13 @@
 {% block content %}
         <section>
             <div class="categoria col-md-8 col-md-offset-2">
-                <h2>{{ categoria.nome }}</h2>
+                <h2 class="categorias-titulo">{{ categoria.nome }}</h2>
                 {% if  categoria.logo %}
                     <img src="{{ categoria.logo.url }}" alt="" class="photo">
                 {% endif %}
                 {% for estabelecimento in estabelecimentos %}
                     <div class="row">
-                        <p><a href="{{ estabelecimento.get_absolute_url }}">  {{ estabelecimento.nome }}</a></p>
+                        <h2><a class="sub-categorias-titulo" href="{{ estabelecimento.get_absolute_url }}"><img class="photo" src="{{ estabelecimento.logo.url }}" alt=""> {{ estabelecimento.nome }}</a></h2>
                     </div>
                 {% endfor %}
             </div>
