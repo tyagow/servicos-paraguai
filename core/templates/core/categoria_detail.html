@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <section>
+        <div class="categoria content row padding-bottom-3 desktop-8 container">
+            <h2>{{ categoria.nome }}</h2>
+            <img src="{{ categoria.logo }}" alt="" class="photo">
+            {% for estabelecimento in estabelecimentos %}
+                <div class="row">
+                    <p><a href="{{ estabelecimento.get_absolute_url }}">{{ estabelecimento.nome }}</a></p>
+                </div>
+            {% endfor %}
+        </div>
+    </section>
+{% endblock %}

@@ -13,3 +13,9 @@ def home(request):
 def estabelecimento_detail(request, slug):
     estabelecimento = get_object_or_404(Estabelecimento, slug=slug)
     return render(request, 'core/estabelecimento_detail.html', {'estabelecimento': estabelecimento})
+
+
+def categoria_detail(request, slug):
+    categoria = get_object_or_404(Categoria, slug=slug)
+    estabelecimentos = Estabelecimento.objects.filter(categoria=categoria)
+    return render(request, 'core/categoria_detail.html', {'categoria': categoria, 'estabelecimentos': estabelecimentos})

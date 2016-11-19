@@ -1,4 +1,6 @@
 from django.db import models
+from django.shortcuts import resolve_url as r
+from core.managers import CategoryManager
 
 
 class Estabelecimento(models.Model):
@@ -28,6 +30,9 @@ class Estabelecimento(models.Model):
     def __str__(self):
         return self.nome
 
+    def get_absolute_url(self):
+        return r('estabelecimento_detail', slug=self.slug)
+
 
 class Telefone(models.Model):
     estabelecimento = models.ForeignKey('Estabelecimento', related_name='telefone')
@@ -40,12 +45,6 @@ class Telefone(models.Model):
 class Foto(models.Model):
     estabelecimento = models.ForeignKey('Estabelecimento')
     foto = models.ImageField()
-
-
-class CategoryManager(models.Manager):
-    def all(self):
-        qs = super(CategoryManager, self).filter(parent=None)
-        return qs
 
 
 class Categoria(models.Model):
@@ -71,3 +70,6 @@ class Categoria(models.Model):
         if self.parent is not None:
             return False
         return True
+
+    def get_absolute_url(self):
+        return r('categoria_detail', slug=self.slug)
