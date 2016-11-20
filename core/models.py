@@ -46,7 +46,6 @@ class Estabelecimento(models.Model):
         maps_api_url = "?".join(["http://maps.googleapis.com/maps/api/geocode/json", urllib.parse.urlencode({"address": address, "sensor":False})])
         html = ""
         _address = "?".join(["http://maps.googleapis.com/maps/api/geocode/json", urllib.parse.urlencode({"address": address, "sensor": False})])
-        print(_address)
         with urllib.request.urlopen(_address) as response:
             html = response.read()
         data = json.loads(html.decode('utf8'))
@@ -54,8 +53,9 @@ class Estabelecimento(models.Model):
         if data['status'] == 'OK':
             lat = data['results'][0]['geometry']['location']['lat']
             lng = data['results'][0]['geometry']['location']['lng']
-
-        return Decimal(lat), Decimal(lng)
+            return Decimal(lat), Decimal(lng)
+        else:
+            return Decimal(0.00), Decimal(0.00)
 
 
 @receiver(pre_save, sender=Estabelecimento)

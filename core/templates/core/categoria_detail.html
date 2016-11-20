@@ -9,7 +9,7 @@
                 {% endif %}
                 {% for estabelecimento in estabelecimentos %}
                     <div class="row">
-                        <h2><a class="sub-categorias-titulo" href="{{ estabelecimento.get_absolute_url }}"><img class="photo" src="{{ estabelecimento.logo.url }}" alt=""> {{ estabelecimento.nome }}</a></h2>
+                        <h2><a class="sub-categorias-titulo" href="{{ estabelecimento.get_absolute_url }}">{% if  estabelecimento.logo %}<img src="{{ categoria.logo.url }}" alt="" class="photo">{% endif %} {{ estabelecimento.nome }}</a></h2>
                     </div>
                 {% endfor %}
             </div>

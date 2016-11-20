@@ -1,5 +1,9 @@
+from django.core.files import File
+from django.db.models import FileField
+from django.db.models import ImageField
 from django.shortcuts import resolve_url as r
 from django.test import TestCase
+from django.urls import reverse
 
 from core.models import Estabelecimento, Categoria
 
@@ -26,7 +30,7 @@ class CategoriaDetailGet(TestCase):
             website='www.fastway.com',
             slug='fast-way',
             descricao='Fast Way Descrição',
-            endereco='Fast Way Endereço',
+            endereco='Avda. Rogelio Benitez, 061 500 763',
             categoria=self.categoria,
             cidade='S',
         )
@@ -54,7 +58,7 @@ class EstabelecimentoDetailGet(TestCase):
             website='www.fastway.com',
             slug='fast-way',
             descricao='Fast Way Descrição',
-            endereco='Fast Way Endereço',
+            endereco='Avda. Rogelio Benitez, 061 500 763',
             cidade='S',
         )
         self.response = self.client.get(r('estabelecimento_detail', slug='fast-way'))
@@ -70,7 +74,7 @@ class EstabelecimentoDetailGet(TestCase):
             'Fast Way',
             'www.fastway.com',
             'Fast Way Descrição',
-            'Fast Way Endereço',
+            'Avda. Rogelio Benitez, 061 500 763',
             'Salto del Guairá',
 
         ]
@@ -81,7 +85,7 @@ class EstabelecimentoDetailGet(TestCase):
 
 class BuscaGet(TestCase):
     def setUp(self):
-        self.response = self.client.get(r('busca', s='alimentação'))
+        self.response = self.client.get(reverse('busca'), s='alimentação')  # r('busca', s='alimentação'))
 
     def test_get(self):
         self.assertEqual(200, self.response.status_code)
