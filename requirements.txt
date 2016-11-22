@@ -5,3 +5,4 @@ django-test-without-migrations==0.4
 Pillow==3.4.2
 six==1.10.0
 static3==0.7.0
+python-decouple
