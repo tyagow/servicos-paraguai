@@ -28,8 +28,8 @@ class Estabelecimento(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(null=True, blank=True)
     categoria = models.ForeignKey('Categoria', null=True, blank=True)
-    lat = models.DecimalField(decimal_places=7, max_digits=9, null=True, blank=True)
-    long = models.DecimalField(decimal_places=7, max_digits=9, null=True, blank=True)
+    lat = models.DecimalField('Latitude', decimal_places=7, max_digits=9, null=True, blank=True)
+    long = models.DecimalField('Longitude', decimal_places=7, max_digits=9, null=True, blank=True)
 
     class Meta:
         verbose_name = 'Estabelecimento'
@@ -59,11 +59,11 @@ class Estabelecimento(models.Model):
             return Decimal(0.00), Decimal(0.00)
 
 
-@receiver(pre_save, sender=Estabelecimento)
-def pre_save_handler(sender, instance, *args, **kwargs):
-    self = instance
-    if not self.lat or not self.lng:
-        self.lat, self.lng = self.geocode(self.endereco)
+# @receiver(pre_save, sender=Estabelecimento)
+# def pre_save_handler(sender, instance, *args, **kwargs):
+#     self = instance
+#     if not self.lat or not self.lng:
+#         self.lat, self.lng = self.geocode(self.endereco)
 
 
 class Telefone(models.Model):

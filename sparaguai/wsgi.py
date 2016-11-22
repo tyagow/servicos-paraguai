@@ -9,7 +9,6 @@ https://docs.djangoproject.com/en/1.10/howto/deployment/wsgi/
 
 import os
 
-from django.conf import settings
 from django.core.wsgi import get_wsgi_application
 from dj_static import MediaCling, Cling
 

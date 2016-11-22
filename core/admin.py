@@ -16,7 +16,6 @@ class FotoInLine(admin.TabularInline):
 
 class EstabelecimentoAdmin(admin.ModelAdmin):
     prepopulated_fields = {'slug': ('nome',)}
-    exclude = ['lat', 'long']
     list_display = ['nome', 'website', 'categoria']
     inlines = [
         FotoInLine,
