@@ -2,11 +2,11 @@
 import json
 import urllib.parse
 import urllib.request
-from django.db.models.signals import pre_save
 from decimal import Decimal
+
 from django.db import models
-from django.dispatch import receiver
 from django.shortcuts import resolve_url as r
+
 from core.managers import CategoryManager
 
 
