@@ -36,19 +36,24 @@ $(window).load(function(){
 
 //GOOGLE MAP
 function init_map() {
+    var coordenadas = $('#coordenadas').val();
+
+    var LatLng = coordenadas.split(",");
+    var Lat = parseFloat(LatLng[0]);
+    var Lng = parseFloat(LatLng[1]);
+
     var myOptions = {
         zoom: 14,
-        center: new google.maps.LatLng(-25.3064383, -57.51952540000001), //change the coordinates
+        center: new google.maps.LatLng(Lat, Lng), //change the coordinates
         mapTypeId: google.maps.MapTypeId.ROADMAP,
         scrollwheel: false,
-        styles: [{featureType:'all',stylers:[{saturation:-100},{gamma:0.90}]}]
+        styles: [{featureType:'all',stylers:[{gamma:0.90}]}]
     };
     map = new google.maps.Map(document.getElementById("map-canvas"), myOptions);
     marker = new google.maps.Marker({
         map: map,
-        position: new google.maps.LatLng(-25.3064383, -57.51952540000001) //change the coordinates
+        position: new google.maps.LatLng(Lat, Lng) //change the coordinates
     });
-    console.log('OLA')
 
 }
 google.maps.event.addDomListener(window, 'load', init_map);
