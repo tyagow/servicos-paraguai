@@ -1,6 +1,3 @@
-from django.core.files import File
-from django.db.models import FileField
-from django.db.models import ImageField
 from django.shortcuts import resolve_url as r
 from django.test import TestCase
 from django.urls import reverse
@@ -10,13 +7,26 @@ from core.models import Estabelecimento, Categoria
 
 class HomeTest(TestCase):
     def setUp(self):
+        self.categoria = Categoria.objects.create(nome='Alimentação', slug='alimentacao')
         self.response = self.client.get(r('home'))
 
     def test_get(self):
         self.assertEqual(200, self.response.status_code)
 
+    def test_template(self):
+        """Must use index.html"""
+        self.assertTemplateUsed(self.response, 'index.html')
+
     def test_input_search(self):
         self.assertContains(self.response, '<input')
+
+    def test_html_categorias(self):
+        """Html must display categories"""
+        self.assertContains(self.response, self.categoria.nome)
+
+    def test_html_categorias_link(self):
+        expected = 'href="{}"'.format(self.categoria.get_absolute_url())
+        self.assertContains(self.response, expected)
 
 
 class CategoriaDetailGet(TestCase):
