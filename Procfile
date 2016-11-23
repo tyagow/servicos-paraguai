@@ -1,0 +1,1 @@
+web: uwsgi sparaguai.wsgi --touch-reload /home/tiago/reload.ini --vacuum -master --processes 5
