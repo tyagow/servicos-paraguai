@@ -1,1 +1,1 @@
-web: uwsgi sparaguai.wsgi  --vacuum -master --processes 5
+web: uwsgi uwsgi.ini
