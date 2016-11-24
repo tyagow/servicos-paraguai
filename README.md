@@ -2,7 +2,7 @@
 
 Sistema de serviços fornecidos no Paraguai
 
-[![Build Status](https://travis-ci.org/tyagow/servicos-paraguai.svg?branch=master)](https://travis-ci.org/tyagow/servicos-paraguai)
+[![Build Status](https://travis-ci.org/tyagow/servicos-paraguai.svg?branch=master)](https://travis-ci.org/tyagow/servicos-paraguai) [![Code Health](https://landscape.io/github/tyagow/servicos-paraguai/master/landscape.svg?style=flat)](https://landscape.io/github/tyagow/servicos-paraguai/master)
 
 ## Como desenvolver ?
 
