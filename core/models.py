@@ -66,7 +66,7 @@ class Estabelecimento(models.Model):
 
 
 class Telefone(models.Model):
-    estabelecimento = models.ForeignKey('Estabelecimento', related_name='telefone')
+    estabelecimento = models.ForeignKey('Estabelecimento', related_name='telefones')
     numero = models.CharField(max_length=15, null=True, blank=True)
 
     def __str__(self):

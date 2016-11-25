@@ -7,7 +7,7 @@
                 <h2>{% if estabelecimento.logo %}<img src="{{ estabelecimento.logo.url }}" alt="" class="photo">{% endif %}    <a href="{{ estabelecimento.website }}">{{ estabelecimento.nome }}</a></h2>
 
                 <p class="telefones">
-                    {% for tel in estabelecimento.telefone.all %}
+                    {% for tel in estabelecimento.telefones.all %}
                         {{ tel.numero }}
                         <br/>
                     {% endfor %}

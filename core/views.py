@@ -18,7 +18,7 @@ def estabelecimento_detail(request, slug):
 def categoria_detail(request, slug):
     categoria = Categoria.objects.get(slug=slug)
     estabelecimentos = Estabelecimento.objects.filter(categoria=categoria)
-    return render(request, 'core/categoria_detail.html', {'categoria': categoria, 'estabelecimentos': estabelecimentos})
+    return render(request, 'core/categoria_detail.html', {'categoria': categoria})
 
 
 def busca(request):

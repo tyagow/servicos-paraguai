@@ -2,7 +2,7 @@ from django.shortcuts import resolve_url as r
 from django.test import TestCase
 from django.urls import reverse
 
-from core.models import Estabelecimento, Categoria
+from core.models import Estabelecimento, Categoria, Telefone
 
 
 class HomeTest(TestCase):
@@ -64,7 +64,7 @@ class CategoriaDetailGet(TestCase):
 
 class EstabelecimentoDetailGet(TestCase):
     def setUp(self):
-        Estabelecimento.objects.create(
+        e1 = Estabelecimento.objects.create(
             nome='Fast Way',
             website='www.fastway.com',
             slug='fast-way',
@@ -72,6 +72,7 @@ class EstabelecimentoDetailGet(TestCase):
             endereco='Avda. Rogelio Benitez, 061 500 763',
             cidade='S',
         )
+        Telefone.objects.create(estabelecimento=e1, numero='123456')
         self.response = self.client.get(r('estabelecimento_detail', slug='fast-way'))
 
     def test_get(self):
@@ -87,7 +88,7 @@ class EstabelecimentoDetailGet(TestCase):
             'Fast Way Descrição',
             'Avda. Rogelio Benitez, 061 500 763',
             'Salto del Guairá',
-
+            '123456',
         ]
         for expected in contents:
             with self.subTest():
