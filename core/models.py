@@ -27,8 +27,8 @@ class Estabelecimento(models.Model):
     cidade = models.CharField(max_length=1, choices=CIDADES)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(null=True, blank=True)
-    categoria = models.ForeignKey('Categoria', null=True, blank=True)
     coordenadas = models.CharField('Coordenadas', null=True, blank=True, max_length=40)
+    categoria = models.ManyToManyField('Categoria', blank=True, related_name='estabelecimentos')
 
     class Meta:
         verbose_name = 'Estabelecimento'
@@ -83,6 +83,7 @@ class Categoria(models.Model):
     nome = models.CharField(max_length=60)
     slug = models.SlugField()
     logo = models.ImageField(null=True, blank=True)
+    # estabelecimento = models.ForeignKey('Estabelecimento', related_name='categoria', null=True, blank=True)
 
     objects = CategoryManager()
 

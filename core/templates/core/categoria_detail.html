@@ -7,7 +7,7 @@
                 {% if  categoria.logo %}
                     <img src="{{ categoria.logo.url }}" alt="" class="photo">
                 {% endif %}
-                {% for estabelecimento in estabelecimentos %}
+                {% for estabelecimento in categoria.estabelecimentos.all %}
                     <div class="row">
                         <h2><a class="sub-categorias-titulo" href="{{ estabelecimento.get_absolute_url }}">{% if  categoria.logo %}<img src="{{ categoria.logo.url }}" alt="" class="photo">{% endif %} {{ estabelecimento.nome }}</a></h2>
                     </div>

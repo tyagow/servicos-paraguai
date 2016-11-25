@@ -14,9 +14,15 @@ class FotoInLine(admin.TabularInline):
     min_num = 0
 
 
+class CategoriaInLine(admin.TabularInline):
+    model = Categoria
+    extra = 0
+    min_num = 0
+
+
 class EstabelecimentoAdmin(admin.ModelAdmin):
     prepopulated_fields = {'slug': ('nome',)}
-    list_display = ['nome', 'website', 'categoria']
+    list_display = ['nome', 'website']
     inlines = [
         FotoInLine,
         TelefoneInLine,

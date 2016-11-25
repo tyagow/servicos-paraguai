@@ -36,15 +36,15 @@ class CategoriaDetailGet(TestCase):
             nome='Alimentação',
             slug='alimentacao',
         )
-        Estabelecimento.objects.create(
+        e1 = Estabelecimento.objects.create(
             nome='Fast Way',
             website='www.fastway.com',
             slug='fast-way',
             descricao='Fast Way Descrição',
             endereco='Avda. Rogelio Benitez, 061 500 763',
-            categoria=self.categoria,
             cidade='S',
         )
+        e1.categoria.add(self.categoria)
         self.response = self.client.get(r('categoria_detail', slug='alimentacao'))
 
     def test_get(self):
