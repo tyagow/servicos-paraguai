@@ -341,6 +341,7 @@ width:300px;
 
 .venue-address {
     min-height: 200px;
+    max-height: 200px;
     margin: auto;
     background: rgba(52, 152, 219, 0.85) none repeat scroll 0 0;
 }
@@ -353,6 +354,7 @@ width:300px;
 .venue-address .address .fa {
     position: absolute;
     left: 0;
+    height: 100%;
 }
 
 #map-canvas {

@@ -3,13 +3,18 @@
 {% block content %}
     <section>
         <div class="row">
-            <div class="estabelecimento content padding-bottom-3 col-md-8 container">
+            <div class=" ">
                 <h2>{% if estabelecimento.logo %}<img src="{{ estabelecimento.logo.url }}" alt="" class="photo">{% endif %}    <a href="{{ estabelecimento.website }}">{{ estabelecimento.nome }}</a></h2>
 
+                <p class="telefones">
+                    {% for tel in estabelecimento.telefone.all %}
+                        {{ tel.numero }}
+                        <br/>
+                    {% endfor %}
+                </p>
                 <p>
                     {{ estabelecimento.descricao|linebreaks }}
                 </p>
-
             </div>
         </div>
     </section>
@@ -26,9 +31,9 @@
                 <!-- Wrapper for slides -->
 
                 <div class="carousel-inner" role="listbox">
-                    {% for e in estabelecimento.foto_set.all %}
-                        <div class="item active">
-                            <img src="{{ estabelecimento.logo.url }}" alt="1">
+                    {% for foto in estabelecimento.foto_set.all %}
+                        <div class="item {% if forloop.counter == 1 %}active{% endif %}">
+                            <img src="{{ foto.foto.url }}" alt="1">
                             <div class="carousel-caption">
 
                             </div>
@@ -53,7 +58,7 @@
         <div class="row min-h-10">
             <input id="coordenadas"  value="{{ estabelecimento.coordenadas }}" style="display: none;"/>
             <div id="map-canvas"></div>
-            <div class="row col-md-12 container">
+            <div class="row col-md-12">
                 <div class="venue row">
                     <div class="venue-address col-md-6 gutter">
                         <p class="address">
