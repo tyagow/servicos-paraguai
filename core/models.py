@@ -77,6 +77,9 @@ class Foto(models.Model):
     estabelecimento = models.ForeignKey('Estabelecimento')
     foto = models.ImageField(null=True, blank=True)
 
+    def __str__(self):
+        return self.foto.name
+
 
 class Categoria(models.Model):
     parent = models.ForeignKey('self', verbose_name='Categoria', null=True, blank=True)

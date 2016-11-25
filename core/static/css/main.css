@@ -335,11 +335,13 @@ width:300px;
 
 #venue {
     position: relative;
-    margin: auto;
+    margin: 20px auto auto;
+    width: 60%;
 }
 
 .venue-address {
-    min-height: 300px;
+    min-height: 200px;
+    margin: auto;
     background: rgba(52, 152, 219, 0.85) none repeat scroll 0 0;
 }
 
@@ -360,4 +362,17 @@ width:300px;
     top: 0;
     z-index: 0;
 }
+.carousel {
+    height: 350px;
+}
+.item {
+    height: 350px;
+}
 
+.item img {
+    width: 100%;
+}
+#carousel {
+    margin-bottom: 20px;
+    margin-top: 20px;
+}

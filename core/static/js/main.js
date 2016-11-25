@@ -1,7 +1,7 @@
 jQuery(document).ready(function($) {
 
-   'use strict';
 
+   'use strict';
 	//SMOOTH SCROLL
     smoothScroll.init({
 		speed: 500, // How fast to complete the scroll in milliseconds
@@ -13,8 +13,7 @@ jQuery(document).ready(function($) {
 
 	//FIX HOVER EFFECT ON IOS DEVICES
 	document.addEventListener("touchstart", function(){}, true);
-
-
+    $('.carousel').carousel()
 });
 
 $(window).load(function(){
@@ -38,9 +37,15 @@ $(window).load(function(){
 function init_map() {
     var coordenadas = $('#coordenadas').val();
 
-    var LatLng = coordenadas.split(",");
-    var Lat = parseFloat(LatLng[0]);
-    var Lng = parseFloat(LatLng[1]);
+    var LatLng = coordenadas.split(/,(.+)?/);
+    var _lat = LatLng[0].replace(',', '');
+    var _lng = LatLng[1].replace(',', '');
+
+    var Lat = parseFloat(_lat);
+    var Lng = parseFloat(_lng );
+    console.log('#c '  + LatLng);
+    console.log(_lat + '#' + _lng);
+
 
     var myOptions = {
         zoom: 14,
