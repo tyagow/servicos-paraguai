@@ -161,7 +161,7 @@ dl {
 #top {
     display:table;
     width:100%;
-    max-height: 150px;
+    max-height: 80px;
     height:50px;
     text-align: center;
     background:bottom center no-repeat;
@@ -173,11 +173,16 @@ dl {
     position:relative;
 
 }
+.titulo {
+    margin: auto;
+}
 
 .titulo a {
+    margin: auto;
     color: #071013;
     font-weight: bold;
 }
+
 .categorias-titulo {
     font-weight: bold;
     color: #230f11;
@@ -258,11 +263,17 @@ dl {
 }
 body > .container {
     padding: 0 0 0 0;
+    height: inherit;
     background-color: #ffffff;
     border: 0 solid transparent;
     border-radius: 4px;
     -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
     box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
+
+}
+.fill {
+    min-height: 100%;
+    height: 100%;
 }
 /* This creates an alert spanning the full container */
  .row.alert {
@@ -377,4 +388,7 @@ width:300px;
 #carousel {
     margin-bottom: 20px;
     margin-top: 20px;
+}
+a {
+    text-decoration: none;
 }
