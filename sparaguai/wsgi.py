@@ -15,7 +15,7 @@ from dj_static import MediaCling, Cling
 
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "sparaguai.settings")
 
-if settings.DEBUG:
-    application = Cling(MediaCling(get_wsgi_application()))
-else:
-    application = get_wsgi_application()
+# if settings.DEBUG:
+application = Cling(MediaCling(get_wsgi_application()))
+# else:
+#     application = get_wsgi_application()
