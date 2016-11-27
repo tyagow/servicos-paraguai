@@ -13,7 +13,7 @@ jQuery(document).ready(function($) {
 
 	//FIX HOVER EFFECT ON IOS DEVICES
 	document.addEventListener("touchstart", function(){}, true);
-    $('.carousel').carousel()
+    // $('.carousel').carousel()
 });
 
 $(window).load(function(){
