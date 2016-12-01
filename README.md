@@ -23,14 +23,14 @@ cp contrib/env-sample .env
 python manage.py test
 ```
 
-### Como fazer deploy ?
+## Como fazer deploy ?
 
 1. Adicionar git remote apontando para o servidor com dokku instalado (Necessario ter ssh-key adicionado no dokku para autentificacao)
 2. Fazer o comando collectstatic localmente caso tenha alterado algum static file
 3. Enviar projeto com git push 
 4. Caso precise rodar migrações conecte via ssh ao servidor e rode o comando via dokku-cli
 
-```
+```console
 git remote add dokku dokku@<server-ip>:<dokku-app-name>
 (linux) DEBUG=False python manage.py collectstatic
 git push dokku master
