@@ -7,7 +7,7 @@ from decimal import Decimal
 from django.db import models
 from django.shortcuts import resolve_url as r
 
-from core.managers import CategoryManager
+from mptt.models import MPTTModel, TreeForeignKey
 
 
 class Estabelecimento(models.Model):
@@ -81,30 +81,33 @@ class Foto(models.Model):
         return self.foto.name
 
 
-class Categoria(models.Model):
-    parent = models.ForeignKey('self', verbose_name='Categoria', null=True, blank=True)
+class Categoria(MPTTModel):
+    # normal parent
+    # parent = models.ForeignKey('self', verbose_name='Categoria', null=True, blank=True)
+
+    # mptt parent
+    parent = TreeForeignKey('self', null=True, blank=True, related_name='children', db_index=True)
+
     nome = models.CharField(max_length=60)
     slug = models.SlugField()
     logo = models.ImageField(null=True, blank=True)
-    # estabelecimento = models.ForeignKey('Estabelecimento', related_name='categoria', null=True, blank=True)
 
-    objects = CategoryManager()
+    # objects = CategoryManager()
 
-    class Meta:
-        verbose_name = 'Categoria'
-        verbose_name_plural = 'Categorias'
+    class MPTTMeta:
+        order_insertion_by = ['nome']
 
     def __str__(self):
         return self.nome
 
-    def subcategorias(self):
-        return Categoria.objects.filter(parent=self)
+    # def subcategorias(self):
+    #     return Categoria.objects.filter(parent=self)
 
-    @property
-    def is_parent(self):
-        if self.parent is not None:
-            return False
-        return True
+    # @property
+    # def is_parent(self):
+    #     if self.parent is not None:
+    #         return False
+    #     return True
 
     def get_absolute_url(self):
         return r('categoria_detail', slug=self.slug)

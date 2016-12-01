@@ -6,7 +6,7 @@ from core.models import Categoria, Estabelecimento
 
 
 def home(request):
-    context = {'categorias': Categoria.objects.principais()}
+    context = {'nodes': Categoria.objects.all()}
     return render(request, 'index.html', context)
 
 

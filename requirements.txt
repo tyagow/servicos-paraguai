@@ -11,3 +11,4 @@ python-decouple==3.0
 six==1.10.0
 static3==0.7.0
 uWSGI==2.0.14
+django-mptt==0.8.6

@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-
+{% load mptt_tags %}
 {% block content %}
     <div class="body-container">
 
@@ -19,26 +19,79 @@
             <div class="container">
                 <div class="text-align-center col-md-12">
                     <div class="row">
-                        {% for c in categorias %}
-                            {% if forloop.counter|divisibleby:4 %}
-                                <div class="row">
-                            {% endif %}
-                        <div class="col-md-4">
-                            <a href="{{ c.get_absolute_url }}">
-                                    <h2 class="categorias-titulo">{{ c.nome }}</h2>
+{#                        <ul>#}
+{#                        {% recursetree nodes %}#}
+{##}
+{##}
+                            <a href="{{ node.get_absolute_url }}">
+                                        <h2 class="categorias-titulo">{{ node.nome }}</h2>
                             </a>
-                            {% for child in c.subcategorias %}
+{#                            {%  if not node.is_leaf_node %}#}
+{##}
+{#                                    {{ children }}#}
+{#                            {% endif %}#}
+{##}
+{#                        {% endrecursetree %}#}
+{#                        </ul>#}
+
+                        {% recursetree nodes %}
+
+                            {% if node.level == 0 %}
+                                {# first level #}
+                                <a href="{{ node.get_absolute_url }}">
+                                    <h3 class="categorias-titulo">{{ node.nome }}</h3>
+                                </a>
+                            {% else %}
+                                {# first child #}
                                 <p>
-                                    <a class="sub-categorias-titulo" href="{{ child.get_absolute_url }}">
-                                        {{ child.nome }}
+                                    <a class="sub-categorias-titulo" href="{{ node.get_absolute_url }}">
+                                        {{ node.nome }}
                                     </a>
                                 </p>
-                            {% endfor %}
-                        </div>
-                        {% if forloop.counter|divisibleby:3 %}
-                            </div>
-                        {% endif %}
-                        {% endfor %}
+                            {% endif %}
+
+                            {{ children}}
+                        {% endrecursetree %}
+
+
+{#                        <ul>#}
+{#                            {% recursetree nodes %}#}
+{#                                <div class="col-md-4">#}
+{#                                    <a href="{{ node.get_absolute_url }}">#}
+{#                                        <h2 class="categorias-titulo">{{ node.nome }}</h2>#}
+{#                                    </a>#}
+{#                                    {%  if not node.is_leaf_node %}#}
+{#                                        <ul class="children">#}
+{#                                            <p>#}
+{#                                                <a class="sub-categorias-titulo" href="{{ children.get_absolute_url }}">#}
+{#                                                    {{ children.nome }}#}
+{#                                                </a>#}
+{#                                            </p>#}
+{#                                        </ul>#}
+{#                                    {% endif %}#}
+{#                                </div>#}
+{#                            {% endrecursetree %}#}
+{#                        </ul>#}
+{#                        {% for c in categorias %}#}
+{#                            {% if forloop.counter|divisibleby:4 %}#}
+{#                                <div class="row">#}
+{#                            {% endif %}#}
+{#                        <div class="col-md-4">#}
+{#                            <a href="{{ c.get_absolute_url }}">#}
+{#                                    <h2 class="categorias-titulo">{{ c.nome }}</h2>#}
+{#                            </a>#}
+{#                            {% for child in c.subcategorias %}#}
+{#                                <p>#}
+{#                                    <a class="sub-categorias-titulo" href="{{ child.get_absolute_url }}">#}
+{#                                        {{ child.nome }}#}
+{#                                    </a>#}
+{#                                </p>#}
+{#                            {% endfor %}#}
+{#                        </div>#}
+{#                        {% if forloop.counter|divisibleby:3 %}#}
+{#                            </div>#}
+{#                        {% endif %}#}
+{#                        {% endfor %}#}
                     </div>
                 </div>
             </div>

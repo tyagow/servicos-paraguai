@@ -1,4 +1,6 @@
 from django.contrib import admin
+from mptt.admin import MPTTModelAdmin
+
 from core.models import Estabelecimento, Categoria, Telefone, Foto
 
 
@@ -29,9 +31,9 @@ class EstabelecimentoAdmin(admin.ModelAdmin):
     ]
 
 
-class CategoryAdmin(admin.ModelAdmin):
+class CategoriaAdmin(MPTTModelAdmin):
     prepopulated_fields = {'slug': ('nome',)}
 
 
 admin.site.register(Estabelecimento, EstabelecimentoAdmin)
-admin.site.register(Categoria, CategoryAdmin)
+admin.site.register(Categoria, CategoriaAdmin)

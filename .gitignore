@@ -7,3 +7,4 @@ mediafiles/
 static/
 media/
 .env
+/db2.sqlite3
