@@ -23,3 +23,10 @@ cp contrib/env-sample .env
 python manage.py test
 ```
 
+### Como fazer deploy ?
+
+1. Adicionar git remote apontando para o servidor com dokku instalado
+
+1.1. git remote add dokku dokku@<server-ip>:<dokku-app-name>
+
+
