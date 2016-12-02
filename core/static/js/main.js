@@ -43,12 +43,10 @@ function init_map() {
 
     var Lat = parseFloat(_lat);
     var Lng = parseFloat(_lng );
-    console.log('#c '  + LatLng);
-    console.log(_lat + '#' + _lng);
 
 
     var myOptions = {
-        zoom: 14,
+        zoom: 16,
         center: new google.maps.LatLng(Lat, Lng), //change the coordinates
         mapTypeId: google.maps.MapTypeId.ROADMAP,
         scrollwheel: false,

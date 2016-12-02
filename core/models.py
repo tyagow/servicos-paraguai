@@ -6,6 +6,7 @@ from decimal import Decimal
 
 from django.db import models
 from django.shortcuts import resolve_url as r
+from mptt.fields import TreeManyToManyField
 
 from mptt.models import MPTTModel, TreeForeignKey
 
@@ -28,7 +29,7 @@ class Estabelecimento(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(null=True, blank=True)
     coordenadas = models.CharField('Coordenadas', null=True, blank=True, max_length=40)
-    categoria = models.ManyToManyField('Categoria', blank=True, related_name='estabelecimentos')
+    categoria = TreeManyToManyField('Categoria', blank=True, related_name='estabelecimentos')
 
     class Meta:
         verbose_name = 'Estabelecimento'
