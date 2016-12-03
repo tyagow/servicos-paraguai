@@ -1,14 +1,30 @@
 # -*- coding: utf-8 -*-
-import json
-import urllib.parse
-import urllib.request
-from decimal import Decimal
+from uuid import uuid4
 
 from django.db import models
+from django.db.models.signals import pre_save
+from django.dispatch import receiver
 from django.shortcuts import resolve_url as r
 from mptt.fields import TreeManyToManyField
 
 from mptt.models import MPTTModel, TreeForeignKey
+
+
+def path_and_rename(path):
+    def wrapper(instance, filename):
+        ext = filename.split('.')[-1]
+        # get filename
+        fname = filename.split('.')[0]
+        print(instance)
+        if isinstance(instance, Estabelecimento):
+            filename = '{}/{}/{}.{}'.format(instance.nome, path, fname, ext)
+        else:
+            filename = '{}/{}/{}.{}'.format(instance.estabelecimento.nome, path, fname, ext)
+        # return the whole path to the file
+        print(filename)
+        return filename
+
+    return wrapper
 
 
 class Estabelecimento(models.Model):
@@ -22,7 +38,7 @@ class Estabelecimento(models.Model):
     nome = models.CharField(max_length=120)
     website = models.URLField()
     slug = models.SlugField(unique=True)
-    logo = models.ImageField(null=True)
+    logo = models.ImageField(upload_to=path_and_rename('logo'), null=True)
     descricao = models.TextField()
     endereco = models.CharField(max_length=60)
     cidade = models.CharField(max_length=1, choices=CIDADES)
@@ -42,28 +58,26 @@ class Estabelecimento(models.Model):
     def get_absolute_url(self):
         return r('estabelecimento_detail', slug=self.slug)
 
-    def geocode(self, address):
-        address = urllib.parse.quote_plus(address)
-        maps_api_url = "?".join(["http://maps.googleapis.com/maps/api/geocode/json", urllib.parse.urlencode({"address": address, "sensor":False})])
-        html = ""
-        _address = "?".join(["http://maps.googleapis.com/maps/api/geocode/json", urllib.parse.urlencode({"address": address, "sensor": False})])
-        with urllib.request.urlopen(_address) as response:
-            html = response.read()
-        data = json.loads(html.decode('utf8'))
+    # def geocode(self, address):
+    #     address = urllib.parse.quote_plus(address)
+    #     maps_api_url = "?".join(["http://maps.googleapis.com/maps/api/geocode/json", urllib.parse.urlencode({"address": address, "sensor":False})])
+    #     html = ""
+    #     _address = "?".join(["http://maps.googleapis.com/maps/api/geocode/json", urllib.parse.urlencode({"address": address, "sensor": False})])
+    #     with urllib.request.urlopen(_address) as response:
+    #         html = response.read()
+    #     data = json.loads(html.decode('utf8'))
+    #
+    #     if data['status'] == 'OK':
+    #         lat = data['results'][0]['geometry']['location']['lat']
+    #         lng = data['results'][0]['geometry']['location']['lng']
+    #         return Decimal(lat), Decimal(lng)
+    #     else:
+    #         return Decimal(0.00), Decimal(0.00)
 
-        if data['status'] == 'OK':
-            lat = data['results'][0]['geometry']['location']['lat']
-            lng = data['results'][0]['geometry']['location']['lng']
-            return Decimal(lat), Decimal(lng)
-        else:
-            return Decimal(0.00), Decimal(0.00)
 
-
-# @receiver(pre_save, sender=Estabelecimento)
-# def pre_save_handler(sender, instance, *args, **kwargs):
-#     self = instance
-#     if not self.lat or not self.lng:
-#         self.lat, self.lng = self.geocode(self.endereco)
+@receiver(pre_save, sender=Estabelecimento)
+def pre_save_handler(sender, instance, *args, **kwargs):
+    print('pre save' + instance.nome)
 
 
 class Telefone(models.Model):
@@ -76,10 +90,15 @@ class Telefone(models.Model):
 
 class Foto(models.Model):
     estabelecimento = models.ForeignKey('Estabelecimento')
-    foto = models.ImageField(null=True, blank=True)
+    foto = models.ImageField(upload_to=path_and_rename('fotos'), null=True, blank=True)
 
     def __str__(self):
         return self.foto.name
+
+
+@receiver(pre_save, sender=Foto)
+def pre_save_handler(sender, instance, *args, **kwargs):
+    print('pre save FOTO' + instance.estabelecimento.nome)
 
 
 class Categoria(MPTTModel):
