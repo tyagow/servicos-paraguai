@@ -1,9 +1,6 @@
 # -*- coding: utf-8 -*-
-from uuid import uuid4
 
 from django.db import models
-from django.db.models.signals import pre_save
-from django.dispatch import receiver
 from django.shortcuts import resolve_url as r
 from mptt.fields import TreeManyToManyField
 
@@ -15,13 +12,11 @@ def path_and_rename(path):
         ext = filename.split('.')[-1]
         # get filename
         fname = filename.split('.')[0]
-        print(instance)
         if isinstance(instance, Estabelecimento):
             filename = '{}/{}/{}.{}'.format(instance.nome, path, fname, ext)
         else:
             filename = '{}/{}/{}.{}'.format(instance.estabelecimento.nome, path, fname, ext)
         # return the whole path to the file
-        print(filename)
         return filename
 
     return wrapper
@@ -75,9 +70,9 @@ class Estabelecimento(models.Model):
     #         return Decimal(0.00), Decimal(0.00)
 
 
-@receiver(pre_save, sender=Estabelecimento)
-def pre_save_handler(sender, instance, *args, **kwargs):
-    print('pre save' + instance.nome)
+# @receiver(pre_save, sender=Estabelecimento)
+# def pre_save_handler(sender, instance, *args, **kwargs):
+#     print('pre save' + instance.nome)
 
 
 class Telefone(models.Model):
@@ -94,11 +89,6 @@ class Foto(models.Model):
 
     def __str__(self):
         return self.foto.name
-
-
-@receiver(pre_save, sender=Foto)
-def pre_save_handler(sender, instance, *args, **kwargs):
-    print('pre save FOTO' + instance.estabelecimento.nome)
 
 
 class Categoria(MPTTModel):
