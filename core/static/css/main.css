@@ -63,8 +63,8 @@ html {
     height: 100%;
 }
 body {
-    font-family: 'sinkin_sans300_light', serif;
-    background-color: #d8dbe2;
+    /*font-family: 'sinkin_sans300_light', serif;*/
+    background-color: #fff;
     text-align:center;
     min-height: 100%;
     margin:0;
@@ -73,7 +73,7 @@ body {
 
 /* Titulagem */
 h1, h2, h3, h4, h5, h6 {
-    font-family: 'sinkin_sans600_semibold', serif;
+    /*font-family: 'sinkin_sans600_semibold', serif;*/
 }
 
 h1 { padding: 10px 0 14px; }
@@ -183,7 +183,7 @@ dl {
     font-weight: bold;
 }
 
-.categorias-titulo {
+.categorias-titulo a {
     font-weight: bold;
     color: #230f11;
 
@@ -257,7 +257,6 @@ dl {
 }
 /* These style the container */
  body {
-    background-color: #d3d2d1;
     padding-top: 0px;
     padding-bottom: 15px;
 }
@@ -391,4 +390,7 @@ width:300px;
 }
 a {
     text-decoration: none;
+}
+#categorias {
+    text-align: left;
 }

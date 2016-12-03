@@ -39,4 +39,4 @@ git push dokku master
 
 **NOTES**
 
-static e media files são salvos localmente com DEBUG=True e no AmazonAWS S3 com DEBUG=False
+**static e media** files são salvos **localmente** com **DEBUG=True** e salvos no **AmazonAWS S3** com **DEBUG=False**
