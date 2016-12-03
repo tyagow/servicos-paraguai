@@ -36,3 +36,7 @@ git remote add dokku dokku@<server-ip>:<dokku-app-name>
 git push dokku master
 (servidor)dokku run <dokku-app-name> python manage.py migrate
 ```
+
+**NOTES**
+
+static e media files são salvos localmente com DEBUG=True e no AmazonAWS S3 com DEBUG=False
