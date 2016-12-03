@@ -9,8 +9,8 @@
                         {{ item.nome }}
                     </a>
                     {% for categoria in item.categoria.all %}
-                        <a href="{{ categoria.get_absolute_url }}">
-                            | {{ categoria.nome }}
+                        | <a href="{{ categoria.get_absolute_url }}">
+                            {{ categoria.nome }}
                         </a>
                     {% endfor %}
                 </div>

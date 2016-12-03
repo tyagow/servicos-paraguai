@@ -24,7 +24,7 @@ def categoria_detail(request, slug):
 def busca(request):
     context = {'estabelecimentos': None}
     if 's' in request.GET:
-        context = {'estabelecimentos': Estabelecimento.objects.filter(nome__contains=request.GET['s'])}
+        context = {'estabelecimentos': Estabelecimento.objects.filter(nome__icontains=request.GET['s'])}
 
     return render(request, 'core/busca_resultado.html', context)
 
