@@ -1,69 +1,15 @@
 /*!* Customização *!*/
-
-@font-face {
-    font-family: 'sinkin_sans200_x_light';
-    src: url('../fonts/SinkinSans-200XLight-webfont.eot');
-    src: url('../fonts/SinkinSans-200XLight-webfont.eot?#iefix') format('embedded-opentype'),
-         url('../fonts/SinkinSans-200XLight-webfont.woff') format('woff'),
-         url('../fonts/SinkinSans-200XLight-webfont.ttf') format('truetype'),
-         url('../fonts/SinkinSans-200XLight-webfont.svg#sinkin_sans200_x_light') format('svg');
-    font-weight: normal;
-    font-style: normal;
-
-}
-
-@font-face {
-    font-family: 'sinkin_sans300_light';
-    src: url('../fonts/SinkinSans-300Light-webfont.eot');
-    src: url('../fonts/SinkinSans-300Light-webfont.eot?#iefix') format('embedded-opentype'),
-         url('../fonts/SinkinSans-300Light-webfont.woff') format('woff'),
-         url('../fonts/SinkinSans-300Light-webfont.ttf') format('truetype'),
-         url('../fonts/SinkinSans-300Light-webfont.svg#sinkin_sans300_light') format('svg');
-    font-weight: normal;
-    font-style: normal;
-
-}
-
-@font-face {
-    font-family: 'sinkin_sans400_regular';
-    src: url('../fonts/SinkinSans-400Regular-webfont.eot');
-    src: url('../fonts/SinkinSans-400Regular-webfont.eot?#iefix') format('embedded-opentype'),
-         url('../fonts/SinkinSans-400Regular-webfont.woff') format('woff'),
-         url('../fonts/SinkinSans-400Regular-webfont.ttf') format('truetype'),
-         url('../fonts/SinkinSans-400Regular-webfont.svg#sinkin_sans400_regular') format('svg');
-    font-weight: normal;
-    font-style: normal;
-
-}
-
-@font-face {
-    font-family: 'sinkin_sans600_semibold';
-    src: url('../fonts/SinkinSans-600SemiBold-webfont.eot');
-    src: url('../fonts/SinkinSans-600SemiBold-webfont.eot?#iefix') format('embedded-opentype'),
-         url('../fonts/SinkinSans-600SemiBold-webfont.woff') format('woff'),
-         url('../fonts/SinkinSans-600SemiBold-webfont.ttf') format('truetype'),
-         url('../fonts/SinkinSans-600SemiBold-webfont.svg#sinkin_sans600_semibold') format('svg');
-    font-weight: normal;
-    font-style: normal;
-
-}
-
-@font-face {
-    font-family: 'sinkin_sans700_bold';
-    src: url('../fonts/SinkinSans-700Bold-webfont.eot');
-    src: url('../fonts/SinkinSans-700Bold-webfont.eot?#iefix') format('embedded-opentype'),
-         url('../fonts/SinkinSans-700Bold-webfont.woff') format('woff'),
-         url('../fonts/SinkinSans-700Bold-webfont.ttf') format('truetype'),
-         url('../fonts/SinkinSans-700Bold-webfont.svg#sinkin_sans700_bold') format('svg');
-    font-weight: normal;
-    font-style: normal;
-
+:root {
+  --nav-bg-color: #ef5f6d;
+  --body-bg-color: #f4f2d9;
+  --address-bg-color: #ef5f6d;
+  --titulo-nav-color: #071013;
+  --header-estab-color: #071013;
 }
 html {
     height: 100%;
 }
 body {
-    /*font-family: 'sinkin_sans300_light', serif;*/
     background-color: #fff;
     text-align:center;
     min-height: 100%;
@@ -164,8 +110,7 @@ dl {
     max-height: 80px;
     height:50px;
     text-align: center;
-    background:bottom center no-repeat;
-    background-color: #eb5160;
+    background: var(--nav-bg-color) no-repeat bottom center;
     /*-webkit-background-size: cover;*/
     /*-moz-background-size: cover;*/
     /*-o-background-size: cover;*/
@@ -179,7 +124,7 @@ dl {
 
 .titulo a {
     margin: auto;
-    color: #071013;
+    color: var(--titulo-nav-color);
     font-weight: bold;
 }
 
@@ -247,7 +192,6 @@ dl {
 
 /*!* Search form*!*/
 
-/*!* CRS Custom Style Sheet: created 08/21/2013 jnp *!*/
 
 /*!* This overrides BT3's wider (1170px) layout for larger monitors - jnp 20130821 *!*/
  @media (min-width: 1200px) {
@@ -263,9 +207,9 @@ dl {
 body > .container {
     padding: 0 0 0 0;
     height: inherit;
-    background-color: #ffffff;
+    background-color: var(--body-bg-color);
     border: 0 solid transparent;
-    border-radius: 4px;
+    border-radius: 1px;
     -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
     box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
 
@@ -350,10 +294,9 @@ width:300px;
 }
 
 .venue-address {
-    min-height: 200px;
     max-height: 200px;
     margin: auto;
-    background: rgba(52, 152, 219, 0.85) none repeat scroll 0 0;
+    background: var(--address-bg-color) none repeat scroll 0 0;
 }
 
 .venue-address .address {
@@ -393,4 +336,7 @@ a {
 }
 #categorias {
     text-align: left;
+}
+.header-estabelecimento a {
+    color: var(--header-estab-color);
 }

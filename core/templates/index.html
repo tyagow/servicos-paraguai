@@ -1,8 +1,6 @@
 {% extends 'base.html' %}
 {% load mptt_tags %}
 {% block content %}
-    <div class="body-container">
-
         <form class="form-inline global-search" action="/busca/" method="get" role="form">
             <div class="form-group">
                 <input type="search" class="form-control" id="s" name="s" placeholder="">
@@ -28,11 +26,10 @@
                                             {{ node.nome }}
                                     </a></p>
                                 {% endif %}
-                                    {% if 1 in structure.closed_levels %}</div>{% if not 0 in structure.closed_levels %}<div class="col-md-4">{% endif %}{% endif %}
+                                    {% if 1 in structure.closed_levels %}</div>{% cycle '' '' '</div>' %}{% if not 0 in structure.closed_levels %}{% cycle '' '' "<div class='row'>" %}<div class="col-md-4">{% endif %}{% endif %}
                             {% endfor %}
 
                     </div>
 
         </section>
-    </div>
 {% endblock %}

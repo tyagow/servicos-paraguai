@@ -24,7 +24,6 @@ class HomeTest(TestCase):
         """Html must display categories"""
         self.assertContains(self.response, self.categoria.nome)
 
-
     def test_html_categorias_link(self):
         expected = 'href="{}"'.format(self.categoria.get_absolute_url())
         self.assertContains(self.response, expected)

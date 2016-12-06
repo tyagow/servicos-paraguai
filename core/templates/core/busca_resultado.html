@@ -6,6 +6,7 @@
             {% for item in estabelecimentos %}
                 <div class="row">
                     <a class="titulo_estabelecimento" href="{{ item.get_absolute_url }}">
+                        <img src="{{ item.logo.url }}" class="photo" alt="">
                         {{ item.nome }}
                     </a>
                     {% for categoria in item.categoria.all %}
