@@ -3,11 +3,11 @@ from django.shortcuts import render, get_object_or_404, redirect
 
 # Create your views here.
 
-from src.core.models import Categoria, Estabelecimento
+from src.core.models import Categoria, Estabelecimento, Anuncio
 
 
 def home(request):
-    context = {'nodes': Categoria.objects.all()}
+    context = {'nodes': Categoria.objects.all(), 'anuncios': Anuncio.objects.all()}
     return render(request, 'index.html', context)
 
 

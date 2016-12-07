@@ -2,6 +2,7 @@
 
 from django.db import models
 from django.shortcuts import resolve_url as r
+from django.utils.deconstruct import deconstructible
 from mptt.fields import TreeManyToManyField
 
 from mptt.models import MPTTModel, TreeForeignKey
@@ -121,4 +122,12 @@ class Categoria(MPTTModel):
 
     def get_absolute_url(self):
         return r('categoria_detail', slug=self.slug)
+
+
+class Anuncio(models.Model):
+    banner = models.ImageField(upload_to=path_and_rename('banner'))
+    url = models.URLField()
+    estabelecimento = models.ForeignKey('Estabelecimento')
+    ativo = models.BooleanField(default=False)
+    created_at = models.DateTimeField(auto_now_add=True)
 

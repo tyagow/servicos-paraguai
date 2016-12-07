@@ -1,7 +1,7 @@
 from django.contrib import admin
 from mptt.admin import MPTTModelAdmin
 
-from src.core.models import Estabelecimento, Categoria, Telefone, Foto
+from src.core.models import Estabelecimento, Categoria, Telefone, Foto, Anuncio
 
 
 class TelefoneInLine(admin.TabularInline):
@@ -37,3 +37,5 @@ class CategoriaAdmin(MPTTModelAdmin):
 
 admin.site.register(Estabelecimento, EstabelecimentoAdmin)
 admin.site.register(Categoria, CategoriaAdmin)
+admin.site.register(Anuncio)
+
