@@ -15,7 +15,7 @@ from django.core.wsgi import get_wsgi_application
 
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "src.settings")
 
-if settings.DEBUG:
+if settings.PRODUCAO:
     application = Cling(MediaCling(get_wsgi_application()))
 else:
     application = get_wsgi_application()
