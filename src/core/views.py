@@ -2,7 +2,7 @@ from django.shortcuts import render, get_object_or_404, redirect
 
 # Create your views here.
 
-from core.models import Categoria, Estabelecimento
+from src.core.models import Categoria, Estabelecimento
 
 
 def home(request):
