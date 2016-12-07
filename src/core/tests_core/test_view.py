@@ -2,7 +2,7 @@ from django.shortcuts import resolve_url as r
 from django.test import TestCase
 from django.urls import reverse
 
-from core.models import Estabelecimento, Categoria, Telefone
+from src.core.models import Estabelecimento, Categoria, Telefone
 
 
 class HomeTest(TestCase):
