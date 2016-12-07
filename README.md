@@ -21,6 +21,7 @@ source .venv/bin/activate
 pip install -r requirements.txt
 cp contrib/env-sample .env
 python manage.py test
+python manage.py runserver
 ```
 
 ## Como fazer deploy ?
