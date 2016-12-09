@@ -7,7 +7,7 @@ from src.core.models import Categoria, Estabelecimento, Anuncio
 
 
 def home(request):
-    context = {'categorias': Categoria.objects.all(), 'anuncios': Anuncio.objects.ativos()}
+    context = {'estabelecimentos': Estabelecimento.objects.all(), 'anuncios': Anuncio.objects.ativos()}
     return render(request, 'index.html', context)
 
 

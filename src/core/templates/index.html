@@ -54,27 +54,36 @@
 
 
     <section id="categories">
-        <div class="row">
-            <div class="col-md-4">
-                {% for categoria,structure in categorias|tree_info %}
-                    {% if not categoria.parent %}
-                        <h3 class="categorias-titulo"><a href="{{ categoria.get_absolute_url }}">
-                            {% if categoria.logo %}<img src="{{ categoria.logo.url }}" class="categoria-icon" alt="">{% endif %} {{ categoria.nome }}
-                        </a></h3>
-                        {% for e in categoria.all_children_estabelecimentos %}
-                            <p>{% if e.logo %}<img src="{{ e.logo.url }}" class="photo" alt="">{% endif %}<a href="{{ e.get_absolute_url }}"> {{ e.nome }}</a></p>
+        <div class="container-estabelecimentos">
+            {% for e in estabelecimentos %}
+                <div class="row">
+
+                    <p>{% if e.logo %}<img src="{{ e.logo.url }}" class="photo" alt="">{% endif %}<a class="estabelecimento-titulo" href="{{ e.get_absolute_url }}"> {{ e.nome }}</a>
+                    ({% for categoria in e.categoria.all %}
+                    <a href="{{ categoria.get_absolute_url }}" class="sub-categorias-titulo">{{ categoria.nome }}</a>
+                        {% endfor %})</p>
+                </div>
+            {% endfor %}
+{#            <div class="col-md-4">#}
+{#                {% for categoria,structure in categorias|tree_info %}#}
+{#                    {% if not categoria.parent %}#}
+{#                        <h3 class="categorias-titulo"><a href="{{ categoria.get_absolute_url }}">#}
+{#                            {% if categoria.logo %}<img src="{{ categoria.logo.url }}" class="categoria-icon" alt="">{% endif %} {{ categoria.nome }}#}
+{#                        </a></h3>#}
+{#                        {% for e in categoria.all_children_estabelecimentos %}#}
+{#                            <p>{% if e.logo %}<img src="{{ e.logo.url }}" class="photo" alt="">{% endif %}<a href="{{ e.get_absolute_url }}"> {{ e.nome }}</a></p>#}
                             {#                                            ({% for categoria in e.categoria.all %}#}
                             {#                                                <a href="{{ categoria.get_absolute_url }}" class="sub-categorias-titulo">{{ categoria.nome }}</a>#}
                             {#                                            {% endfor %})#}
-                        {% endfor %}
-                    {% else %}
+{#                        {% endfor %}#}
+{#                    {% else %}#}
                         {#                                    <p><a class="sub-categorias-titulo" href="{{ categoria.get_absolute_url }}">#}
                         {#                                            {{ categoria.nome }}#}
                         {#                                    </a></p>#}
-
-                    {% endif %}
-                    {% if 1 in structure.closed_levels %}</div>{% cycle '' '' '</div>' %}{% if not 0 in structure.closed_levels %}{% cycle '' '' "<div class='row'>" %}<div class="col-md-4">{% endif %}{% endif %}
-                {% endfor %}
+{##}
+{#                    {% endif %}#}
+{#                    {% if 1 in structure.closed_levels %}</div>{% cycle '' '' '</div>' %}{% if not 0 in structure.closed_levels %}{% cycle '' '' "<div class='row'>" %}<div class="col-md-4">{% endif %}{% endif %}#}
+{#                {% endfor %}#}
 
                 </div>
 
