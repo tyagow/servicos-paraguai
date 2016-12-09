@@ -7,7 +7,7 @@ from django.shortcuts import resolve_url as r
 from mptt.fields import TreeManyToManyField
 from mptt.models import MPTTModel, TreeForeignKey
 
-from src.core.managers import path_and_rename_logo, path_and_rename_banner, path_and_rename_fotos
+from src.core.managers import path_and_rename_logo, path_and_rename_banner, path_and_rename_fotos, path_and_rename_categoria
 
 
 class Estabelecimento(models.Model):
@@ -75,7 +75,7 @@ class Categoria(MPTTModel):
 
     nome = models.CharField(max_length=60)
     slug = models.SlugField()
-    logo = models.ImageField(upload_to='categorias', null=True, blank=True)
+    logo = models.ImageField(upload_to=path_and_rename_categoria, null=True, blank=True)
 
     objects = CategoriaManager()
 
