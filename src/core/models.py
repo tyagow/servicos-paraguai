@@ -5,36 +5,9 @@ from django.db.models.signals import pre_delete, post_delete
 from django.dispatch import receiver
 from django.shortcuts import resolve_url as r
 from mptt.fields import TreeManyToManyField
-
 from mptt.models import MPTTModel, TreeForeignKey
 
-# @deconstructible
-def path_and_rename(path):
-    # path = '{}/{}/{}'
-    #
-    # def __init__(self, sub_path):
-    #     self.sub_path = sub_path
-    #     print(sub_path)
-    #
-    # def __call__(self, instance, filename):
-    #     print('lol '+filename)
-    #     if isinstance(instance, Estabelecimento):
-    #         return path.format(instance.nome, self.sub_path, filename)
-    #     else:
-    #         return path.format(instance.estabelecimento.nome, self.sub_path, filename)
-
-    def wrapper(instance, filename):
-        ext = filename.split('.')[-1]
-        # get filename
-        fname = filename.split('.')[0]
-        if isinstance(instance, Estabelecimento):
-            filename = '{}/{}/{}.{}'.format(instance.nome, path, fname, ext)
-        else:
-            filename = '{}/{}/{}.{}'.format(instance.estabelecimento.nome, path, fname, ext)
-        # return the whole path to the file
-        return filename
-
-    return wrapper
+from src.core.managers import path_and_rename_logo, path_and_rename_banner, path_and_rename_fotos
 
 
 class Estabelecimento(models.Model):
@@ -45,11 +18,10 @@ class Estabelecimento(models.Model):
         ('S', 'Salto del Guairá'),
 
     )
-    upload_dir = path_and_rename('logo')
     nome = models.CharField(max_length=120)
     website = models.URLField()
     slug = models.SlugField(unique=True)
-    logo = models.ImageField(upload_to=upload_dir, null=True)
+    logo = models.ImageField(upload_to=path_and_rename_logo, null=True)
     descricao = models.TextField()
     endereco = models.CharField(max_length=60)
     cidade = models.CharField(max_length=1, choices=CIDADES)
@@ -86,9 +58,8 @@ class Telefone(models.Model):
 
 
 class Foto(models.Model):
-    upload_dir = path_and_rename('fotos')
     estabelecimento = models.ForeignKey('Estabelecimento')
-    foto = models.ImageField(upload_to=upload_dir, null=True, blank=True)
+    foto = models.ImageField(upload_to=path_and_rename_fotos, null=True, blank=True)
 
     def __str__(self):
         return self.foto.name
@@ -100,10 +71,6 @@ class CategoriaManager(models.Manager):
 
 
 class Categoria(MPTTModel):
-    # normal parent
-    # parent = models.ForeignKey('self', verbose_name='Categoria', null=True, blank=True)
-
-    # mptt parent
     parent = TreeForeignKey('self', null=True, blank=True, related_name='children', db_index=True)
 
     nome = models.CharField(max_length=60)
@@ -117,9 +84,6 @@ class Categoria(MPTTModel):
 
     def __str__(self):
         return self.nome
-
-    # def subcategorias(self):
-    #     return Categoria.objects.filter(parent=self)
 
     def all_children_estabelecimentos(self):
         estabelecimentos = []
@@ -145,8 +109,7 @@ class AnuncioManager(models.Manager):
 
 
 class Anuncio(models.Model):
-    upload_dir = path_and_rename('banner')
-    banner = models.ImageField(upload_to=upload_dir)
+    banner = models.ImageField(upload_to=path_and_rename_banner)
     url = models.URLField()
     estabelecimento = models.ForeignKey('Estabelecimento')
     ativo = models.BooleanField(default=False)
@@ -178,8 +141,6 @@ class Preco(models.Model):
 def estabelecimento_logo_delete(sender, **kwargs):
     estabelecimento = kwargs['instance']
     if estabelecimento.logo:
-        # storage, path = estabelecimento.logo.storage, estabelecimento.logo.path
-        # storage.delete(path)
         estabelecimento.logo.delete(False)
 
 
@@ -187,8 +148,6 @@ def estabelecimento_logo_delete(sender, **kwargs):
 def foto_delete(sender, **kwargs):
     foto = kwargs['instance']
     if foto.foto:
-        # storage, path = foto.foto.storage, foto.foto.path
-        # storage.delete(path)
         foto.foto.delete(False)
 
 
@@ -196,15 +155,11 @@ def foto_delete(sender, **kwargs):
 def categoria_logo_delete(sender, **kwargs):
     instance = kwargs['instance']
     if instance.logo:
-        # storage, path = instance.logo.storage, instance.logo.path
-        # storage.delete(path)
-        instance.delete(False)
+        instance.logo.delete(False)
 
 
 @receiver(post_delete, sender=Anuncio)
 def anuncio_banner_delete(sender, **kwargs):
     instance = kwargs['instance']
     if instance.banner:
-        # storage, path = instance.banner.storage, instance.banner.path
-        # storage.delete(path)
-        instance.delete(False)
+        instance.banner.delete(False)

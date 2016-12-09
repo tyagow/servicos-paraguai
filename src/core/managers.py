@@ -1,10 +1,11 @@
-from django.db import models
+def path_and_rename_logo(instance, filename):
+    return '{}/{}/{}'.format(instance.nome, 'logo', filename)
 
 
-class CategoryManager(models.Manager):
-    def principais(self):
-        qs = super(CategoryManager, self).filter(parent=None)
-        return qs
+def path_and_rename_fotos(instance, filename):
+    return '{}/{}/{}'.format(instance.estabelecimento.nome, 'fotos', filename)
 
-    def subcategorias(self):
-        return super(CategoryManager, self).filter(parent=self)
+
+def path_and_rename_banner(instance, filename):
+    return '{}/{}/{}'.format(instance.estabelecimento.nome, 'banner', filename)
+
