@@ -163,15 +163,15 @@ class Anuncio(models.Model):
 
 class Caracteristica(models.Model):
 
-    TIPOS = (
-        ('D', 'Descrição'),
-        ('P', 'Preço'),
-    )
-
     estabelecimento = models.ForeignKey('Estabelecimento')
     titulo = models.CharField(max_length=100)
     valor = models.CharField(max_length=250)
-    tipo = models.CharField(max_length=1, choices=TIPOS)
 
     def __str__(self):
         return self.titulo
+
+
+class Preco(models.Model):
+    estabelecimento = models.ForeignKey('Estabelecimento')
+    titulo = models.CharField(max_length=100)
+    valor = models.CharField(max_length=250)
