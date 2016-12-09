@@ -1,7 +1,7 @@
 from django.contrib import admin
 from mptt.admin import MPTTModelAdmin
 
-from src.core.models import Estabelecimento, Categoria, Telefone, Foto, Anuncio
+from src.core.models import Estabelecimento, Categoria, Telefone, Foto, Anuncio, Caracteristica
 
 
 class TelefoneInLine(admin.TabularInline):
@@ -16,11 +16,10 @@ class FotoInLine(admin.TabularInline):
     min_num = 0
 
 
-class CategoriaInLine(admin.TabularInline):
-    model = Categoria
-    extra = 0
+class CaracteristicaInline(admin.TabularInline):
+    model = Caracteristica
+    extra = 1
     min_num = 0
-
 
 class EstabelecimentoAdmin(admin.ModelAdmin):
     prepopulated_fields = {'slug': ('nome',)}
@@ -28,6 +27,7 @@ class EstabelecimentoAdmin(admin.ModelAdmin):
     inlines = [
         FotoInLine,
         TelefoneInLine,
+        CaracteristicaInline,
     ]
 
 
