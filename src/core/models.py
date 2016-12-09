@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
 
 from django.db import models
+from django.db.models.signals import pre_delete, post_delete
+from django.dispatch import receiver
 from django.shortcuts import resolve_url as r
 from mptt.fields import TreeManyToManyField
 
@@ -73,27 +75,6 @@ class Estabelecimento(models.Model):
 
     def get_absolute_url(self):
         return r('estabelecimento_detail', slug=self.slug)
-
-    # def geocode(self, address):
-    #     address = urllib.parse.quote_plus(address)
-    #     maps_api_url = "?".join(["http://maps.googleapis.com/maps/api/geocode/json", urllib.parse.urlencode({"address": address, "sensor":False})])
-    #     html = ""
-    #     _address = "?".join(["http://maps.googleapis.com/maps/api/geocode/json", urllib.parse.urlencode({"address": address, "sensor": False})])
-    #     with urllib.request.urlopen(_address) as response:
-    #         html = response.read()
-    #     data = json.loads(html.decode('utf8'))
-    #
-    #     if data['status'] == 'OK':
-    #         lat = data['results'][0]['geometry']['location']['lat']
-    #         lng = data['results'][0]['geometry']['location']['lng']
-    #         return Decimal(lat), Decimal(lng)
-    #     else:
-    #         return Decimal(0.00), Decimal(0.00)
-
-
-# @receiver(pre_save, sender=Estabelecimento)
-# def pre_save_handler(sender, instance, *args, **kwargs):
-#     print('pre save' + instance.nome)
 
 
 class Telefone(models.Model):
@@ -191,3 +172,36 @@ class Preco(models.Model):
     estabelecimento = models.ForeignKey('Estabelecimento')
     titulo = models.CharField(null=True, blank=True, max_length=100)
     valor = models.DecimalField(max_digits=12, decimal_places=2)
+
+
+@receiver(post_delete, sender=Estabelecimento)
+def estabelecimento_logo_delete(sender, **kwargs):
+    estabelecimento = kwargs['instance']
+    if estabelecimento.logo:
+        storage, path = estabelecimento.logo.storage, estabelecimento.logo.path
+        storage.delete(path)
+
+
+@receiver(post_delete, sender=Foto)
+def foto_delete(sender, **kwargs):
+    foto = kwargs['instance']
+    if foto.foto:
+        storage, path = foto.foto.storage, foto.foto.path
+        storage.delete(path)
+
+
+@receiver(post_delete, sender=Categoria)
+def categoria_logo_delete(sender, **kwargs):
+    instance = kwargs['instance']
+    if instance.logo:
+        storage, path = instance.logo.storage, instance.logo.path
+        storage.delete(path)
+
+
+@receiver(post_delete, sender=Anuncio)
+def anuncio_banner_delete(sender, **kwargs):
+    instance = kwargs['instance']
+    if instance.banner:
+        storage, path = instance.banner.storage, instance.banner.path
+        storage.delete(path)
+
