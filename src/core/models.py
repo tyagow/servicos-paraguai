@@ -6,8 +6,21 @@ from mptt.fields import TreeManyToManyField
 
 from mptt.models import MPTTModel, TreeForeignKey
 
-
+# @deconstructible
 def path_and_rename(path):
+    # path = '{}/{}/{}'
+    #
+    # def __init__(self, sub_path):
+    #     self.sub_path = sub_path
+    #     print(sub_path)
+    #
+    # def __call__(self, instance, filename):
+    #     print('lol '+filename)
+    #     if isinstance(instance, Estabelecimento):
+    #         return path.format(instance.nome, self.sub_path, filename)
+    #     else:
+    #         return path.format(instance.estabelecimento.nome, self.sub_path, filename)
+
     def wrapper(instance, filename):
         ext = filename.split('.')[-1]
         # get filename
@@ -30,10 +43,11 @@ class Estabelecimento(models.Model):
         ('S', 'Salto del Guairá'),
 
     )
+    upload_dir = path_and_rename('logo')
     nome = models.CharField(max_length=120)
     website = models.URLField()
     slug = models.SlugField(unique=True)
-    logo = models.ImageField(upload_to=path_and_rename('logo'), null=True)
+    logo = models.ImageField(upload_to=upload_dir, null=True)
     descricao = models.TextField()
     endereco = models.CharField(max_length=60)
     cidade = models.CharField(max_length=1, choices=CIDADES)
@@ -91,8 +105,9 @@ class Telefone(models.Model):
 
 
 class Foto(models.Model):
+    upload_dir = path_and_rename('fotos')
     estabelecimento = models.ForeignKey('Estabelecimento')
-    foto = models.ImageField(upload_to=path_and_rename('fotos'), null=True, blank=True)
+    foto = models.ImageField(upload_to=upload_dir, null=True, blank=True)
 
     def __str__(self):
         return self.foto.name
@@ -149,7 +164,8 @@ class AnuncioManager(models.Manager):
 
 
 class Anuncio(models.Model):
-    banner = models.ImageField(upload_to=path_and_rename('banner'))
+    upload_dir = path_and_rename('banner')
+    banner = models.ImageField(upload_to=upload_dir)
     url = models.URLField()
     estabelecimento = models.ForeignKey('Estabelecimento')
     ativo = models.BooleanField(default=False)
@@ -165,7 +181,7 @@ class Caracteristica(models.Model):
 
     estabelecimento = models.ForeignKey('Estabelecimento')
     titulo = models.CharField(max_length=100)
-    valor = models.CharField(max_length=250)
+    conteudo = models.CharField(max_length=250)
 
     def __str__(self):
         return self.titulo
@@ -173,5 +189,5 @@ class Caracteristica(models.Model):
 
 class Preco(models.Model):
     estabelecimento = models.ForeignKey('Estabelecimento')
-    titulo = models.CharField(max_length=100)
-    valor = models.CharField(max_length=250)
+    titulo = models.CharField(null=True, blank=True, max_length=100)
+    valor = models.DecimalField(max_digits=12, decimal_places=2)
