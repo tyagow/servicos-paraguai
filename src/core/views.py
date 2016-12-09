@@ -7,7 +7,7 @@ from src.core.models import Categoria, Estabelecimento, Anuncio
 
 
 def home(request):
-    context = {'nodes': Categoria.objects.all(), 'anuncios': Anuncio.objects.all()}
+    context = {'categorias': Categoria.objects.all(), 'anuncios': Anuncio.objects.ativos()}
     return render(request, 'index.html', context)
 
 
@@ -25,7 +25,11 @@ def busca(request):
     context = {'estabelecimentos': None}
     if 's' in request.GET:
         query = request.GET['s']
-        query_list = Estabelecimento.objects.filter(Q(nome__icontains=query) | Q(categoria__nome__icontains=query))
+        # query_list = Estabelecimento.objects.filter(Q(nome__icontains=query) | Q(categoria__nome__icontains=query))
+        query_list = Estabelecimento.objects.filter(nome__icontains=query)
+        if len(query_list) == 0:
+            query_list = Estabelecimento.objects.filter(categoria__nome__icontains=query)
+
         context = {'estabelecimentos': query_list}
 
     return render(request, 'core/busca_resultado.html', context)

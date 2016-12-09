@@ -8,6 +8,16 @@ from src.core.models import Estabelecimento, Categoria, Telefone
 class HomeTest(TestCase):
     def setUp(self):
         self.categoria = Categoria.objects.create(nome='Alimentação', slug='alimentacao')
+        Categoria.objects.create(nome='Bares', slug='bares', parent=self.categoria)
+
+        self.estabelecimento = Estabelecimento.objects.create(
+            nome='Fast Way',
+            website='www.fastway.com',
+            slug='fast-way',
+            descricao='Fast Way Descrição',
+            endereco='Avda. Rogelio Benitez, 061 500 763',
+            cidade='S',
+        )
         self.response = self.client.get(r('home'))
 
     def test_get(self):

@@ -1,5 +1,9 @@
 {% extends 'base.html' %}
+{% load static %}
 {% load mptt_tags %}
+{% block script %}
+        <script src="{% static 'js/map.js' %}"></script>
+{% endblock %}
 {% block content %}
 
     <section id="#carousel">
@@ -16,7 +20,9 @@
             <div class="carousel-inner" role="listbox">
                 {% for anuncio in anuncios %}
                     <div class="item {% if forloop.counter == 1 %}active{% endif %}">
-                        <img src="{{ anuncio.banner.url }}" alt="1">
+                        <a href="{{ anuncio.url }}">
+                            <img src="{{ anuncio.banner.url }}" alt="1">
+                        </a>
                         <div class="carousel-caption">
 
                         </div>
@@ -36,35 +42,53 @@
         </div>
     </section>
 
-        <form class="form-inline global-search" action="/busca/" method="get" role="form">
-            <div class="form-group">
-                <input type="search" class="form-control" id="s" name="s" placeholder="">
-                <input id="cn" name="cn" type="hidden" value="false" />
+    <form class="form-inline global-search" action="/busca/" method="get" role="form">
+        <div class="form-group">
+            <input type="search" class="form-control" id="s" name="s" placeholder="">
+        </div>
+        <button type="submit" id="s" class="btn btn-default"><span class="glyphicon glyphicon-search"></span>
+
+        </button>
+
+    </form>
+
+
+    <section id="categories">
+        <div class="row">
+            <div class="col-md-4">
+                {% for categoria,structure in categorias|tree_info %}
+                    {% if not categoria.get_descendant_count == 0 %}
+                        <h3 class="categorias-titulo"><a href="{{ categoria.get_absolute_url }}">
+                            {% if categoria.logo %}<img src="{{ categoria.logo.url }}" class="categoria-icon" alt="">{% endif %} {{ categoria.nome }}
+                        </a></h3>
+                        {% for e in categoria.all_children_estabelecimentos %}
+                            <p>{% if e.logo %}<img src="{{ e.logo.url }}" class="photo" alt="">{% endif %}<a href="{{ e.get_absolute_url }}"> {{ e.nome }}</a></p>
+                            {#                                            ({% for categoria in e.categoria.all %}#}
+                            {#                                                <a href="{{ categoria.get_absolute_url }}" class="sub-categorias-titulo">{{ categoria.nome }}</a>#}
+                            {#                                            {% endfor %})#}
+                        {% endfor %}
+                    {% else %}
+                        {#                                    <p><a class="sub-categorias-titulo" href="{{ categoria.get_absolute_url }}">#}
+                        {#                                            {{ categoria.nome }}#}
+                        {#                                    </a></p>#}
+
+                    {% endif %}
+                    {% if 1 in structure.closed_levels %}</div>{% cycle '' '' '</div>' %}{% if not 0 in structure.closed_levels %}{% cycle '' '' "<div class='row'>" %}<div class="col-md-4">{% endif %}{% endif %}
+                {% endfor %}
+
+                </div>
+
+    </section>
+
+    <!-- VENUE -->
+    <section id="venue">
+        <div class="row min-h-10">
+            <div id="map-canvas-all"></div>
+            <div class="row col-md-12">
+                <div class="venue">
+
+                </div>
             </div>
-            <button type="submit" id="s" class="btn btn-default"><span class="glyphicon glyphicon-search"></span>
-
-            </button>
-
-        </form>
-
-
-        <section id="categories">
-                    <div class="row">
-                        <div class="col-md-4">
-                            {% for node,structure in nodes|tree_info %}
-                                {% if not node.get_descendant_count == 0 %}
-                                    <h3 class="categorias-titulo"><a href="{{ node.get_absolute_url }}">
-                                        {{ node.nome }}
-                                    </a></h3>
-                                {% else %}
-                                    <p><a class="sub-categorias-titulo" href="{{ node.get_absolute_url }}">
-                                            {{ node.nome }}
-                                    </a></p>
-                                {% endif %}
-                                    {% if 1 in structure.closed_levels %}</div>{% cycle '' '' '</div>' %}{% if not 0 in structure.closed_levels %}{% cycle '' '' "<div class='row'>" %}<div class="col-md-4">{% endif %}{% endif %}
-                            {% endfor %}
-
-                    </div>
-
-        </section>
+        </div>
+    </section>
 {% endblock %}

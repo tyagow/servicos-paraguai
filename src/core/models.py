@@ -2,7 +2,6 @@
 
 from django.db import models
 from django.shortcuts import resolve_url as r
-from django.utils.deconstruct import deconstructible
 from mptt.fields import TreeManyToManyField
 
 from mptt.models import MPTTModel, TreeForeignKey
@@ -51,6 +50,13 @@ class Estabelecimento(models.Model):
     def __str__(self):
         return self.nome
 
+    def get_latitude_longitde(self):
+        return map(lambda x: float(x), self.coordenadas.split(','))
+
+    def serializer(obj):
+        latitude, longitude = obj.get_latitude_longitde()
+        return dict(nome=obj.nome, latitude=latitude, longitude=longitude)
+
     def get_absolute_url(self):
         return r('estabelecimento_detail', slug=self.slug)
 
@@ -92,6 +98,11 @@ class Foto(models.Model):
         return self.foto.name
 
 
+class CategoriaManager(models.Manager):
+    def principais(self, *args, **kwargs):
+        return super(CategoriaManager, self).filter(parent=None)
+
+
 class Categoria(MPTTModel):
     # normal parent
     # parent = models.ForeignKey('self', verbose_name='Categoria', null=True, blank=True)
@@ -101,9 +112,9 @@ class Categoria(MPTTModel):
 
     nome = models.CharField(max_length=60)
     slug = models.SlugField()
-    logo = models.ImageField(null=True, blank=True)
+    logo = models.ImageField(upload_to='categorias', null=True, blank=True)
 
-    # objects = CategoryManager()
+    objects = CategoriaManager()
 
     class MPTTMeta:
         order_insertion_by = ['nome']
@@ -114,14 +125,27 @@ class Categoria(MPTTModel):
     # def subcategorias(self):
     #     return Categoria.objects.filter(parent=self)
 
-    # @property
-    # def is_parent(self):
-    #     if self.parent is not None:
-    #         return False
-    #     return True
+    def all_children_estabelecimentos(self):
+        estabelecimentos = []
+        for c in self.children.all():
+            for e in c.estabelecimentos.all():
+                if not e in estabelecimentos:
+                    estabelecimentos.append(e)
+        return estabelecimentos
+
+    @property
+    def is_parent(self):
+        if self.parent is not None:
+            return False
+        return True
 
     def get_absolute_url(self):
         return r('categoria_detail', slug=self.slug)
+
+
+class AnuncioManager(models.Manager):
+    def ativos(self, *args, **kwargs):
+        return super(AnuncioManager, self).filter(ativo=True)
 
 
 class Anuncio(models.Model):
@@ -131,3 +155,7 @@ class Anuncio(models.Model):
     ativo = models.BooleanField(default=False)
     created_at = models.DateTimeField(auto_now_add=True)
 
+    objects = AnuncioManager()
+
+    def __str__(self):
+        return self.estabelecimento.nome
