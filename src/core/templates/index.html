@@ -57,7 +57,7 @@
         <div class="row">
             <div class="col-md-4">
                 {% for categoria,structure in categorias|tree_info %}
-                    {% if not categoria.get_descendant_count == 0 %}
+                    {% if not categoria.parent %}
                         <h3 class="categorias-titulo"><a href="{{ categoria.get_absolute_url }}">
                             {% if categoria.logo %}<img src="{{ categoria.logo.url }}" class="categoria-icon" alt="">{% endif %} {{ categoria.nome }}
                         </a></h3>
