@@ -178,30 +178,33 @@ class Preco(models.Model):
 def estabelecimento_logo_delete(sender, **kwargs):
     estabelecimento = kwargs['instance']
     if estabelecimento.logo:
-        storage, path = estabelecimento.logo.storage, estabelecimento.logo.path
-        storage.delete(path)
+        # storage, path = estabelecimento.logo.storage, estabelecimento.logo.path
+        # storage.delete(path)
+        estabelecimento.logo.delete(False)
 
 
 @receiver(post_delete, sender=Foto)
 def foto_delete(sender, **kwargs):
     foto = kwargs['instance']
     if foto.foto:
-        storage, path = foto.foto.storage, foto.foto.path
-        storage.delete(path)
+        # storage, path = foto.foto.storage, foto.foto.path
+        # storage.delete(path)
+        foto.foto.delete(False)
 
 
 @receiver(post_delete, sender=Categoria)
 def categoria_logo_delete(sender, **kwargs):
     instance = kwargs['instance']
     if instance.logo:
-        storage, path = instance.logo.storage, instance.logo.path
-        storage.delete(path)
+        # storage, path = instance.logo.storage, instance.logo.path
+        # storage.delete(path)
+        instance.delete(False)
 
 
 @receiver(post_delete, sender=Anuncio)
 def anuncio_banner_delete(sender, **kwargs):
     instance = kwargs['instance']
     if instance.banner:
-        storage, path = instance.banner.storage, instance.banner.path
-        storage.delete(path)
-
+        # storage, path = instance.banner.storage, instance.banner.path
+        # storage.delete(path)
+        instance.delete(False)
