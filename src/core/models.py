@@ -4,8 +4,10 @@ from django.db import models
 from django.db.models.signals import pre_delete, post_delete
 from django.dispatch import receiver
 from django.shortcuts import resolve_url as r
+from imagekit.models import ImageSpecField
 from mptt.fields import TreeManyToManyField
 from mptt.models import MPTTModel, TreeForeignKey
+from pilkit.processors import ResizeToFill, ResizeToFit
 
 from src.core.managers import path_and_rename_logo, path_and_rename_banner, path_and_rename_fotos, path_and_rename_categoria
 
@@ -43,10 +45,20 @@ class Estabelecimento(models.Model):
 
     def serializer(obj):
         latitude, longitude = obj.get_latitude_longitde()
-        return dict(nome=obj.nome, latitude=latitude, longitude=longitude)
+        return dict(nome=obj.nome, latitude=latitude, longitude=longitude, categoria_icon=obj.get_categoria_icon())
 
     def get_absolute_url(self):
         return r('estabelecimento_detail', slug=self.slug)
+
+    def get_categoria_icon(self):
+        categoria_principal = None
+        for categoria in self.categoria.all():
+            if not categoria.parent == None:
+                categoria_principal = categoria.parent
+            else:
+                categoria_principal = categoria
+                break
+        return categoria_principal.logo_thumbnail.url
 
 
 class Telefone(models.Model):
@@ -76,7 +88,10 @@ class Categoria(MPTTModel):
     nome = models.CharField(max_length=60)
     slug = models.SlugField()
     logo = models.ImageField(upload_to=path_and_rename_categoria, null=True, blank=True)
-
+    logo_thumbnail = ImageSpecField(source='logo',
+                                      processors=[ResizeToFit(16, 16)],
+                                      format='PNG',
+                                      options={'quality': 60})
     objects = CategoriaManager()
 
     class MPTTMeta:
@@ -85,13 +100,13 @@ class Categoria(MPTTModel):
     def __str__(self):
         return self.nome
 
-    def all_children_estabelecimentos(self):
-        estabelecimentos = []
-        for c in self.children.all():
-            for e in c.estabelecimentos.all():
-                if not e in estabelecimentos:
-                    estabelecimentos.append(e)
-        return estabelecimentos
+    # def all_children_estabelecimentos(self):
+    #     estabelecimentos = []
+    #     for c in self.children.all():
+    #         for e in c.estabelecimentos.all():
+    #             if not e in estabelecimentos:
+    #                 estabelecimentos.append(e)
+    #     return estabelecimentos
 
     @property
     def is_parent(self):
