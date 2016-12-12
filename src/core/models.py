@@ -1,13 +1,13 @@
 # -*- coding: utf-8 -*-
 
 from django.db import models
-from django.db.models.signals import pre_delete, post_delete
+from django.db.models.signals import post_delete
 from django.dispatch import receiver
 from django.shortcuts import resolve_url as r
 from imagekit.models import ImageSpecField
 from mptt.fields import TreeManyToManyField
 from mptt.models import MPTTModel, TreeForeignKey
-from pilkit.processors import ResizeToFill, ResizeToFit
+from pilkit.processors import ResizeToFit
 
 from src.core.managers import path_and_rename_logo, path_and_rename_banner, path_and_rename_fotos, path_and_rename_categoria, \
     CategoriaManager, AnuncioManager

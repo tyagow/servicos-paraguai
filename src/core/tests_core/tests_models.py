@@ -28,7 +28,6 @@ class CategoryModelTest(TestCase):
         )
 
     def test_create_category(self):
-
         self.assertTrue(Categoria.objects.exists())
 
     def test_get_absolute_url(self):
