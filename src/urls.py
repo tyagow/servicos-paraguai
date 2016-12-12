@@ -15,13 +15,13 @@ Including another URLconf
 """
 from django.conf.urls import url, include
 from django.contrib import admin
-from src.core.views import home, estabelecimento_detail, categoria_detail, busca
+from src.core.views import home, estabelecimento_detail, categoria_detail, categorias
 
 urlpatterns = [
     url(r'^$', home, name='home'),
     url(r'^estabelecimento/(?P<slug>[\w-]+)$', estabelecimento_detail, name='estabelecimento_detail'),
     url(r'^categoria/(?P<slug>[\w-]+)$', categoria_detail, name='categoria_detail'),
-    url(r'^busca/', busca, name='busca'),
+    url(r'^categoria/$', categorias, name='categorias'),
     url(r'^api/', include('src.api.urls', namespace='api')),
     url(r'^admin/', admin.site.urls),
 

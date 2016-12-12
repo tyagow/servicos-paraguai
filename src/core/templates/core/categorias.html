@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% load mptt_tags %}
+{% block content %}
+    <section id="categories">
+        <div class="row">
+            <div class="col-md-4">
+                {% for node,structure in categorias|tree_info %}
+                    {% if not node.get_descendant_count == 0 %}
+                        <h3 class="categorias-titulo"><a href="{{ node.get_absolute_url }}">
+                            {{ node.nome }}
+                        </a></h3>
+                    {% else %}
+                        <p><a class="sub-categorias-titulo" href="{{ node.get_absolute_url }}">
+                            {{ node.nome }}
+                        </a></p>
+                    {% endif %}
+                    {% if 1 in structure.closed_levels %}</div>{% cycle '' '' '</div>' %}{% if not 0 in structure.closed_levels %}{% cycle '' '' "<div class='row'>" %}<div class="col-md-4">{% endif %}{% endif %}
+                {% endfor %}
+
+                </div>
+
+    </section>
+{% endblock %}

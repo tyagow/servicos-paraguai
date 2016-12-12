@@ -31,15 +31,7 @@ def categoria_detail(request, slug):
     return render(request, 'core/categoria_detail.html', {'categoria': categoria})
 
 
-def busca(request):
-    context = {'estabelecimentos': None}
-    if 's' in request.GET:
-        query = request.GET['s']
-        query_list = Estabelecimento.objects.filter(nome__icontains=query)
-        if len(query_list) == 0:
-            query_list = Estabelecimento.objects.filter(categoria__nome__icontains=query)
-
-        context = {'estabelecimentos': query_list}
-
-    return render(request, 'core/busca_resultado.html', context)
+def categorias(request):
+    categoria = Categoria.objects.all()
+    return render(request, 'core/categorias.html', {'categorias': categoria})
 
