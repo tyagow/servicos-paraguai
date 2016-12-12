@@ -14,10 +14,6 @@ class CategoriaManager(models.Manager):
 
 class EstabelecimentoManager(models.Manager):
     def busca(self, *args, nome=None, cidade=None, preco=None, categoria=None, **kwargs):
-        # nome = kwargs.get('nome')
-        # cidade = kwargs.get('cidade')
-        # preco = kwargs.get('preco')
-        # categoria = kwargs.get('categoria')
         queryFilter = super(EstabelecimentoManager, self).all()
         if cidade and not 'todas' in cidade:
             queryFilter = super(EstabelecimentoManager, self).filter(cidade=cidade)

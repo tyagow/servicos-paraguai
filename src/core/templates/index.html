@@ -53,12 +53,13 @@
             <label for="categoria">Categorias</label>
             <select name="categoria" >
                 <option value="todas">Todas</option>
-                {% for node,structure in categorias|tree_info:"ancestors" %}
+                {% for node in categorias %}
                     {% if node.is_child_node %}
                         <option value="{{ node.nome }}">
-                            {{ structure.ancestors|tree_path }} :: {{ node }}
+                            {{ node.parent }} :: {{ node }}
                         </option>
                     {% endif %}
+
                 {% endfor %}
             </select>
             </dv>
