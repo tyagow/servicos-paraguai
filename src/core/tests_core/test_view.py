@@ -18,6 +18,7 @@ class HomeTest(TestCase):
             endereco='Avda. Rogelio Benitez, 061 500 763',
             cidade='S',
         )
+        self.estabelecimento.categoria.add(self.categoria)
         self.response = self.client.get(r('home'))
 
     def test_get(self):

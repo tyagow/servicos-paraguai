@@ -9,7 +9,8 @@ from mptt.fields import TreeManyToManyField
 from mptt.models import MPTTModel, TreeForeignKey
 from pilkit.processors import ResizeToFill, ResizeToFit
 
-from src.core.managers import path_and_rename_logo, path_and_rename_banner, path_and_rename_fotos, path_and_rename_categoria
+from src.core.managers import path_and_rename_logo, path_and_rename_banner, path_and_rename_fotos, path_and_rename_categoria, \
+    CategoriaManager, AnuncioManager
 
 
 class Estabelecimento(models.Model):
@@ -77,11 +78,6 @@ class Foto(models.Model):
         return self.foto.name
 
 
-class CategoriaManager(models.Manager):
-    def principais(self, *args, **kwargs):
-        return super(CategoriaManager, self).filter(parent=None)
-
-
 class Categoria(MPTTModel):
     parent = TreeForeignKey('self', null=True, blank=True, related_name='children', db_index=True)
 
@@ -116,11 +112,6 @@ class Categoria(MPTTModel):
 
     def get_absolute_url(self):
         return r('categoria_detail', slug=self.slug)
-
-
-class AnuncioManager(models.Manager):
-    def ativos(self, *args, **kwargs):
-        return super(AnuncioManager, self).filter(ativo=True)
 
 
 class Anuncio(models.Model):

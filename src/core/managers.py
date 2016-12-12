@@ -1,3 +1,16 @@
+from django.db import models
+
+
+class AnuncioManager(models.Manager):
+    def ativos(self, *args, **kwargs):
+        return super(AnuncioManager, self).filter(ativo=True)
+
+
+class CategoriaManager(models.Manager):
+    def principais(self, *args, **kwargs):
+        return super(CategoriaManager, self).filter(parent=None)
+
+
 def path_and_rename_logo(instance, filename):
     return '{}/{}/{}'.format(instance.nome, 'logo', filename)
 
