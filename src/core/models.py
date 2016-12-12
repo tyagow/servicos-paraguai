@@ -9,8 +9,9 @@ from mptt.fields import TreeManyToManyField
 from mptt.models import MPTTModel, TreeForeignKey
 from pilkit.processors import ResizeToFit
 
-from src.core.managers import path_and_rename_logo, path_and_rename_banner, path_and_rename_fotos, path_and_rename_categoria, \
-    CategoriaManager, AnuncioManager
+from src.core.managers import CategoriaManager, AnuncioManager, EstabelecimentoManager
+from src.core.utils import path_and_rename_logo, path_and_rename_fotos, path_and_rename_categoria, \
+    path_and_rename_banner
 
 
 class Estabelecimento(models.Model):
@@ -32,6 +33,8 @@ class Estabelecimento(models.Model):
     updated_at = models.DateTimeField(null=True, blank=True)
     coordenadas = models.CharField('Coordenadas', null=True, blank=True, max_length=40)
     categoria = TreeManyToManyField('Categoria', blank=True, related_name='estabelecimentos')
+
+    objects = EstabelecimentoManager()
 
     class Meta:
         verbose_name = 'Estabelecimento'
@@ -60,6 +63,15 @@ class Estabelecimento(models.Model):
                 categoria_principal = categoria
                 break
         return categoria_principal.logo_thumbnail.url
+
+    @staticmethod
+    def get_cidade_index(cidade):
+        if 'todas' in cidade:
+            return 'todas'
+        for index, _cidade in Estabelecimento.CIDADES:
+            if cidade in _cidade:
+                return index
+        return None
 
 
 class Telefone(models.Model):
@@ -95,14 +107,6 @@ class Categoria(MPTTModel):
 
     def __str__(self):
         return self.nome
-
-    # def all_children_estabelecimentos(self):
-    #     estabelecimentos = []
-    #     for c in self.children.all():
-    #         for e in c.estabelecimentos.all():
-    #             if not e in estabelecimentos:
-    #                 estabelecimentos.append(e)
-    #     return estabelecimentos
 
     @property
     def is_parent(self):
@@ -141,6 +145,9 @@ class Preco(models.Model):
     estabelecimento = models.ForeignKey('Estabelecimento')
     titulo = models.CharField(null=True, blank=True, max_length=100)
     valor = models.DecimalField(max_digits=12, decimal_places=2)
+
+    def __str__(self):
+        return '{} - {}'.format(self.titulo, self.valor)
 
 
 @receiver(post_delete, sender=Estabelecimento)

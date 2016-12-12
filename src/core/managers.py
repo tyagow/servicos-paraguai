@@ -1,3 +1,4 @@
+from decimal import Decimal
 from django.db import models
 
 
@@ -11,19 +12,31 @@ class CategoriaManager(models.Manager):
         return super(CategoriaManager, self).filter(parent=None)
 
 
-def path_and_rename_logo(instance, filename):
-    return '{}/{}/{}'.format(instance.nome, 'logo', filename)
+class EstabelecimentoManager(models.Manager):
+    def busca(self, *args, nome=None, cidade=None, preco=None, categoria=None, **kwargs):
+        # nome = kwargs.get('nome')
+        # cidade = kwargs.get('cidade')
+        # preco = kwargs.get('preco')
+        # categoria = kwargs.get('categoria')
+        queryFilter = super(EstabelecimentoManager, self).all()
+        if cidade and not 'todas' in cidade:
+            queryFilter = super(EstabelecimentoManager, self).filter(cidade=cidade)
 
+        if categoria and not 'todas' in categoria:
+            if queryFilter:
+                queryFilter = queryFilter.filter(categoria__nome__icontains=categoria)
+            else:
+                queryFilter = super(EstabelecimentoManager, self).filter(categoria__nome__icontains=categoria)
 
-def path_and_rename_fotos(instance, filename):
-    return '{}/{}/{}'.format(instance.estabelecimento.nome, 'fotos', filename)
+        if preco:
+            if queryFilter:
+                queryFilter = queryFilter.filter(preco__valor__lte=Decimal(preco))
+            else:
+                queryFilter = super(EstabelecimentoManager, self).filter(preco__valor__lte=Decimal(preco))
 
-
-def path_and_rename_banner(instance, filename):
-    return '{}/{}/{}'.format(instance.estabelecimento.nome, 'banner', filename)
-
-
-def path_and_rename_categoria(instance, filename):
-    ext = filename.split('.')[-1]
-    return '{}/{}_{}.{}'.format('categorias', instance.nome, 'icon', ext)
-
+        if nome:
+            if queryFilter:
+                queryFilter = queryFilter.filter(nome__icontains=nome)
+            else:
+                queryFilter = super(EstabelecimentoManager, self).filter(nome__icontains=nome)
+        return queryFilter.distinct()
