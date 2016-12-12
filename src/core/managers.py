@@ -11,6 +11,10 @@ class CategoriaManager(models.Manager):
     def principais(self, *args, **kwargs):
         return super(CategoriaManager, self).filter(parent=None)
 
+    def is_hotel(self, *args, **kwargs):
+        query = super(CategoriaManager, self).filter(nome__icontains='Hospedagem')
+        return len(query) > 0
+
 
 class EstabelecimentoManager(models.Manager):
     def busca(self, *args, nome=None, cidade=None, preco=None, categoria=None, **kwargs):

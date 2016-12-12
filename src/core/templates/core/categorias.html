@@ -5,7 +5,7 @@
         <div class="row">
             <div class="col-md-4">
                 {% for node,structure in categorias|tree_info %}
-                    {% if not node.get_descendant_count == 0 %}
+                    {% if not node.parent %}
                         <h3 class="categorias-titulo"><a href="{{ node.get_absolute_url }}">
                             {{ node.nome }}
                         </a></h3>

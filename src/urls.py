@@ -20,8 +20,8 @@ from src.core.views import home, estabelecimento_detail, categoria_detail, categ
 urlpatterns = [
     url(r'^$', home, name='home'),
     url(r'^estabelecimento/(?P<slug>[\w-]+)$', estabelecimento_detail, name='estabelecimento_detail'),
-    url(r'^categoria/(?P<slug>[\w-]+)$', categoria_detail, name='categoria_detail'),
-    url(r'^categoria/$', categorias, name='categorias'),
+    url(r'^categorias/(?P<slug>[\w-]+)$', categoria_detail, name='categoria_detail'),
+    url(r'^categorias/$', categorias, name='categorias'),
     url(r'^api/', include('src.api.urls', namespace='api')),
     url(r'^admin/', admin.site.urls),
 

@@ -20,7 +20,7 @@ class EstabelecimentoModelTest(TestCase):
         self.assertEqual(url, self.obj.get_absolute_url())
 
 
-class CategoryModelTest(TestCase):
+class CategoriaModelTest(TestCase):
     def setUp(self):
         self.categoria = Categoria.objects.create(
             nome='Alimentação',

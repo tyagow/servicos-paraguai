@@ -66,7 +66,7 @@ class Estabelecimento(models.Model):
 
     @staticmethod
     def get_cidade_index(cidade):
-        if 'todas' in cidade:
+        if not cidade or 'todas' in cidade:
             return 'todas'
         for index, _cidade in Estabelecimento.CIDADES:
             if cidade in _cidade:
@@ -100,7 +100,6 @@ class Categoria(MPTTModel):
                                       processors=[ResizeToFit(16, 16)],
                                       format='PNG',
                                       options={'quality': 60})
-    objects = CategoriaManager()
 
     class MPTTMeta:
         order_insertion_by = ['nome']
@@ -113,6 +112,10 @@ class Categoria(MPTTModel):
         if self.parent is not None:
             return False
         return True
+
+    @property
+    def is_hotel(self):
+        return Categoria.objects.is_hotel()
 
     def get_absolute_url(self):
         return r('categoria_detail', slug=self.slug)
@@ -133,7 +136,7 @@ class Anuncio(models.Model):
 
 class Caracteristica(models.Model):
 
-    estabelecimento = models.ForeignKey('Estabelecimento')
+    estabelecimento = models.ForeignKey('Estabelecimento',related_name='caracteristicas')
     titulo = models.CharField(max_length=100)
     conteudo = models.CharField(max_length=250)
 
@@ -142,7 +145,7 @@ class Caracteristica(models.Model):
 
 
 class Preco(models.Model):
-    estabelecimento = models.ForeignKey('Estabelecimento')
+    estabelecimento = models.ForeignKey('Estabelecimento', related_name='precos')
     titulo = models.CharField(null=True, blank=True, max_length=100)
     valor = models.DecimalField(max_digits=12, decimal_places=2)
 

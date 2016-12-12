@@ -1,4 +1,7 @@
-from django.shortcuts import render, get_object_or_404
+import urllib
+
+from django.http import HttpResponseRedirect
+from django.shortcuts import render, get_object_or_404, resolve_url
 
 # Create your views here.
 
@@ -8,22 +11,28 @@ from src.core.models import Categoria, Estabelecimento, Anuncio
 def home(request):
     cidades = [cidade[1] for cidade in Estabelecimento.CIDADES]
 
-    if request.GET.get('cidade'):
-        cidade = request.GET['cidade']
-        nome = request.GET['s']
-        preco = request.GET['preco']
-        categoria = request.GET['categoria']
-        cidade = Estabelecimento.get_cidade_index(cidade)
-        query_estabelecimento = Estabelecimento.objects.busca(cidade=cidade, nome=nome, preco=preco, categoria=categoria)
-    else:
-        query_estabelecimento = Estabelecimento.objects.all()
+    cidade = request.GET.get('cidade', None)
+    nome = request.GET.get('nome', None)
+    preco = request.GET.get('preco', None)
+    categoria = request.GET.get('categoria', None)
+    cidade = Estabelecimento.get_cidade_index(cidade)
+    valid_querystring = {k: v for k, v in request.GET.dict().items() if v}
+    if valid_querystring != request.GET.dict():
+        encoded_querystring = '?' + urllib.parse.urlencode(valid_querystring)
+        return HttpResponseRedirect(resolve_url('home') + encoded_querystring)
+
+    query_estabelecimento = Estabelecimento.objects.busca(cidade=cidade, nome=nome, preco=preco, categoria=categoria)
+
     context = {'estabelecimentos': query_estabelecimento, 'anuncios': Anuncio.objects.ativos(), 'cidades': cidades, 'categorias': Categoria.objects.all()}
     return render(request, 'index.html', context)
 
 
 def estabelecimento_detail(request, slug):
     estabelecimento = get_object_or_404(Estabelecimento, slug=slug)
-    return render(request, 'core/estabelecimento_detail.html', {'estabelecimento': estabelecimento})
+    template_to_render = 'core/estabelecimento_detail.html'
+    if len(estabelecimento.categoria.filter(nome__icontains='Hospedagem')) > 0:
+        template_to_render = 'core/hotel_detail.html'
+    return render(request, template_to_render, {'estabelecimento': estabelecimento})
 
 
 def categoria_detail(request, slug):
@@ -32,6 +41,6 @@ def categoria_detail(request, slug):
 
 
 def categorias(request):
-    categoria = Categoria.objects.all()
-    return render(request, 'core/categorias.html', {'categorias': categoria})
+    categorias = Categoria.objects.all()
+    return render(request, 'core/categorias.html', {'categorias': categorias})
 

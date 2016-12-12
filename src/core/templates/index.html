@@ -3,6 +3,15 @@
 {% load mptt_tags %}
 {% block script %}
     <script src="{% static 'js/map.js' %}"></script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $("#form1").submit(function() {
+                if($("#bbb").val()=="") {
+                    $("#bbb").prop('disabled', true);
+                }
+            });
+        });
+    </script>
 {% endblock %}
 {% block content %}
 
@@ -64,7 +73,7 @@
             </select>
             </dv>
             <div class="form-group">
-                <input type="search" class="form-control" id="s" name="s" placeholder="Nome Estabelecimento">
+                <input type="search" class="form-control" id="s" name="nome" placeholder="Nome Estabelecimento">
             </div>
             <input type="text" class="form-control" name='preco' id="InputAmount" placeholder="Preço">
 

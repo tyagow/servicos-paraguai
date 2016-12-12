@@ -2,7 +2,7 @@ from django.shortcuts import resolve_url as r
 from django.test import TestCase
 from django.urls import reverse
 
-from src.core.models import Estabelecimento, Categoria, Telefone
+from src.core.models import Estabelecimento, Categoria, Telefone, Preco
 
 
 class HomeTest(TestCase):
@@ -105,9 +105,61 @@ class EstabelecimentoDetailGet(TestCase):
                 self.assertContains(self.response, expected)
 
 
-class BuscaGet(TestCase):
+class HotelDetailGet(TestCase):
     def setUp(self):
-        self.response = self.client.get(reverse('busca'), s='alimentação')  # r('busca', s='alimentação'))
+
+        self.categoria = Categoria.objects.create(
+            nome='Hospedagem',
+            slug='Hospedagem',
+        )
+        e1 = Estabelecimento.objects.create(
+            nome='Fast Way',
+            website='www.hotel.com',
+            slug='fast-way',
+            descricao='Fast Way Descrição',
+            endereco='Avda. Rogelio Benitez, 061 500 763',
+            cidade='S',
+        )
+        e1.categoria.add(self.categoria)
+        Telefone.objects.create(estabelecimento=e1, numero='123456')
+        Preco.objects.create(estabelecimento=e1, titulo='Diária', valor='100.00')
+        self.response = self.client.get(r('estabelecimento_detail', slug='fast-way'))
 
     def test_get(self):
         self.assertEqual(200, self.response.status_code)
+
+    def test_template_used(self):
+        self.assertTemplateUsed(self.response, 'core/hotel_detail.html')
+
+    def test_html(self):
+        contents = [
+            'Fast Way',
+            'www.hotel.com',
+            'Fast Way Descrição',
+            'Avda. Rogelio Benitez, 061 500 763',
+            'Salto del Guairá',
+            '123456',
+            'Diária',
+            '100,00',
+        ]
+        for expected in contents:
+            with self.subTest():
+                self.assertContains(self.response, expected)
+
+
+class CategoriasGet(TestCase):
+    def setUp(self):
+        self.categoria = Categoria.objects.create(nome='Alimentação', slug='alimentacao')
+        Categoria.objects.create(nome='Bares', slug='bares', parent=self.categoria)
+        self.response = self.client.get(r('categorias'))
+
+    def test_get(self):
+        self.assertEqual(200, self.response.status_code)
+
+    def test_html_categorias(self):
+        """Html must display categories"""
+        self.assertContains(self.response, self.categoria.nome)
+
+    def test_html_categorias_link(self):
+        expected = 'href="{}"'.format(self.categoria.get_absolute_url())
+        self.assertContains(self.response, expected)
