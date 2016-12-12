@@ -2,7 +2,7 @@
 {% load static %}
 {% block title %}{{ estabelecimento.nome }}{% endblock %}
 {% block script %}
-        <script src="{% static 'js/main.js' %}"></script>
+    <script src="{% static 'js/main.js' %}"></script>
 {% endblock %}
 {% block content %}
     <section>
@@ -16,17 +16,23 @@
                 <a href="{{ categoria.get_absolute_url }}">{{ categoria.nome }}</a>
             {% endfor %})
 
-                <div class="telefones">
-                    {% for tel in estabelecimento.telefones.all %}
-                        <p>{{ tel.numero }}</p>
-                    {% endfor %}
+                <div class="row descricoes">
+                    <div class="col-md-3"><div class="telefones">
+                        <strong>Telefones:</strong>
+                        <br/>
 
+                        {% for tel in estabelecimento.telefones.all %}
+                            {{ tel.numero }}<br/>
+                        {% endfor %}
+                    </div>
+                    </div>
+                    <div class="col-md-8">
+                        <div class="descricao">
+                                {{ estabelecimento.descricao|linebreaks }}
+                        </div>
+                    </div>
                 </div>
-                <div class="descricao">
-                    <p>
-                        {{ estabelecimento.descricao|linebreaks }}
-                    </p>
-                </div>
+
             </div>
         </div>
     </section>
