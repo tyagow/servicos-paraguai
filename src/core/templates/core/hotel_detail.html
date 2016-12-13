@@ -40,10 +40,12 @@
     </section>
     <section>
         <div class="header-estabelecimento">
-            <h2>
-                {% if estabelecimento.logo %}<img src="{{ estabelecimento.logo.url }}" alt="" class="photo">{% endif %}
-                <a href="{{ estabelecimento.website }}">{{ estabelecimento.nome }}</a>
-            </h2>
+            <div class="titulo-estabelecimento">
+                <h2>
+                    {% if estabelecimento.logo %}<img src="{{ estabelecimento.logo.url }}" alt="" class="photo">{% endif %}
+                    <a href="{{ estabelecimento.website }}">{{ estabelecimento.nome }}</a>
+                </h2>
+            </div>
             ({% for categoria in estabelecimento.categoria.all %}
             <a href="{{ categoria.get_absolute_url }}">{{ categoria.nome }}</a>
         {% endfor %})
@@ -72,7 +74,9 @@
                         <div class="col-md-3 caracteristica"><strong>Serviço</strong></div><div class="col-md-8 caracteristica"><strong>Descrição</strong></div>
                         <p></p>
                         {% for caracteristica in estabelecimento.caracteristicas.all %}
-                            <div class="col-md-3 caracteristica"><strong>{{ caracteristica.titulo }}</strong></div><div class="col-md-8 caracteristica">{{ caracteristica.conteudo }}</div>
+                            <div class="row caracteristicas-row">
+                                <div class="col-md-3"><strong>{{ caracteristica.titulo }}</strong></div><div class="col-md-8">{{ caracteristica.conteudo }}</div>
+                            </div>
                         {% endfor %}
                     </div>
                 </div>

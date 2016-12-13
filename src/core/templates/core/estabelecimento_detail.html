@@ -8,10 +8,12 @@
     <section>
         <div class="row">
             <div class="header-estabelecimento">
-                <h2>
-                    {% if estabelecimento.logo %}<img src="{{ estabelecimento.logo.url }}" alt="" class="photo">{% endif %}
-                    <a href="{{ estabelecimento.website }}">{{ estabelecimento.nome }}</a>
-                </h2>
+                <div class="titulo-estabelecimento">
+                    <h2>
+                        {% if estabelecimento.logo %}<img src="{{ estabelecimento.logo.url }}" alt="" class="photo">{% endif %}
+                        <a href="{{ estabelecimento.website }}">{{ estabelecimento.nome }}</a>
+                    </h2>
+                </div>
                 ({% for categoria in estabelecimento.categoria.all %}
                 <a href="{{ categoria.get_absolute_url }}">{{ categoria.nome }}</a>
             {% endfor %})
@@ -28,7 +30,7 @@
                     </div>
                     <div class="col-md-8">
                         <div class="descricao">
-                                {{ estabelecimento.descricao|linebreaks }}
+                            {{ estabelecimento.descricao|linebreaks }}
                         </div>
                     </div>
                 </div>
