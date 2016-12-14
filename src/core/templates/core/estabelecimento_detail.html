@@ -7,7 +7,7 @@
 {% block content %}
     <div class="header-estabelecimento">
 
-    <section>
+        <section>
             <div class="titulo-estabelecimento">
                 <h2>
                     {% if estabelecimento.logo %}<img src="{{ estabelecimento.logo.url }}" alt="" class="photo">{% endif %}
@@ -19,14 +19,15 @@
         {% endfor %})
 
             <div class="row descricoes">
-                <div class="col-md-3"><div class="telefones">
-                    <strong>Telefones:</strong>
-                    <br/>
+                <div class="col-md-3">
+                    <div class="telefones">
+                        <strong>Telefones:</strong>
+                        <br/>
 
-                    {% for tel in estabelecimento.telefones.all %}
-                        {{ tel.numero }}<br/>
-                    {% endfor %}
-                </div>
+                        {% for tel in estabelecimento.telefones.all %}
+                            {{ tel.numero }}<br/>
+                        {% endfor %}
+                    </div>
                 </div>
                 <div class="col-md-8">
                     <div class="descricao">
@@ -35,8 +36,9 @@
                 </div>
             </div>
 
-        </div>
-    </section>
+        </section>
+    </div>
+
     <section id="#carousel">
         <div class="container">
             <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
@@ -90,6 +92,6 @@
             </div>
         </div>
     </section>
-            </div>
+    </div>
 
 {% endblock %}
