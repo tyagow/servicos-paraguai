@@ -97,7 +97,7 @@ class Categoria(MPTTModel):
     slug = models.SlugField()
     logo = models.ImageField(upload_to=path_and_rename_categoria, null=True, blank=True)
     logo_thumbnail = ImageSpecField(source='logo',
-                                      processors=[ResizeToFit(16, 16)],
+                                      processors=[ResizeToFit(32, 32)],
                                       format='PNG',
                                       options={'quality': 60})
 

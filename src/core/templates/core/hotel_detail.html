@@ -112,7 +112,12 @@
         <div class="row">
             <div class="container">
                 <div class="col-xs-10 col-xs-offset-1 caracteristicas">
-                    <div class="col-md-3 col-xs-3 caracteristica caracteristica-header-left"><strong>Serviço</strong></div><div class="col-md-8 col-xs-8 caracteristica caracteristica-header-right"><strong>Descrição</strong></div>
+                    <div class="col-md-3 col-xs-3 caracteristica caracteristica-header-left">
+                        <span class="titulo-caracteristica"><strong>Serviço</strong></span>
+                    </div>
+                    <div class="col-md-8 col-xs-8 caracteristica caracteristica-header-right">
+                        <span class="titulo-caracteristica"><strong>Descrição</strong></span>
+                    </div>
                     <p></p>
                     {% for caracteristica in estabelecimento.caracteristicas.all %}
                         <div class="row caracteristicas-row">

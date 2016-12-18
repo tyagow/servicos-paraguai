@@ -1,3 +1,6 @@
+import unicodedata
+
+
 def path_and_rename_logo(instance, filename):
     return '{}/{}/{}'.format(instance.nome, 'logo', filename)
 
@@ -12,5 +15,9 @@ def path_and_rename_banner(instance, filename):
 
 def path_and_rename_categoria(instance, filename):
     ext = filename.split('.')[-1]
-    return '{}/{}_{}.{}'.format('categorias', instance.nome, 'icon', ext)
+    fname = strip_accents(instance.nome)
+    return '{}/{}_{}.{}'.format('categorias', fname, 'icon', ext)
 
+
+def strip_accents(s):
+    return ''.join(c for c in unicodedata.normalize('NFD', s) if unicodedata.category(c) != 'Mn')
