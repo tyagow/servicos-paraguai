@@ -99,7 +99,7 @@ class Categoria(MPTTModel):
     logo_thumbnail = ImageSpecField(source='logo',
                                       processors=[ResizeToFit(32, 32)],
                                       format='PNG',
-                                      options={'quality': 60})
+                                      options={'quality': 100})
 
     class MPTTMeta:
         order_insertion_by = ['nome']
