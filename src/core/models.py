@@ -9,7 +9,7 @@ from mptt.fields import TreeManyToManyField
 from mptt.models import MPTTModel, TreeForeignKey
 from pilkit.processors import ResizeToFit
 
-from src.core.managers import CategoriaManager, AnuncioManager, EstabelecimentoManager
+from src.core.managers import  AnuncioManager, EstabelecimentoManager
 from src.core.utils import path_and_rename_logo, path_and_rename_fotos, path_and_rename_categoria, \
     path_and_rename_banner
 
@@ -151,31 +151,3 @@ class Preco(models.Model):
 
     def __str__(self):
         return '{} - {}'.format(self.titulo, self.valor)
-
-
-@receiver(post_delete, sender=Estabelecimento)
-def estabelecimento_logo_delete(sender, **kwargs):
-    estabelecimento = kwargs['instance']
-    if estabelecimento.logo:
-        estabelecimento.logo.delete(False)
-
-
-@receiver(post_delete, sender=Foto)
-def foto_delete(sender, **kwargs):
-    foto = kwargs['instance']
-    if foto.foto:
-        foto.foto.delete(False)
-
-
-@receiver(post_delete, sender=Categoria)
-def categoria_logo_delete(sender, **kwargs):
-    instance = kwargs['instance']
-    if instance.logo:
-        instance.logo.delete(False)
-
-
-@receiver(post_delete, sender=Anuncio)
-def anuncio_banner_delete(sender, **kwargs):
-    instance = kwargs['instance']
-    if instance.banner:
-        instance.banner.delete(False)

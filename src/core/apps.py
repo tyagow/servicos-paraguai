@@ -2,4 +2,7 @@ from django.apps import AppConfig
 
 
 class CoreConfig(AppConfig):
-    name = 'core'
+    name = 'src.core'
+
+    def ready(self):
+        from src.core import signals
