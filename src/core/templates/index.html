@@ -3,20 +3,11 @@
 {% load mptt_tags %}
 {% block script %}
     <script src="{% static 'js/map.js' %}"></script>
-    <script type="text/javascript">
-        $(document).ready(function() {
-            $("#form1").submit(function() {
-                if($("#bbb").val()=="") {
-                    $("#bbb").prop('disabled', true);
-                }
-            });
-        });
-    </script>
 {% endblock %}
 {% block content %}
 
     <section id="#carousel">
-        <div id="caroulse">
+        <div id="carousel">
             <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
                 <!-- Indicators -->
                 <ol class="carousel-indicators">
@@ -53,49 +44,74 @@
         </div>
     </section>
     <section>
-        <div class="row">
-            <div class="col-md-12">
-                <form class="form-inline global-search" action="/" method="get" role="form">
-                    <label for="cidade">Cidade</label>
-                    <select name="cidade" id="select-cidades">
-                        <option value="todas">Todas</option>
-                        {% for cidade in cidades %}
-                            <option value="{{ cidade }}">{{ cidade }}</option>
-                        {% endfor %}
-                    </select>
-                    <label for="categoria">Categorias</label>
-                    <select name="categoria" >
-                        <option value="todas">Todas</option>
-                        {% for node in categorias %}
-                            {% if node.is_child_node %}
-                                <option value="{{ node.nome }}">
-                                    {{ node.parent }} :: {{ node }}
-                                </option>
-                            {% endif %}
+        <div class="busca-body">
+            <div class="container global-search">
+                {#                <div class="row">#}
+                {#                    <div class="col-md-3">#}
+                {#                        <label for="cidade">Cidade</label>#}
+                {#                    </div>#}
+                {#                    <div class="col-md-3">#}
+                {#                        <label for="categoria">Categorias</label>#}
+                {#                    </div>#}
+                {##}
+                {#                </div>#}
+                <div class="row">
+                    <form class="form-inline " action="/" method="get" role="form">
+                        <div class="col-md-3">
+                            <select name="cidade" class="select-input center" id="select-cidades">
+                                <option value="" disabled selected>Cidade</option>
+                                <option value="todas">Todas</option>
+                                {% for cidade in cidades %}
+                                    <option value="{{ cidade }}">{{ cidade }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <div class="col-md-3">
 
-                        {% endfor %}
-                    </select>
-                    <div class="form-group">
-                        <input type="search" class="form-control" id="s" name="nome" placeholder="Nome Estabelecimento">
-                        <input type="text" class="form-control" name='preco' id="InputAmount" placeholder="Preço">
-                        <label class="sr-only" for="InputAmount">Preço</label>
+                            <select name="categoria" class="select-input">
+                                <option value="" disabled selected>Categoria</option>
+                                <option value="todas">Todas</option>
+                                {% for node in categorias %}
+                                    {% if node.is_child_node %}
+                                        <option value="{{ node.nome }}">
+                                            {{ node.parent }} :: {{ node }}
+                                        </option>
+                                    {% endif %}
 
-                        <button type="submit" id="s" class="btn btn-default"><span class="glyphicon glyphicon-search"></span></button>
-                    </div>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <div class="col-md-3">
 
-                </form>
+                            <input type="search" class="form-control input-estabelecimento" id="s" name="nome" placeholder="Nome Estabelecimento">
+                        </div>
+                        <div class="col-md-3">
+
+                            <input type="text" class=" input-preco form-control " name='preco' id="InputAmount" placeholder="Preço">
+                            <label class="sr-only" for="InputAmount">Preço</label>
+
+                            <button type="submit" id="s" class="btn btn-default submit-button"><span class="glyphicon glyphicon-search"></span></button>
+                        </div>
+
+                    </form>
+                </div>
             </div>
         </div>
     </section>
 
-    <section id="categories">
+    <section id="estabelecimentos">
         <div class="row container-estabelecimentos">
             {% for e in estabelecimentos %}
-                <div class="col-md-12 estabelecimento-row">
-                    <p>{% if e.logo %}<img src="{{ e.logo.url }}" class="photo" alt="">{% endif %}<a class="estabelecimento-titulo" href="{{ e.get_absolute_url }}"> {{ e.nome }}</a>
+                <div class="col-md-4">
+                    <div class="card-estabelecimento">
+                        <div class="img-estabelecimento">
+                            {% if e.logo %}<img src="{{ e.logo.url }}" class="photo center" alt="">{% endif %}
+                        </div>
+                        <a class="estabelecimento-titulo" href="{{ e.get_absolute_url }}"> {{ e.nome }}</a><br/>
                         ({% for categoria in e.categoria.all %}
-                            <a href="{{ categoria.get_absolute_url }}" class="sub-categorias-titulo">{{ categoria.nome }}</a>
-                        {% endfor %})</p>
+                        <a href="{{ categoria.get_absolute_url }}" class="sub-categorias-titulo">{{ categoria.nome }}</a>
+                    {% endfor %})
+                    </div>
                 </div>
             {% endfor %}
             {#            <div class="col-md-4">#}

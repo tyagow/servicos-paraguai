@@ -1,7 +1,8 @@
 {% extends 'base.html' %}
 
 {% block content %}
-        <section>
+    <section>
+        <div class="body-container">
             <div class="categoria col-md-8 col-md-offset-2">
                 <h2 class="categorias-titulo">{{ categoria.nome }}</h2>
                 {% if  categoria.logo %}
@@ -13,5 +14,6 @@
                     </div>
                 {% endfor %}
             </div>
-        </section>
+        </div>
+    </section>
 {% endblock %}
