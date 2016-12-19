@@ -7,39 +7,43 @@
 {% block content %}
 
     <section id="carousel">
-        <div class="carousel">
-            <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
-                <!-- Indicators -->
-                <ol class="carousel-indicators">
-                    {% for f in anuncios %}
-                        <li data-target="#carousel-example-generic" data-slide-to="{{ forloop.counter0 }}" {% if forloop.counter0 == 0 %}class="active"{% endif %}></li>
-                    {% endfor %}
-                </ol>
+        <div class="container">
+            <div class="row">
+                <div class="carousel">
+                    <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+                        <!-- Indicators -->
+                        <ol class="carousel-indicators">
+                            {% for f in anuncios %}
+                                <li data-target="#carousel-example-generic" data-slide-to="{{ forloop.counter0 }}" {% if forloop.counter0 == 0 %}class="active"{% endif %}></li>
+                            {% endfor %}
+                        </ol>
 
-                <!-- Wrapper for slides -->
+                        <!-- Wrapper for slides -->
 
-                <div class="carousel-inner" role="listbox">
-                    {% for anuncio in anuncios %}
-                        <div class="item {% if forloop.counter == 1 %}active{% endif %}">
-                            <a href="{{ anuncio.url }}">
-                                <img src="{{ anuncio.banner.url }}" alt="1">
-                            </a>
-                            <div class="carousel-caption">
+                        <div class="carousel-inner" role="listbox">
+                            {% for anuncio in anuncios %}
+                                <div class="item {% if forloop.counter == 1 %}active{% endif %}">
+                                    <a href="{{ anuncio.url }}">
+                                        <img src="{{ anuncio.banner.url }}" alt="1">
+                                    </a>
+                                    <div class="carousel-caption">
 
-                            </div>
+                                    </div>
+                                </div>
+                            {% endfor %}
                         </div>
-                    {% endfor %}
-                </div>
 
-                <!-- Controls -->
-                <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
-                    <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-                    <span class="sr-only">Previous</span>
-                </a>
-                <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
-                    <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-                    <span class="sr-only">Next</span>
-                </a>
+                        <!-- Controls -->
+                        <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
+                            <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                            <span class="sr-only">Previous</span>
+                        </a>
+                        <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
+                            <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                            <span class="sr-only">Next</span>
+                        </a>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -108,7 +112,7 @@
                             <div class="card-estabelecimento">
                                 <div class="img-estabelecimento-bg">
                                     <div class="img-estabelecimento">
-                                        {% if e.logo %}<img src="{{ e.logo.url }}" class="photo center" alt="">{% endif %}
+                                        {% if e.logo %} <a href="{{ e.get_absolute_url }}"><img src="{{ e.logo.url }}" class="photo center" alt=""></a>{% endif %}
                                     </div>
                                 </div>
                                 <a class="estabelecimento-titulo" href="{{ e.get_absolute_url }}"> {{ e.nome }}</a><br/>
@@ -147,12 +151,10 @@
 
     <!-- VENUE -->
     <section id="venue">
-        <div class="row min-h-10">
-            <div id="map-canvas-all"></div>
-            <div class="row col-md-12">
-                <div class="venue">
-
-                </div>
+        <div class="row">
+            <div class="container">
+                <div id="coordenadas"  data-coordenadas="{{ estabelecimento.coordenadas }}" style="display: none;"></div>
+                <div id="map-canvas-all"></div>
             </div>
         </div>
     </section>

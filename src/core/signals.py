@@ -7,7 +7,6 @@ from src.core.models import Estabelecimento, Foto, Categoria, Anuncio
 @receiver(post_delete, sender=Estabelecimento)
 def estabelecimento_logo_delete(sender, **kwargs):
     estabelecimento = kwargs['instance']
-    print('Deletando foto')
     if estabelecimento.logo:
         estabelecimento.logo.delete(False)
 

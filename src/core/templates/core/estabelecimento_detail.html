@@ -80,17 +80,19 @@
         </div>
     </section>
     <section id="venue">
-        <div class="row min-h-10">
-            <div id="coordenadas"  data-coordenadas="{{ estabelecimento.coordenadas }}" style="display: none;"></div>
-            <div id="map-canvas"></div>
-            <div class="row col-md-12">
-                <div class="venue">
-                    <div class="venue-address col-md-6 gutter">
-                        <p class="address">
-                            <i class="fa fa-2x fa-map-marker fa-inverse"></i>
-                            {{ estabelecimento.endereco }} <br>
-                            {{ estabelecimento.get_cidade_display }}
-                        </p>
+        <div class="row">
+            <div class="container">
+                <div id="coordenadas"  data-coordenadas="{{ estabelecimento.coordenadas }}" style="display: none;"></div>
+                <div id="map-canvas"></div>
+                <div class="row col-md-12">
+                    <div class="venue">
+                        <div class="venue-address col-md-6 gutter">
+                            <p class="address">
+                                <i class="fa fa-2x fa-map-marker fa-inverse"></i>
+                                {{ estabelecimento.endereco }} <br>
+                                {{ estabelecimento.get_cidade_display }}
+                            </p>
+                        </div>
                     </div>
                 </div>
             </div>
