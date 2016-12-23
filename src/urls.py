@@ -15,6 +15,8 @@ Including another URLconf
 """
 from django.conf.urls import url, include
 from django.contrib import admin
+from django.views.i18n import set_language
+
 from src.core.views import home, estabelecimento_detail, categoria_detail, categorias
 
 urlpatterns = [
