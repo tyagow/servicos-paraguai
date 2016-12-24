@@ -6,7 +6,7 @@ from src.core.models import Categoria, Estabelecimento, Anuncio
 
 
 def home(request):
-    print(request.LANGUAGE_CODE)
+    cidades = [cidade[1] for cidade in Estabelecimento.CIDADES]
     cidades = [cidade[1] for cidade in Estabelecimento.CIDADES]
 
     cidade = request.GET.get('cidade', None)

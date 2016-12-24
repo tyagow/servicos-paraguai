@@ -44,6 +44,7 @@ class CategoriaDetailGet(TestCase):
     def setUp(self):
         self.categoria = Categoria.objects.create(
             nome='Alimentação',
+            nome_pt='Alimentação',
             slug='alimentacao',
         )
         e1 = Estabelecimento.objects.create(
@@ -55,6 +56,7 @@ class CategoriaDetailGet(TestCase):
             cidade='S',
         )
         e1.categoria.add(self.categoria)
+        print(r('categoria_detail', slug='alimentacao'))
         self.response = self.client.get(r('categoria_detail', slug='alimentacao'))
 
     def test_get(self):

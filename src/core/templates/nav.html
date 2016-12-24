@@ -12,13 +12,13 @@
                         {% csrf_token %}
                         <input name="next" type="hidden" value="{{ request.get_full_path|slice:'3:' }}" />
                         <input name="language" type="hidden" value="es" />
-                        <input  style="background: url({% static 'img/paraguai-flag.png' %}); background-size: 40px 28px" class="input-flag" type="submit" value="" />
+                        <input  style="background: url({% static 'img/paraguai-flag.png' %}); background-size: 32px 22px" class="input-flag" type="submit" value="" />
                     </form>
                     <form action="{% url 'set_language' %}" method="post">
                         {% csrf_token %}
                         <input name="next" type="hidden" value="{{ request.get_full_path|slice:'3:' }}" />
                         <input name="language" type="hidden" value="pt" />
-                        <input  style="background: url({% static 'img/brasil-flag.png' %}); background-size: 40px 28px" class="input-flag" type="submit" value="" />
+                        <input  style="background: url({% static 'img/brasil-flag.png' %}); background-size: 32px 22px" class="input-flag" type="submit" value="" />
                     </form>
                 </div>
             </div>
