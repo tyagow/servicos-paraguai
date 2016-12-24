@@ -1,8 +1,27 @@
 {% load static %}
+{% load i18n %}
 <nav id="top" class="navbar-fixed-top" data-stellar-background-ratio="0.5">
-    <div class="container">
-        <div class="countdown text-align-center row col-md-12">
-            <a href="{% url 'home' %}"><img src="{% static 'img/logo.png' %}" class="logo" alt=""></a>
+    <div class="row">
+        <div class="container">
+            <div class="countdown text-align-center col-xs-6 col-xs-offset-2">
+                <a href="{% url 'home' %}"><img src="{% static 'img/logo.png' %}" class="logo" alt=""></a>
+            </div>
+            <div class="col-xs-offset-1 col-xs-3">
+                <div class="flags">
+                    <form action="{% url 'set_language' %}" method="post">
+                        {% csrf_token %}
+                        <input name="next" type="hidden" value="{{ request.get_full_path|slice:'3:' }}" />
+                        <input name="language" type="hidden" value="es" />
+                        <input  style="background: url({% static 'img/paraguai-flag.png' %}); background-size: 40px 28px" class="input-flag" type="submit" value="" />
+                    </form>
+                    <form action="{% url 'set_language' %}" method="post">
+                        {% csrf_token %}
+                        <input name="next" type="hidden" value="{{ request.get_full_path|slice:'3:' }}" />
+                        <input name="language" type="hidden" value="pt" />
+                        <input  style="background: url({% static 'img/brasil-flag.png' %}); background-size: 40px 28px" class="input-flag" type="submit" value="" />
+                    </form>
+                </div>
+            </div>
         </div>
     </div>
 </nav>
