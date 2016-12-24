@@ -116,10 +116,12 @@
                                         {% if e.logo %} <a href="{{ e.get_absolute_url }}"><img src="{{ e.logo.url }}" class="photo center" alt=""></a>{% endif %}
                                     </div>
                                 </div>
-                                <a class="estabelecimento-titulo" href="{{ e.get_absolute_url }}"> {{ e.nome }}</a><br/>
-                                ({% for categoria in e.categoria.all %}
-                                <a href="{{ categoria.get_absolute_url }}" class="sub-categorias-titulo">{{ categoria.nome }}</a>
-                            {% endfor %})
+                                <div class="row">
+                                    <a class="estabelecimento-titulo" href="{{ e.get_absolute_url }}"> {{ e.nome }}</a><br/>
+                                    {#                                ({% for categoria in e.categoria.all %}#}
+                                    {#                                <a href="{{ categoria.get_absolute_url }}" class="sub-categorias-titulo">{{ categoria.nome }}</a>#}
+                                    {#                                 {% endfor %})#}
+                                </div>
                             </div>
                         </div>
                     {% endfor %}

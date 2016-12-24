@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-12-23 23:22-0200\n"
+"POT-Creation-Date: 2016-12-24 10:21-0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -22,9 +22,19 @@ msgstr ""
 msgid "Cidade"
 msgstr "Ciudad"
 
-#: templates/index.html:68
+#: templates/index.html:68 templates/index.html:78
 msgid "Todas"
 msgstr "Todos"
 
-#~ msgid "Welcome!"
-#~ msgstr "Bien Venido"
+#: templates/index.html:77
+msgid "Categoria"
+msgstr "Categoría"
+
+#: templates/index.html:91
+msgid "Nome Estabelecimento"
+msgstr "Nombre del Establecimiento"
+
+#: templates/index.html:95
+msgid "Preço"
+msgstr "Precio"
+
