@@ -2,11 +2,12 @@ import urllib
 
 from django.http import HttpResponseRedirect
 from django.shortcuts import render, get_object_or_404, resolve_url
+from django.utils.translation import ugettext as _
+
 from src.core.models import Categoria, Estabelecimento, Anuncio
 
 
 def home(request):
-    cidades = [cidade[1] for cidade in Estabelecimento.CIDADES]
     cidades = [cidade[1] for cidade in Estabelecimento.CIDADES]
 
     cidade = request.GET.get('cidade', None)
@@ -28,7 +29,7 @@ def home(request):
 def estabelecimento_detail(request, slug):
     estabelecimento = get_object_or_404(Estabelecimento, slug=slug)
     template_to_render = 'core/estabelecimento_detail.html'
-    if len(estabelecimento.categoria.filter(nome__icontains='Hospedagem')) > 0:
+    if len(estabelecimento.categoria.filter(nome__icontains=_('Hospedagem'))) > 0:
         template_to_render = 'core/hotel_detail.html'
     return render(request, template_to_render, {'estabelecimento': estabelecimento})
 
