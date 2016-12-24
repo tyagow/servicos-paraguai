@@ -1,18 +1,11 @@
 import urllib
 
-from django.conf import settings
-from django.http import HttpResponse
 from django.http import HttpResponseRedirect
 from django.shortcuts import render, get_object_or_404, resolve_url
-
-# Create your views here.
-
 from src.core.models import Categoria, Estabelecimento, Anuncio
-from django.utils.translation import ugettext as _
 
 
 def home(request):
-    print(_("Welcome!"))
     cidades = [cidade[1] for cidade in Estabelecimento.CIDADES]
 
     cidade = request.GET.get('cidade', None)

@@ -34,11 +34,14 @@ ALLOWED_HOSTS = config('ALLOWED_HOSTS', default=[], cast=Csv())
 LOCALEPATHS = (
     os.path.join(BASE_DIR, 'locale'),
 )
-
+gettext = lambda s: s
+LANGUAGES = (
+    ('pt', gettext('Português')),
+    ('es', gettext('Español')),
+)
 # Application definition
 
 INSTALLED_APPS = [
-    'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
@@ -54,6 +57,10 @@ INSTALLED_APPS = [
     'storages',
     'mptt',
     'imagekit',
+    'modeltranslation',
+
+    #translation no admin preci vir antes do contrib.admin
+    'django.contrib.admin',
 
 ]
 
