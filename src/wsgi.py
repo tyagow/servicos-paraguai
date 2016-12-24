@@ -19,3 +19,6 @@ if settings.DEBUG:
     application = Cling(MediaCling(get_wsgi_application()))
 else:
     application = get_wsgi_application()
+
+if settings.PRODUCAO:
+    application = get_wsgi_application()
