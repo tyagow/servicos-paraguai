@@ -10,6 +10,7 @@ from pilkit.processors import ResizeToFit
 from src.core.managers import  AnuncioManager, EstabelecimentoManager
 from src.core.utils import path_and_rename_logo, path_and_rename_fotos, path_and_rename_categoria, \
     path_and_rename_banner
+from django.utils.translation import ugettext as _
 
 
 class Estabelecimento(models.Model):
@@ -62,6 +63,10 @@ class Estabelecimento(models.Model):
                 break
         return categoria_principal.logo_thumbnail.url
 
+    @property
+    def is_hotel(self):
+        return len(self.categoria.filter(nome__icontains=_('Hospedagem'))) > 0
+
     @staticmethod
     def get_cidade_index(cidade):
         if not cidade or 'todas' in cidade:
@@ -110,10 +115,6 @@ class Categoria(MPTTModel):
         if self.parent is not None:
             return False
         return True
-
-    @property
-    def is_hotel(self):
-        return Categoria.objects.is_hotel()
 
     def get_absolute_url(self):
         return r('categoria_detail', slug=self.slug)
