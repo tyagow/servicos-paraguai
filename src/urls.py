@@ -23,12 +23,11 @@ urlpatterns = [
     url(r'^i18n/', include('django.conf.urls.i18n'))
 ]
 
-urlpatterns += i18n_patterns(
+urlpatterns += [
     url(r'^$', home, name='home'),
     url(r'^estabelecimento/(?P<slug>[\w-]+)$', estabelecimento_detail, name='estabelecimento_detail'),
     url(r'^categorias/(?P<slug>[\w-]+)$', categoria_detail, name='categoria_detail'),
     url(r'^categorias/$', categorias, name='categorias'),
     url(r'^api/', include('src.api.urls', namespace='api')),
     url(r'^admin/', admin.site.urls),
-
-)
+]
