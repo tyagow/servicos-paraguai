@@ -15,9 +15,8 @@ Including another URLconf
 """
 from django.conf.urls import url, include
 from django.contrib import admin
-from django.conf.urls.i18n import i18n_patterns
-from src.core.views import home, estabelecimento_detail, categoria_detail, categorias
 
+from src.core.views import home, estabelecimento_detail, categoria_detail, categorias
 
 urlpatterns = [
     url(r'^i18n/', include('django.conf.urls.i18n'))
@@ -26,6 +25,7 @@ urlpatterns = [
 urlpatterns += [
     url(r'^$', home, name='home'),
     url(r'^estabelecimento/(?P<slug>[\w-]+)$', estabelecimento_detail, name='estabelecimento_detail'),
+    url(r'^estabelecimento/$', home, name='estabelecimentos'),
     url(r'^categorias/(?P<slug>[\w-]+)$', categoria_detail, name='categoria_detail'),
     url(r'^categorias/$', categorias, name='categorias'),
     url(r'^api/', include('src.api.urls', namespace='api')),
