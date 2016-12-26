@@ -121,30 +121,10 @@
             </div>
         </div>
     </section>
-     <section id="avaliacoes">
+    <section id="avaliacoes">
         <div class="row">
             <div class="container">
-                <div class="header-comentarios">
-                    <h3>{% trans 'Avaliações' %}</h3>
-                </div>
-                <div class="row ratings">
-                    {% ratings estabelecimento %}
-                </div>
-                <div class="row comments-row">
-                    {% for comment in comments %}
-                        <div class="col-sm-5 col-sm-offset-1 col-md-offset-1 col-md-3 comment-card ">
-                            <p><strong>{{ comment.conteudo }}</strong></p>
-                            <small> {% trans 'por' %} {{ comment.nome }}</small>
-                        </div>
-                    {% endfor %}
-                </div>
-                <div class="col-md-8 col-md-offset-2">
-                    <form action="{{ estabelecimento.get_absolute_url }}" method="POST">
-                        {% csrf_token %}
-                        {% include 'comments/comment-form.html' with form=comment_form %}
-                        <input type="submit" value="{% trans 'Enviar Comentário' %}" class="btn btn-default">
-                    </form>
-                </div>
+            {% include 'comments/comments.html' %}
             </div>
         </div>
     </section>
