@@ -29,5 +29,6 @@ urlpatterns += [
     url(r'^categorias/(?P<slug>[\w-]+)$', categoria_detail, name='categoria_detail'),
     url(r'^categorias/$', categorias, name='categorias'),
     url(r'^api/', include('src.api.urls', namespace='api')),
+    url(r'^ratings/', include('star_ratings.urls', namespace='ratings', app_name='ratings')),
     url(r'^admin/', admin.site.urls),
 ]

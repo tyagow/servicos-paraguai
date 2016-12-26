@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-
+from django.contrib.contenttypes.models import ContentType
 from django.db import models
 from django.shortcuts import resolve_url as r
 from imagekit.models import ImageSpecField
@@ -7,6 +7,7 @@ from mptt.fields import TreeManyToManyField
 from mptt.models import MPTTModel, TreeForeignKey
 from pilkit.processors import ResizeToFit
 
+from src.comments.models import Comment
 from src.core.managers import  AnuncioManager, EstabelecimentoManager
 from src.core.utils import path_and_rename_logo, path_and_rename_fotos, path_and_rename_categoria, \
     path_and_rename_banner
@@ -66,6 +67,15 @@ class Estabelecimento(models.Model):
     @property
     def is_hotel(self):
         return len(self.categoria.filter(nome__icontains=_('Hospedagem'))) > 0
+
+    @property
+    def comments(self):
+        qs = Comment.objects.filter_by_instance(self)
+        return qs
+
+    @property
+    def get_content_type(self):
+        return ContentType.objects.get_for_model(self.__class__)
 
     @staticmethod
     def get_cidade_index(cidade):

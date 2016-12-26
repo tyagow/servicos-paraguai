@@ -1,8 +1,9 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load i18n %}
 {% block title %}{{ estabelecimento.nome }}{% endblock %}
 {% block script %}
-    <script src="{% static 'js/main.js' %}"></script>
+    <script src="{% static 'js/map-single.js' %}"></script>
 {% endblock %}
 {% block content %}
     <section id="carousel-section">
@@ -56,13 +57,14 @@
 
         </div>
     </section>
+
     <section id="descricao-section">
         <div class="row">
             <div class="container">
                 <div class="col-md-4 ">
                     <div class="card">
                         <div class="card-header">
-                            <h4>Telefones</h4>
+                            <h4>{% trans 'Telefones' %}</h4>
                         </div>
                         <div class="telefones">
                             {% for tel in estabelecimento.telefones.all %}
@@ -76,6 +78,14 @@
                         {{ estabelecimento.descricao|linebreaks }}
                     </div>
                 </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="avaliacoes">
+        <div class="row">
+            <div class="container">
+            {% include 'comments/comments.html' %}
             </div>
         </div>
     </section>

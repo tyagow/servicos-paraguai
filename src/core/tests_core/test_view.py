@@ -56,7 +56,6 @@ class CategoriaDetailGet(TestCase):
             cidade='S',
         )
         e1.categoria.add(self.categoria)
-        print(r('categoria_detail', slug='alimentacao'))
         self.response = self.client.get(r('categoria_detail', slug='alimentacao'))
 
     def test_get(self):

@@ -1,8 +1,11 @@
 import urllib
 
+from django.contrib.contenttypes.models import ContentType
 from django.http import HttpResponseRedirect
 from django.shortcuts import render, get_object_or_404, resolve_url
 
+from src.comments.forms import CommentForm
+from src.comments.models import Comment
 from src.core.models import Categoria, Estabelecimento, Anuncio
 
 
@@ -26,11 +29,37 @@ def home(request):
 
 
 def estabelecimento_detail(request, slug):
-    estabelecimento = get_object_or_404(Estabelecimento, slug=slug)
+    instance = get_object_or_404(Estabelecimento, slug=slug)
     template_to_render = 'core/estabelecimento_detail.html'
-    if estabelecimento.is_hotel:
+    if instance.is_hotel:
         template_to_render = 'core/hotel_detail.html'
-    return render(request, template_to_render, {'estabelecimento': estabelecimento})
+    comments = instance.comments
+
+    initial_data = {
+        'content_type': instance.get_content_type,
+        'object_id': instance.id,
+    }
+    form = CommentForm(request.POST or None, initial=initial_data)
+    if form.is_valid():
+        c_type = form.cleaned_data.get('content_type').lower()
+        content_type = ContentType.objects.get(model=c_type)
+        obj_id = form.cleaned_data.get('object_id')
+        content_data = form.cleaned_data.get('conteudo')
+        nome_data = form.cleaned_data.get('nome')
+        new_comment, created = Comment.objects.get_or_create(
+            nome=nome_data,
+            content_type=content_type,
+            object_id=obj_id,
+            conteudo=content_data
+        )
+        if created:
+            form = CommentForm(None, initial=initial_data)
+    context = {
+        'estabelecimento': instance,
+        'comments': comments,
+        'form': form,
+    }
+    return render(request, template_to_render, context)
 
 
 def categoria_detail(request, slug):

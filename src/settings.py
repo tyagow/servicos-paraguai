@@ -18,6 +18,8 @@ from dj_database_url import parse as dburl
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
+# Start-ratings
+STAR_RATINGS_ANONYMOUS = False
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.10/howto/deployment/checklist/
@@ -50,6 +52,7 @@ INSTALLED_APPS = [
 
     #project apps
     'src.core',
+    'src.comments',
 
     #external apps
     'test_without_migrations',
@@ -58,6 +61,7 @@ INSTALLED_APPS = [
     'mptt',
     'imagekit',
     'modeltranslation',
+    'star_ratings',
 
     #translation no admin preci vir antes do contrib.admin
     'django.contrib.admin',
@@ -182,4 +186,8 @@ else:
     MEDIA_URL = "https://%s/%s/" % (AWS_S3_CUSTOM_DOMAIN, MEDIAFILES_LOCATION)
     DEFAULT_FILE_STORAGE = 'custom_storages.MediaStorage'
 
+
+STAR_RATINGS_ANONYMOUS = True
+STAR_RATINGS_STAR_HEIGHT = 28
+STAR_RATINGS_STAR_WIDTH = 28
 

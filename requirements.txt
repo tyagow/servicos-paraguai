@@ -14,3 +14,4 @@ django-mptt==0.8.6
 django-imagekit
 django-modeltranslation
 uWSGI==2.0.14
+django-star-ratings

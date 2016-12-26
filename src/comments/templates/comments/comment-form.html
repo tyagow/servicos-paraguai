@@ -1,0 +1,13 @@
+{% load i18n %}
+<form action="{{ url }}" method="POST">
+    {% csrf_token %}
+    {{ form.content_type }}
+    {{ form.object_id }}
+    <div>
+        {{ form.conteudo }}
+    </div>
+    {{ form.nome }}
+    <input type="submit" value="{% trans 'Enviar Comentário' %}" class="btn btn-default">
+</form>
+
+

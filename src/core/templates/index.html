@@ -2,6 +2,7 @@
 {% load static %}
 {% load i18n %}
 {% load mptt_tags %}
+{% load ratings %}
 {% block script %}
     <script src="{% static 'js/map.js' %}"></script>
 {% endblock %}
@@ -118,6 +119,7 @@
                                 </div>
                                 <div class="row">
                                     <a class="estabelecimento-titulo" href="{{ e.get_absolute_url }}"> {{ e.nome }}</a><br/>
+                                    {% ratings e %}
                                     {#                                ({% for categoria in e.categoria.all %}#}
                                     {#                                <a href="{{ categoria.get_absolute_url }}" class="sub-categorias-titulo">{{ categoria.nome }}</a>#}
                                     {#                                 {% endfor %})#}

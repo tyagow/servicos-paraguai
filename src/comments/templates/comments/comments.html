@@ -1,0 +1,19 @@
+{% load i18n %}
+{% load ratings %}
+<div class="header-comentarios">
+    <h3>{% trans 'Avaliações' %}</h3>
+</div>
+<div class="row ratings">
+    {% ratings estabelecimento %}
+</div>
+<div class="row comments-row">
+    {% for comment in comments %}
+        <div class="col-sm-5 col-sm-offset-1 col-md-offset-1 col-md-3 comment-card ">
+            <p><strong>{{ comment.conteudo }}</strong></p>
+            <small> {% trans 'por' %} {{ comment.nome }}</small>
+        </div>
+    {% endfor %}
+</div>
+<div class="col-md-8 col-md-offset-2">
+    {% include 'comments/comment-form.html' with form=form url=estabelecimento.get_absolute_url %}
+</div>
