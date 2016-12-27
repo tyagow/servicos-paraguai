@@ -7,7 +7,7 @@ class CommentManager(models.Manager):
     def filter_by_instance(self, instance):
         content_type = ContentType.objects.get_for_model(instance.__class__)
         obj_id = instance.id
-        qs = super(CommentManager, self).filter(content_type=content_type, object_id=obj_id)
+        qs = super(CommentManager, self).filter(content_type=content_type, object_id=obj_id).filter(aprovado=True)
         return qs
 
 
