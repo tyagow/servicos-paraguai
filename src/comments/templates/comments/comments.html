@@ -24,7 +24,7 @@
 {#        <span class="current">#}
 {#            {{ comments.number }} {% trans 'de' %} {{ comments.paginator.num_pages }}.#}
 {#        </span>#}
-{% if comments.num_pages > 1 %}
+{% if comments.paginator.num_pages > 1 %}
     <ul class="pagination">
         {% with ''|center:comments.paginator.num_pages as range %}
         {% for _ in range %}
