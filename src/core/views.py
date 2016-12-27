@@ -2,6 +2,7 @@ import urllib
 
 from django.contrib import messages
 from django.contrib.contenttypes.models import ContentType
+from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from django.http import HttpResponseRedirect
 from django.shortcuts import render, get_object_or_404, resolve_url
 from django.utils.translation import ugettext as _
@@ -36,6 +37,16 @@ def estabelecimento_detail(request, slug):
     if instance.is_hotel:
         template_to_render = 'core/hotel_detail.html'
     comments = instance.comments
+    paginator = Paginator(comments, 6)
+    page = request.GET.get('page')
+    try:
+        comments = paginator.page(page)
+    except PageNotAnInteger:
+        # If page is not an integer, deliver first page.
+        comments = paginator.page(1)
+    except EmptyPage:
+        # If page is out of range (e.g. 9999), deliver last page of results.
+        comments = paginator.page(paginator.num_pages)
 
     initial_data = {
         'content_type': instance.get_content_type,
