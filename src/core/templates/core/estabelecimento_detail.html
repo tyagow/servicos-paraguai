@@ -42,6 +42,22 @@
                         </a>
                     </div>
                 </div>
+
+            </div>
+
+        </div>
+    </section>
+    <section id="header-estabelecimento">
+        <div class="row">
+            <div class="container">
+                {% if messages %}
+                    <div class="alert alert-success alert-dismissable messages fade in">
+                        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                        {% for message in messages %}
+                            {{ message }}
+                        {% endfor %}
+                    </div>
+                {% endif %}
                 <div class="titulo-estabelecimento">
                     <h2>
                         {% if estabelecimento.logo %}<img src="{{ estabelecimento.logo.url }}" alt="" class="photo">{% endif %}
@@ -54,10 +70,8 @@
                 {% endfor %})
                 </div>
             </div>
-
         </div>
     </section>
-
     <section id="descricao-section">
         <div class="row">
             <div class="container">
@@ -85,7 +99,7 @@
     <section id="avaliacoes">
         <div class="row">
             <div class="container">
-            {% include 'comments/comments.html' %}
+                {% include 'comments/comments.html' %}
             </div>
         </div>
     </section>

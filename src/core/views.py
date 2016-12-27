@@ -1,8 +1,10 @@
 import urllib
 
+from django.contrib import messages
 from django.contrib.contenttypes.models import ContentType
 from django.http import HttpResponseRedirect
 from django.shortcuts import render, get_object_or_404, resolve_url
+from django.utils.translation import ugettext as _
 
 from src.comments.forms import CommentForm
 from src.comments.models import Comment
@@ -54,6 +56,8 @@ def estabelecimento_detail(request, slug):
         )
         if created:
             form = CommentForm(None, initial=initial_data)
+            messages.success(request, _('Seu comentário será moderado e adicionado em breve.'))
+
     context = {
         'estabelecimento': instance,
         'comments': comments,
