@@ -1,0 +1,14 @@
+{% extends 'core/widgets/mapa.html' %}
+{% block endereco-mapa %}
+<div class="row col-md-12">
+    <div class="venue">
+        <div class="venue-address col-md-6 gutter">
+            <p class="address">
+                <i class="fa fa-2x fa-map-marker fa-inverse"></i>
+                {{ estabelecimento.endereco }} <br>
+                {{ estabelecimento.get_cidade_display }}
+            </p>
+        </div>
+    </div>
+</div>
+{% endblock %}

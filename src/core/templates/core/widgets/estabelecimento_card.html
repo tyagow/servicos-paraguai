@@ -1,0 +1,18 @@
+{% load ratings %}
+<div class="container-estabelecimentos">
+    {% for e in estabelecimentos %}
+        <div class="col-md-4">
+            <div class="card-estabelecimento">
+                <div class="img-estabelecimento-bg">
+                    <div class="img-estabelecimento">
+                        {% if e.logo %} <a href="{{ e.get_absolute_url }}"><img src="{{ e.logo.url }}" class="photo center" alt=""></a>{% endif %}
+                    </div>
+                </div>
+                <div class="row">
+                    <a class="estabelecimento-titulo" href="{{ e.get_absolute_url }}"> {{ e.nome }}</a><br/>
+                    {% ratings e %}
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+</div>

@@ -1,5 +1,4 @@
 {% extends 'base.html' %}
-
 {% block content %}
     <section>
         <div class="body-container">
@@ -10,11 +9,11 @@
                     {% endif %}{{ categoria.nome }}
                 </h2>
 
-                {% for estabelecimento in categoria.estabelecimentos.all %}
                     <div class="row">
-                        <h2><a class="sub-categorias-titulo" href="{{ estabelecimento.get_absolute_url }}">{% if  estabelecimento.logo %}<img src="{{ estabelecimento.logo.url }}" alt="" class="photo">{% endif %} {{ estabelecimento.nome }}</a></h2>
+                    <div class="container">
+                        {% include 'core/widgets/estabelecimento_card.html' with estabelecimentos=categoria.estabelecimentos.all %}
                     </div>
-                {% endfor %}
+                    </div>
             </div>
         </div>
     </section>

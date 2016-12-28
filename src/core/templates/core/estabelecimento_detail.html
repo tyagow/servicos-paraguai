@@ -7,93 +7,13 @@
 {% endblock %}
 {% block content %}
     <section id="carousel-section">
-        <div class="row">
-            <div class="container">
-                <div id="carousel">
-                    <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
-                        <!-- Indicators -->
-                        <ol class="carousel-indicators">
-                            {% for f in estabelecimento.foto_set.all %}
-                                <li data-target="#carousel-example-generic" data-slide-to="{{ forloop.counter0 }}" {% if forloop.counter0 == 0 %}class="active"{% endif %}></li>
-                            {% endfor %}
-                        </ol>
-
-                        <!-- Wrapper for slides -->
-
-                        <div class="carousel-inner" role="listbox">
-                            {% for foto in estabelecimento.foto_set.all %}
-                                <div class="item {% if forloop.counter == 1 %}active{% endif %}">
-                                    <img src="{{ foto.foto.url }}" alt="1">
-                                    <div class="carousel-caption">
-
-                                    </div>
-                                </div>
-                            {% endfor %}
-                        </div>
-
-                        <!-- Controls -->
-                        <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
-                            <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-                            <span class="sr-only">Previous</span>
-                        </a>
-                        <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
-                            <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-                            <span class="sr-only">Next</span>
-                        </a>
-                    </div>
-                </div>
-
-            </div>
-
-        </div>
+        {% include 'core/widgets/carousel.html' %}
     </section>
     <section id="header-estabelecimento">
-        <div class="row">
-            <div class="container">
-                {% if messages %}
-                    <div class="alert alert-success alert-dismissable messages fade in">
-                        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-                        {% for message in messages %}
-                            {{ message }}
-                        {% endfor %}
-                    </div>
-                {% endif %}
-                <div class="titulo-estabelecimento">
-                    <h2>
-                        {% if estabelecimento.logo %}<img src="{{ estabelecimento.logo.url }}" alt="" class="photo">{% endif %}
-                        <a href="{{ estabelecimento.website }}">{{ estabelecimento.nome }}</a>
-                    </h2>
-                </div>
-                <div class="estabelecimento-categorias">
-                    ({% for categoria in estabelecimento.categoria.all %}
-                    <a href="{{ categoria.get_absolute_url }}">{{ categoria.nome }}</a>
-                {% endfor %})
-                </div>
-            </div>
-        </div>
+        {% include 'core/widgets/header-estabelecimento.html' %}
     </section>
     <section id="descricao-section">
-        <div class="row">
-            <div class="container">
-                <div class="col-md-4 ">
-                    <div class="card">
-                        <div class="card-header">
-                            <h4>{% trans 'Telefones' %}</h4>
-                        </div>
-                        <div class="telefones">
-                            {% for tel in estabelecimento.telefones.all %}
-                                <p>{{ tel.numero }}</p>
-                            {% endfor %}
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-8 col-xs-12">
-                    <div class="descricao">
-                        {{ estabelecimento.descricao|linebreaks }}
-                    </div>
-                </div>
-            </div>
-        </div>
+        {% include 'core/widgets/descricao_estabelecimento.html' %}
     </section>
 
     <section id="avaliacoes">
@@ -104,23 +24,7 @@
         </div>
     </section>
     <section id="venue">
-        <div class="row">
-            <div class="container">
-                <div id="coordenadas"  data-coordenadas="{{ estabelecimento.coordenadas }}" style="display: none;"></div>
-                <div id="map-canvas"></div>
-                <div class="row col-md-12">
-                    <div class="venue">
-                        <div class="venue-address col-md-6 gutter">
-                            <p class="address">
-                                <i class="fa fa-2x fa-map-marker fa-inverse"></i>
-                                {{ estabelecimento.endereco }} <br>
-                                {{ estabelecimento.get_cidade_display }}
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+        {% include 'core/widgets/mapa-single.html' %}
     </section>
     </div>
 
