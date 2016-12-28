@@ -6,7 +6,7 @@
 {% endblock %}
 {% block content %}
     <section id="carousel-section">
-        {% include 'core/widgets/carousel.html' with fotos=estabelecimento.fotos.all %}
+        {% include 'core/widgets/carousel.html' with fotos=estabelecimento.foto_set.all %}
     </section>
     <section id="header-estabelecimento">
         {% include 'core/widgets/header-estabelecimento.html' %}
