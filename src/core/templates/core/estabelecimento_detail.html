@@ -1,20 +1,21 @@
 {% extends 'base.html' %}
 {% load static %}
-{% load i18n %}
 {% block title %}{{ estabelecimento.nome }}{% endblock %}
 {% block script %}
     <script src="{% static 'js/map-single.js' %}"></script>
 {% endblock %}
 {% block content %}
     <section id="carousel-section">
-        {% include 'core/widgets/carousel.html' %}
+        {% include 'core/widgets/carousel.html' with fotos=estabelecimento.fotos.all %}
     </section>
     <section id="header-estabelecimento">
         {% include 'core/widgets/header-estabelecimento.html' %}
     </section>
-    <section id="descricao-section">
-        {% include 'core/widgets/descricao_estabelecimento.html' %}
-    </section>
+    {% block descricao %}
+        <section id="descricao-section">
+            {% include 'core/widgets/descricao_estabelecimento.html' %}
+        </section>
+    {% endblock %}
 
     <section id="avaliacoes">
         <div class="row">

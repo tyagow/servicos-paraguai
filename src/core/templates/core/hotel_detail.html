@@ -1,24 +1,13 @@
-{% extends 'base.html' %}
-{% load static %}
+{% extends 'core/estabelecimento_detail.html' %}
 {% load i18n %}
-{% block title %}{{ estabelecimento.nome }}{% endblock %}
-{% block script %}
-    <script src="{% static 'js/map-single.js' %}"></script>
-{% endblock %}
-{% block content %}
-    <section id="carousel-section">
-        {% include 'core/widgets/carousel.html' %}
-    </section>
-    <section id="header-estabelecimento">
-        {% include 'core/widgets/header-estabelecimento.html' %}
-    </section>
+{% block descricao %}
     <section id="descricao-section">
         <div class="row">
             <div class="container">
                 <div class="col-md-5 col-md-offset-1">
                     <div class="card">
                         <div class="card-header">
-                            <h4>Telefones</h4>
+                            <h4>{% trans 'Telefones' %}</h4>
                         </div>
                         <div class="telefones">
                             {% for tel in estabelecimento.telefones.all %}
@@ -31,7 +20,7 @@
                     <div class="card">
                         <div class="card-header">
 
-                            <h4>Preços</h4>
+                            <h4>{% trans 'Preços' %}</h4>
                         </div>
                         <div class="precos">
 
@@ -44,39 +33,29 @@
             </div>
         </div>
     </section>
-    <section id="caracteristicas-hotel">
-        <div class="row">
-            <div class="container">
-                <div class="col-md-5 ">
-                    <div class="descricao">
-                        {{ estabelecimento.descricao|linebreaks }}
-                    </div>
-                </div>
-                <div class="col-md-7 caracteristicas">
-                    <div class="col-md-3 col-xs-3 caracteristica caracteristica-header-left">
-                        <span class="titulo-caracteristica"><strong>Serviço</strong></span>
-                    </div>
-                    <div class="col-md-8 col-xs-8 caracteristica caracteristica-header-right">
-                        <span class="titulo-caracteristica"><strong>Descrição</strong></span>
-                    </div>
-                    <p></p>
-                    {% for caracteristica in estabelecimento.caracteristicas.all %}
-                        <div class="row caracteristicas-row">
-                            <div class="col-xs-3 caracteristicas-row-left"><strong>{{ caracteristica.titulo }}</strong></div><div class="col-xs-8 caracteristicas-row-right">{{ caracteristica.conteudo }}</div>
-                        </div>
-                    {% endfor %}
+<section id="caracteristicas-hotel">
+    <div class="row">
+        <div class="container">
+            <div class="col-md-5 ">
+                <div class="descricao">
+                    {{ estabelecimento.descricao|linebreaks }}
                 </div>
             </div>
-        </div>
-    </section>
-    <section id="avaliacoes">
-        <div class="row">
-            <div class="container">
-                {% include 'comments/comments.html' %}
+            <div class="col-md-7 caracteristicas">
+                <div class="col-md-3 col-xs-3 caracteristica caracteristica-header-left">
+                    <span class="titulo-caracteristica"><strong>Serviço</strong></span>
+                </div>
+                <div class="col-md-8 col-xs-8 caracteristica caracteristica-header-right">
+                    <span class="titulo-caracteristica"><strong>Descrição</strong></span>
+                </div>
+                <p></p>
+                {% for caracteristica in estabelecimento.caracteristicas.all %}
+                    <div class="row caracteristicas-row">
+                        <div class="col-xs-3 caracteristicas-row-left"><strong>{{ caracteristica.titulo }}</strong></div><div class="col-xs-8 caracteristicas-row-right">{{ caracteristica.conteudo }}</div>
+                    </div>
+                {% endfor %}
             </div>
         </div>
-    </section>
-    <section id="venue">
-        {% include 'core/widgets/mapa-single.html' %}
-    </section>
+    </div>
+</section>
 {% endblock %}
