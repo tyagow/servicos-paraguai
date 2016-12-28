@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-12-24 16:36-0200\n"
+"POT-Creation-Date: 2016-12-27 23:33-0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,26 +18,45 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: templates/index.html:67
+#: models.py:69
+msgid "Hospedagem"
+msgstr "Alojamiento"
+
+#: templates/core/hotel_detail.html:10
+#: templates/core/widgets/descricao_estabelecimento.html:7
+msgid "Telefones"
+msgstr ""
+
+#: templates/core/hotel_detail.html:23
+#, fuzzy
+#| msgid "Preço"
+msgid "Preços"
+msgstr "Precio"
+
+#: templates/core/widgets/busca.html:9
 msgid "Cidade"
 msgstr "Ciudad"
 
-#: templates/index.html:68 templates/index.html:78
+#: templates/core/widgets/busca.html:10 templates/core/widgets/busca.html:20
 msgid "Todas"
 msgstr "Todos"
 
-#: templates/index.html:77
+#: templates/core/widgets/busca.html:19
 msgid "Categoria"
 msgstr "Categoría"
 
-#: templates/index.html:91
+#: templates/core/widgets/busca.html:33
 msgid "Nome Estabelecimento"
 msgstr "Nombre del Establecimiento"
 
-#: templates/index.html:95
+#: templates/core/widgets/busca.html:37
 msgid "Preço"
 msgstr "Precio"
 
-#: views.py:32
-msgid "Hospedagem"
-msgstr "Alojamiento"
+#: templates/star_ratings/widget.html:29
+msgid "Log in to rate"
+msgstr ""
+
+#: views.py:70
+msgid "Seu comentário será moderado e adicionado em breve."
+msgstr ""

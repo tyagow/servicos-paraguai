@@ -1,0 +1,47 @@
+{% load i18n %}
+<section id="busca">
+    <div class="busca-body">
+        <div class="container global-search">
+            <div class="row">
+                <form class="form-inline " action="/" method="get" role="form">
+                    <div class="col-md-3">
+                        <select name="cidade" class="select-input center" id="select-cidades">
+                            <option value="" disabled selected>{% trans 'Cidade' %}</option>
+                            <option value="todas">{% trans 'Todas' %}</option>
+                            {% for cidade in cidades %}
+                                <option value="{{ cidade }}">{{ cidade }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div class="col-md-3">
+
+                        <select name="categoria" class="select-input">
+                            <option value="" disabled selected>{% trans 'Categoria' %}</option>
+                            <option value="todas">{% trans 'Todas' %}</option>
+                            {% for node in categorias %}
+                                {% if node.is_child_node %}
+                                    <option value="{{ node.nome }}">
+                                        {{ node.parent }} :: {{ node }}
+                                    </option>
+                                {% endif %}
+
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div class="col-md-3">
+
+                        <input type="search" class="form-control input-estabelecimento" id="s" name="nome" placeholder="{%  trans 'Nome Estabelecimento' %}">
+                    </div>
+                    <div class="col-md-3">
+
+                        <input type="text" class=" input-preco form-control " name='preco' id="InputAmount" placeholder="{%  trans 'Preço' %}">
+                        <label class="sr-only" for="InputAmount">Preço</label>
+
+                        <button type="submit" id="s" class="btn btn-default submit-button"><span class="glyphicon glyphicon-search"></span></button>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
