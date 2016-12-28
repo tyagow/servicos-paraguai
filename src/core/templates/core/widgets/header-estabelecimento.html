@@ -14,14 +14,14 @@
                 <div class="header-img-estabelecimento">
                     <div class="img-estabelecimento-bg">
                         <div class="img-estabelecimento">
-                            {% if estabelecimento.logo %} <a href="{{ estabelecimento.get_absolute_url }}"><img src="{{ estabelecimento.logo.url }}" class="photo center" alt=""></a>{% endif %}
+                            {% if estabelecimento.logo %} <a href="{{ estabelecimento.website }}"><img src="{{ estabelecimento.logo.url }}" class="photo center" alt=""></a>{% endif %}
                         </div>
                     </div>
                 </div>
             </div>
             <div class="col-sm-7 col-md-7">
                 <h2>
-                    <a href="{{ estabelecimento.get_absolute_url }}">{{ estabelecimento.nome }}</a>
+                    <a href="{{ estabelecimento.website }}">{{ estabelecimento.nome }}</a>
                 </h2>
             </div>
 
