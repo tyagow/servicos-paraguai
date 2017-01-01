@@ -11,7 +11,8 @@ Sistema de serviços fornecidos no Paraguai
 3. Ative o Virtualenv.
 4. Instale as dependencias.
 5. Configure a instancia com o .env
-6. Execute os testes.
+6. Roda o collectstatic para configurar arquivos staticos
+7. Execute os testes.
 
 ```console
 git clone https://github.com/tyagow/servicos-paraguai sparaguaiproject
