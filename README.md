@@ -20,6 +20,7 @@ python -m venv .venv
 source .venv/bin/activate
 pip install -r requirements.txt
 cp contrib/env-sample .env
+python manage.py collectstatic
 python manage.py test
 python manage.py runserver
 ```
