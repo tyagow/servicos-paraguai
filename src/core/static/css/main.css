@@ -1,0 +1,692 @@
+/*!* Customização *!*/
+:root {
+    --nav-bg-color: #549de4;;
+    --body-bg-color: #fffdf5;
+    --address-bg-color: #549de4;
+    --titulo-nav-color: #071013;
+    --header-estab-color: #fff;
+    --descricao-bg-color: #fff;
+    --descricao-text-color: #000;
+    --caracteristica-color: #549de4;
+    --caracteristica-row-color: #ffffff;
+    --estabelecimento-row-bg-color: #fff;
+    --estabelecimento-card-text-color: #fff;
+    --a-color: #000;
+    --card-estabelecimento-bg: #549de4;
+    --card-header-bg-color: #549de4;
+    --comment-bg-color: #549de4;
+    --comment-text-color: #fff;
+    --comment-bg-btn--color: #549de4;
+
+}
+html {
+    height: 100%;
+}
+body {
+    background-color: #fff;
+    text-align:center;
+    min-height: 100%;
+    margin:0;
+}
+
+@font-face {font-family:"Prosto";src:url("../fonts/Prosto.eot?") format("eot"),url("../fonts/Prosto.woff") format("woff"),url("../fonts/Prosto.ttf") format("truetype"),url("../fonts/Prosto.svg#Prosto") format("svg");font-weight:normal;font-style:normal;}
+/* Titulagem */
+h1, h2, h3, h4, h5, h6 {
+    /*font-family: 'Prosto';*/
+}
+
+h1 { padding: 10px 0 14px; }
+
+h2 { padding: 23px 0 7px; }
+
+h3 { padding: 27px 0 11px; }
+
+h4 { padding: 33px 0 23px; }
+
+h5 { padding: 6px 0 22px; }
+
+h6 { padding: 13px 0 4px; }
+
+h1, h2 {
+    letter-spacing: -0.006em;
+    word-spacing: -0.05em;
+}
+
+
+p, li, dt, dd, th, td, caption {
+    font-size: 1.0em;
+    line-height: 30px;
+}
+
+p, ul, dl { padding: 7px 0 23px; }
+
+ul, ol {
+    padding-right: 0;
+    padding-left: 3.9em;
+}
+
+dl {
+    padding-right: 0;
+    padding-left: 2.4em;
+}
+
+.text-small h1,
+.text-small h2,
+.text-small h3,
+.text-small h4,
+.text-small h5,
+.text-small h6 {
+    padding: 3px 0 0;
+}
+
+.text-small p {
+    padding: 7px 0 17px;
+}
+
+
+@media all and (min-width:900px) {
+
+    .nav-inline li a {
+        color: #ffffff;
+    }
+    .header-inline .nav-inline li {
+        margin: 0 0 0 3.5em;
+    }
+    .header-frame-absolute .nav-inline li a:hover { color: #db372f;}
+    .header-frame-fixed .nav-inline li a:hover { color: #333333;}
+
+}
+
+@media all and (max-width:900px) {
+
+    .nav-mobile {
+        color: #ffffff;
+    }
+
+    .header-inline .nav-inline {
+        background: transparent;
+    }
+    .header-inline .nav-inline:hover {
+        background: #ffffff;
+    }
+
+}
+
+
+#top {
+    display:table;
+    width:100%;
+    max-height: 80px;
+    height:50px;
+    text-align: center;
+    background: var(--nav-bg-color) no-repeat bottom center;
+    /*-webkit-background-size: cover;*/
+    /*-moz-background-size: cover;*/
+    /*-o-background-size: cover;*/
+    /*background-size: cover;*/
+    /*position:fixed;*/
+    /*z-index: 9999;*/
+
+}
+.titulo {
+    margin: auto;
+}
+
+.titulo a {
+    margin: auto;
+    color: var(--titulo-nav-color);
+    font-weight: bold;
+}
+
+.estabelecimento-titulo {
+    font-weight: bold;
+    color: var(--estabelecimento-card-text-color);
+    font-size: 1.3em;
+    position: relative;
+    bottom: 20px;
+
+}
+
+.sub-categorias-titulo {
+    font-size: 1.0em;
+
+}
+.titulo a:hover {
+    text-decoration: none;
+    color: #230f11;
+
+}
+.titulo_estabelecimento {
+    font-size: 24px;
+}
+/*.categories a {*/
+/*color: #0e79b2;*/
+/*}*/
+/*.countdown h1 {*/
+/*font-family: "sinkin_sans600_semibold";*/
+/*font-size: 30px;*/
+/*font-weight: bold;*/
+/*line-height: 60px;*/
+/*padding-top: 10px;*/
+/*}*/
+
+
+
+@media all and (min-width:900px) {
+
+    .venue {
+        margin-top: -60px;
+    }
+
+    #map-canvas {
+        width: 100%;
+        min-height: 430px;
+        position: absolute;
+        top: 0;
+        z-index: -1;
+    }
+
+}
+
+.comment-card {
+    background-color: var( --comment-bg-color);
+    color: var(--comment-text-color);
+    padding: 15px;
+    border-radius: 10px;
+    margin-top: 25px;
+}
+.comment-card p {
+    text-align: left;
+    margin-left: 5px;
+}
+.comments-row {
+    margin: 20px 10px;
+}
+
+.card {
+    background-color: var( --body-bg-color);
+}
+.card-header{
+    padding: 2px;
+    background-color: var(--card-header-bg-color);
+    color: #fff;
+}
+.card-body {
+
+}
+.card h4 {
+    padding: 0;
+    margin: 2px;
+}
+.card p {
+    padding: 10px 0 5px;
+    line-height: 15px;
+}
+.caracteristica {
+    text-align: left;
+    padding: 5px;
+}
+.caracteristica-header-left {
+    margin-left: 10px;
+}
+.caracteristica-header-right {
+    text-align: center;
+}
+
+.caracteristicas {
+    background-color: var(--caracteristica-color);
+    padding: 5px;
+
+}
+.caracteristicas-row {
+    background-color: var(--caracteristica-row-color);
+    text-align: left;
+    padding: 5px;
+    margin: 3px;
+
+}
+.caracteristicas-row-left {
+    text-align: left;
+    padding-left: 10px;
+}
+.caracteristicas-row-right {
+    text-align: center;
+}
+
+
+/*.alert {*/
+/*padding: 0 15px;*/
+/*margin-bottom: 1rem;*/
+/*border: 1px solid transparent;*/
+/*border-radius: .25rem;*/
+/*}*/
+/*.alert p {*/
+/*padding: 7px 0 7px;*/
+/*}*/
+/*.alert.success {*/
+/*color: #3c763d;*/
+/*background-color: #dff0d8;*/
+/*border-color: #d0e9c6;*/
+/*}*/
+
+
+/*!* Search form*!*/
+
+
+/*!* This overrides BT3's wider (1170px) layout for larger monitors - jnp 20130821 *!*/
+@media (min-width: 1200px) {
+    .container {
+        max-width: 970px;
+    }
+}
+/* These style the container */
+body {
+    padding-top: 0px;
+    padding-bottom: 15px;
+}
+body > .container {
+    padding: 0 0 0 0;
+    height: inherit;
+    background-color: var(--body-bg-color);
+    border: 0 solid transparent;
+    border-radius: 1px;
+    -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
+
+}
+.fill {
+    min-height: 100%;
+    height: 100%;
+}
+/* This creates an alert spanning the full container */
+.row.alert {
+    margin-right: 0;
+    margin-left: 0;
+    margin-bottom: 0;
+    border: 0 solid transparent;
+    border-radius: 0;
+}
+/* This removes the rounded corners from the bottom edge of the navbar */
+.navbar {
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+}
+/* This removes the space below the panel so the search can have a uniform background */
+.navbar-default {
+    margin-bottom: 0;
+}
+
+/* This removes the rounded corners from the jumbotron */
+.container .jumbotron {
+    border-radius: 0;
+}
+/* This creates the outside gutter between panels and container */
+.row.main {
+    margin-right: 0;
+    margin-left: 0;
+}
+
+.photo {
+    width: 64px;
+}
+.categoria-icon {
+    width: 32px;
+}
+
+/*!* center search *!*/
+
+.global-search {
+    text-align:left;
+    background-color: var(--address-bg-color);
+}
+.global-search * {
+    margin-bottom:0;
+}
+.select-input {
+    width: 85%;
+    height: 35px;
+    text-align: center;
+}
+.input-estabelecimento {
+    width: 100% !important;
+}
+.input-preco {
+    width: 70% !important;
+}
+.submit-button {
+    height: 35px;
+    margin: auto;
+}
+.global-search a {
+    display:block;
+    padding-top:10px;
+}
+
+
+
+@media (min-width:400px){
+    .global-search {
+        padding: 10px;
+        text-align:left;
+    }
+
+}
+
+/* VENUE */
+
+#venue {
+    position: relative;
+    margin: 20px auto auto;
+}
+
+.venue-address {
+    max-height: 200px;
+    margin: auto;
+    background: var(--address-bg-color) none repeat scroll 0 0;
+}
+
+.venue-address .address {
+    padding-left: 30px;
+    position: relative;
+    font-size: 1.3em;
+    color: var(--estabelecimento-card-text-color)
+}
+
+.venue-address .address .fa {
+    position: absolute;
+    left: 0;
+    height: 100%;
+}
+
+#map-canvas {
+    width: 100%;
+    min-height: 300px;
+    position: relative;
+    top: 0;
+    z-index: 0;
+}
+#map-canvas-all {
+    width: 100%;
+    min-height: 300px;
+    position: relative;
+    top: 0;
+    z-index: 0;
+}
+/*!* Carousel *!*/
+/*.carousel {*/
+/*height: 350px;*/
+/*margin-top: 120px;*/
+
+/*}*/
+/*.carousel-indicators {*/
+/*padding: 0px;*/
+/*bottom: 0px;*/
+/*}*/
+/*.item {*/
+/*height: 350px;*/
+/*}*/
+
+/*.item img {*/
+/*width: 100%;*/
+/*}*/
+
+a {
+    text-decoration: none;
+    color: var(--a-color);
+}
+#categorias {
+    text-align: left;
+}
+.busca-body {
+    margin-top: 10px;
+}
+
+.container-estabelecimentos {
+    text-align: left;
+    margin-left: 30px;
+    margin-right: 30px;
+    margin-top: 30px;
+}
+.descricao {
+    margin: auto auto 20px;
+    padding: 8px;
+    text-align: left;
+    background-color: var(--nav-bg-color);
+    color: var(--descricao-text-color);
+}
+.descricao p {
+    padding: 10px;
+    margin: auto;
+    line-height: 25px;
+    background-color: var(--descricao-bg-color);
+
+}
+.descricoes {
+    margin-top: 70px;
+}
+.titulo-estabelecimento {
+    background-color: var(--nav-bg-color);
+    position: relative;
+    height: 60px;
+    margin-bottom: 15px;
+    margin-top: 15px;
+
+}
+.titulo-estabelecimento a {
+    color: var(--header-estab-color);
+    margin: auto;
+}
+.titulo-estabelecimento h2 {
+    text-align: left;
+    padding: 0px;
+}
+.estabelecimento-categorias {
+    position: relative;
+    padding-bottom: 10px;
+}
+.body-container {
+    margin-top: 70px;
+    max-height: 100%;
+    height:100%;
+    background-color: var(--body-bg-color);
+}
+.estabelecimento-row {
+    background-color: var(--estabelecimento-row-bg-color);
+}
+.card-estabelecimento {
+    text-align: center;
+    background-color: var(--card-estabelecimento-bg);
+    padding: 15px;
+    margin-top: 20px;
+}
+.card-estabelecimento img {
+    margin: auto;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    right: 0px;
+    bottom: 0px;
+}
+.img-estabelecimento {
+    margin: auto;
+    border-radius: 50%;
+    background-color: #fff;
+    position: relative;
+    height: 74px;
+    width: 74px;
+    top: 1px;
+    left: 0px;
+    right: 0px;
+    bottom: 0px;
+
+}
+.header-img-estabelecimento {
+    float: right;
+}
+.img-estabelecimento-bg img {
+    margin: auto;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    right: 0px;
+    bottom: 0px;
+}
+.img-estabelecimento-bg {
+    margin: auto;
+    border-radius: 50%;
+    background-color: var(--card-estabelecimento-bg);
+    position: relative;
+    top: -30px;
+    height: 80px;
+    width: 80px;
+}
+.logo {
+    height: 85px;
+}
+.titulo-caracteristica {
+    color: var(--estabelecimento-card-text-color)
+}
+
+@media (max-width:991px) {
+    .submit-button {
+        width: 100%;
+        height: 40px;
+        margin: 5px auto auto;
+    }
+    .input-preco {
+        width: 100% !important;
+        margin-top: 5px;
+
+    }
+    .input-estabelecimento {
+        width: 100% !important;
+        margin-top: 5px;
+
+    }
+    .select-input {
+        width: 100%;
+        margin-top: 5px;
+    }
+    .card-estabelecimento {
+        width: 70%;
+        margin: 30px auto;
+    }
+}
+.aux-preco {
+    height: 30px !important;
+}
+.input-flag {
+    width: 32px;
+    height: 22px;
+    border: none;
+    margin-left: 5px;
+    float: right;
+    position: relative;
+    bottom: -30px;
+
+}
+.flags {
+    vertical-align: middle;
+    padding: 10px 10px 15px;
+}
+.form-comments-nome {
+    max-width: 250px;
+    display: inline-block;
+    margin-top: 15px;
+}
+.header-comentarios h3 {
+    padding: 5px;
+}
+.header-comentarios {
+    background-color: var(--comment-bg-color);
+    color: var(--comment-text-color);
+}
+.ratings {
+    margin: 15px;
+}
+.messages {
+    margin-top: 10px;
+}
+.btn-submit-comentario {
+    background-color: var(--comment-bg-btn--color);;
+}
+
+/* Carousel*/
+/* Makes images fully responsive */
+
+.img-responsive,
+.thumbnail > img,
+.thumbnail a > img,
+.carousel-inner > .item > img,
+.carousel-inner > .item > a > img {
+    display: block;
+    width: 100%;
+    max-height: 350px;
+    height: auto;
+}
+
+/* ------------------- Carousel Styling ------------------- */
+.carousel {
+    margin-top: 120px;
+    max-height: 350px;
+}
+.carousel-inner {
+    border-radius: 5px;
+}
+
+.carousel-caption {
+    background-color: rgba(0,0,0,.5);
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 10;
+    padding: 0 0 10px 25px;
+    color: #fff;
+    text-align: left;
+}
+
+.carousel-indicators {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    width: 100%;
+    z-index: 15;
+    margin: 0;
+    padding: 0 25px 25px 0;
+    text-align: right;
+}
+
+.carousel-control.left,
+.carousel-control.right {
+    background-image: none;
+}
+
+
+/* ------------------- Section Styling - Not needed for carousel styling ------------------- */
+
+.section-white {
+    padding: 10px 0;
+}
+
+.section-white {
+    background-color: #fff;
+    color: #555;
+}
+
+@media screen and (min-width: 768px) {
+
+    .section-white {
+        padding: 1.5em 0;
+    }
+
+}
+
+@media screen and (min-width: 992px) {
+
+    .container {
+        max-width: 930px;
+    }
+
+}

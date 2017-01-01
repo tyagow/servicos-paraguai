@@ -32,7 +32,7 @@ class HomeTest(TestCase):
         self.assertContains(self.response, '<input')
 
     def test_html_categorias(self):
-        """Html must display categories"""
+        """Html must display categories in busca"""
         self.assertContains(self.response, self.categoria.nome)
 
     # def test_html_categorias_link(self):

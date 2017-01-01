@@ -6,14 +6,14 @@ from src.core.models import Estabelecimento
 
 class CommentsModelTest(TestCase):
     def setUp(self):
-        estabelecimento = Estabelecimento.objects.create(
+        self.estabelecimento = Estabelecimento.objects.create(
             nome='Fast Way',
             website='www.fastway.com',
             slug='fast-way',
             endereco='Avda. Rogelio Benitez, 061 500 763',
         )
-        content_type = ContentType.objects.get_for_model(estabelecimento.__class__)
-        object_id = estabelecimento.id
+        content_type = ContentType.objects.get_for_model(self.estabelecimento.__class__)
+        object_id = self.estabelecimento.id
         self.obj = Comment.objects.create(
             nome='Fast Way',
             conteudo='Conteudo',
@@ -29,3 +29,9 @@ class CommentsModelTest(TestCase):
 
     def test_aprovado_default_false(self):
         self.assertTrue(not self.obj.aprovado)
+
+    def test_filter_by_instance(self):
+        self.obj.aprovado = True
+        self.obj.save()
+        comments = Comment.objects.filter_by_instance(self.estabelecimento)
+        self.assertEqual(comments[0], self.obj)
