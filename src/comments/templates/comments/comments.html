@@ -15,15 +15,6 @@
     {% endfor %}
 </div>
 <div class="row">
-{#    <div class="pagination">#}
-{#    <span class="step-links">#}
-{#        {% if comments.has_previous %}#}
-{#            <a href="?page={{ comments.previous_page_number }}">{% trans 'anterior' %}</a>#}
-{#        {% endif %}#}
-{##}
-{#        <span class="current">#}
-{#            {{ comments.number }} {% trans 'de' %} {{ comments.paginator.num_pages }}.#}
-{#        </span>#}
 {% if comments.paginator.num_pages > 1 %}
     <ul class="pagination">
         {% with ''|center:comments.paginator.num_pages as range %}
@@ -33,18 +24,6 @@
     {% endwith %}
     </ul>
 {% endif %}
-{# <ul class="pagination">#}
-{#  <li><a href="#">1</a></li>#}
-{#  <li class="active"><a href="#">2</a></li>#}
-{#  <li><a href="#">3</a></li>#}
-{#  <li><a href="#">4</a></li>#}
-{#  <li><a href="#">5</a></li>#}
-{#</ul>#}
-{#        {% if comments.has_next %}#}
-{#            <a href="?page={{ comments.next_page_number }}">{% trans 'proxima' %}</a>#}
-{#        {% endif %}#}
-{#    </span>#}
-{#    </div>#}
 </div>
 <div class="col-md-8 col-md-offset-2">
     {% include 'comments/comment-form.html' with form=form url=estabelecimento.get_absolute_url %}

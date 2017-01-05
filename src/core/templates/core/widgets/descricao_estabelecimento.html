@@ -6,7 +6,7 @@
                 <div class="card-header">
                     <h4>{% trans 'Telefones' %}</h4>
                 </div>
-                <div class="telefones">
+                <div class="card-body">
                     {% for tel in estabelecimento.telefones.all %}
                         <p>{{ tel.numero }}</p>
                     {% endfor %}

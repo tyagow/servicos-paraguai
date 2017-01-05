@@ -2,14 +2,14 @@
 {% load i18n %}
 {% block descricao %}
     <section id="descricao-section">
-        <div class="row">
+        <div class="row row-informacoes">
             <div class="container">
                 <div class="col-md-5 col-md-offset-1">
                     <div class="card">
                         <div class="card-header">
                             <h4>{% trans 'Telefones' %}</h4>
                         </div>
-                        <div class="telefones">
+                        <div class="card-body">
                             {% for tel in estabelecimento.telefones.all %}
                                 <p>{{ tel.numero }}</p>
                             {% endfor %}
@@ -22,7 +22,7 @@
 
                             <h4>{% trans 'Preços' %}</h4>
                         </div>
-                        <div class="precos">
+                        <div class="card-body">
 
                             {% for preco in estabelecimento.precos.all %}
                                 <p>{{ preco.titulo }} - <strong>U${{ preco.valor }}</strong></p>

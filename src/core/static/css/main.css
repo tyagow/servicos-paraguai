@@ -1,29 +1,44 @@
 /*!* Customização *!*/
 :root {
-    --nav-bg-color: #549de4;;
-    --body-bg-color: #fffdf5;
-    --address-bg-color: #549de4;
-    --titulo-nav-color: #071013;
+    /*Cor de exemplo*/
+    --azul-bg: #549de4;
+    --vermelho-bg: #ff4672;
+    --vermelho-claro-bg: #ff95a8;
+    --vermelho-escuro-bg: #d82a55;
+    --preto-text: #071013;
+    --branco-bg: #fff;
+    /*Used Colors*/
+    --bg-color-base: var(--vermelho-bg);
+    --bg-color-base-clara: var(--vermelho-escuro-bg);
+    --text-color-base: var(--preto-text);
+    --body-bg-color: var(--branco-bg);
+    /*Site variables*/
+    --card-body-bg: var(--branco-bg);
+    --nav-bg-color: var(--bg-color-base);
+    --body-container-bg-color: #fffdf5;
+    --address-bg-color: var(--bg-color-base);
+    --titulo-nav-color: var(--text-color-base);
     --header-estab-color: #fff;
     --descricao-bg-color: #fff;
-    --descricao-text-color: #000;
-    --caracteristica-color: #549de4;
+    --descricao-text-color: var(--text-color-base);
+    --caracteristica-color: var(--bg-color-base);
     --caracteristica-row-color: #ffffff;
     --estabelecimento-row-bg-color: #fff;
     --estabelecimento-card-text-color: #fff;
-    --a-color: #000;
-    --card-estabelecimento-bg: #549de4;
-    --card-header-bg-color: #549de4;
-    --comment-bg-color: #549de4;
+    --a-color: var(--text-color-base);
+    --card-estabelecimento-bg: var(--bg-color-base);
+    --card-header-bg-color: var(--bg-color-base);
+    --card-bg-color: var(--bg-color-base);
+    --comment-bg-color: var(--bg-color-base);
     --comment-text-color: #fff;
-    --comment-bg-btn--color: #549de4;
+    --comment-bg-btn--color: var(--bg-color-base);
 
 }
 html {
     height: 100%;
 }
 body {
-    background-color: #fff;
+    background-color: var(--body-bg-color);
     text-align:center;
     min-height: 100%;
     margin:0;
@@ -204,7 +219,8 @@ dl {
 }
 
 .card {
-    background-color: var( --body-bg-color);
+    background-color: var( --card-bg-color);
+    padding: 3px;
 }
 .card-header{
     padding: 2px;
@@ -212,7 +228,8 @@ dl {
     color: #fff;
 }
 .card-body {
-
+    margin: 1px;
+    background-color: var(--card-body-bg);
 }
 .card h4 {
     padding: 0;
@@ -221,6 +238,7 @@ dl {
 .card p {
     padding: 10px 0 5px;
     line-height: 15px;
+    margin: 0px;
 }
 .caracteristica {
     text-align: left;
@@ -287,7 +305,7 @@ body {
 body > .container {
     padding: 0 0 0 0;
     height: inherit;
-    background-color: var(--body-bg-color);
+    background-color: var(--body-container-bg-color);
     border: 0 solid transparent;
     border-radius: 1px;
     -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
@@ -461,6 +479,9 @@ a {
     background-color: var(--descricao-bg-color);
 
 }
+.row-informacoes{
+    margin-bottom: 10px;
+}
 .descricoes {
     margin-top: 70px;
 }
@@ -488,7 +509,7 @@ a {
     margin-top: 70px;
     max-height: 100%;
     height:100%;
-    background-color: var(--body-bg-color);
+    background-color: var(--body-container-bg-color);
 }
 .estabelecimento-row {
     background-color: var(--estabelecimento-row-bg-color);
@@ -673,6 +694,17 @@ a {
 .section-white {
     background-color: #fff;
     color: #555;
+}
+
+
+/*Pagination custom*/
+
+.pagination > .active > a {
+    background-color: var(--bg-color-base);
+    border-color: var(--bg-color-base);
+}
+.pagination > .active > a:hover {
+    background-color: var(--bg-color-base-clara);
 }
 
 @media screen and (min-width: 768px) {
