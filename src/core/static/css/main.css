@@ -8,7 +8,7 @@
     --preto-text: #071013;
     --branco-bg: #fff;
     /*Used Colors*/
-    --bg-color-base: var(--vermelho-bg);
+    --bg-color-base: var(--azul-bg);
     --bg-color-base-clara: var(--vermelho-escuro-bg);
     --text-color-base: var(--preto-text);
     --body-bg-color: var(--branco-bg);
