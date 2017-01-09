@@ -8,22 +8,24 @@
 </div>
 <div class="row comments-row">
     {% for comment in comments %}
-        <div class="col-sm-5 col-sm-offset-1 col-md-offset-1 col-md-3 comment-card ">
-            <p><strong>{{ comment.conteudo }}</strong></p>
-            <small> {% trans 'por' %} {{ comment.nome }}</small>
+        <div class="col-sm-6 col-md-4">
+            <div class="comment-card">
+                <p><strong>{{ comment.conteudo }}</strong></p>
+                <small> {% trans 'por' %} {{ comment.nome }}</small>
+            </div>
         </div>
     {% endfor %}
 </div>
 <div class="row">
-{% if comments.paginator.num_pages > 1 %}
-    <ul class="pagination">
-        {% with ''|center:comments.paginator.num_pages as range %}
-        {% for _ in range %}
-            <li{% if forloop.counter == comments.number %} class="active"{% endif %}><a href="?page={{ forloop.counter }}">{{ forloop.counter }}</a></li>
-        {% endfor %}
-    {% endwith %}
-    </ul>
-{% endif %}
+    {% if comments.paginator.num_pages > 1 %}
+        <ul class="pagination">
+            {% with ''|center:comments.paginator.num_pages as range %}
+                {% for _ in range %}
+                    <li{% if forloop.counter == comments.number %} class="active"{% endif %}><a href="?page={{ forloop.counter }}">{{ forloop.counter }}</a></li>
+                {% endfor %}
+            {% endwith %}
+        </ul>
+    {% endif %}
 </div>
 <div class="col-md-8 col-md-offset-2">
     {% include 'comments/comment-form.html' with form=form url=estabelecimento.get_absolute_url %}
