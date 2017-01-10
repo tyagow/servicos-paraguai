@@ -54,8 +54,19 @@
     <section id="estabelecimentos">
         <div class="row">
             <div class="container">
-               {% include 'core/widgets/estabelecimento_card.html' %}
+                {% include 'core/widgets/estabelecimento_card.html' %}
             </div>
+        </div>
+        <div class="row">
+            {% if estabelecimentos.paginator.num_pages > 1 %}
+                <ul class="pagination">
+                    {% with ''|center:estabelecimentos.paginator.num_pages as range %}
+                        {% for _ in range %}
+                            <li{% if forloop.counter == estabelecimentos.number %} class="active"{% endif %}><a href="?page={{ forloop.counter }}{{ parametros }}">{{ forloop.counter }}</a></li>
+                        {% endfor %}
+                    {% endwith %}
+                </ul>
+            {% endif %}
         </div>
 
     </section>
