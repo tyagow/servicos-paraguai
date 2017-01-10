@@ -2,6 +2,7 @@
 :root {
     /*Cor de exemplo*/
     --azul-bg: #549de4;
+    --azul-claro: #3b6598;
     --vermelho-bg: #ff4672;
     --vermelho-claro-bg: #ff95a8;
     --vermelho-escuro-bg: #d82a55;
@@ -9,7 +10,7 @@
     --branco-bg: #fff;
     /*Used Colors*/
     --bg-color-base: var(--azul-bg);
-    --bg-color-base-clara: var(--vermelho-escuro-bg);
+    --bg-color-base-clara: var(--azul-claro);
     --text-color-base: var(--preto-text);
     --body-bg-color: var(--branco-bg);
     /*Site variables*/
@@ -374,6 +375,7 @@ body > .container {
 .submit-button {
     height: 35px;
     margin: auto;
+    width: 27%;
 }
 .global-search a {
     display:block;
