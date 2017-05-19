@@ -31,9 +31,9 @@ class HomeTest(TestCase):
     def test_input_search(self):
         self.assertContains(self.response, '<input')
 
-    def test_html_categorias(self):
-        """Html must display categories in busca"""
-        self.assertContains(self.response, self.categoria.nome)
+    # def test_html_categorias(self):
+    #     """Html must display categories in busca"""
+    #     self.assertContains(self.response, self.categoria.nome)
 
     # def test_html_categorias_link(self):
     #     expected = 'href="{}"'.format(self.categoria.get_absolute_url())
