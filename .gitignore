@@ -8,3 +8,6 @@ mediafiles/
 media/
 .env
 /db2.sqlite3
+todo.md
+src/core/static_old/
+src/core/templates/index_old.html

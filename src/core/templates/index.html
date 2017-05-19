@@ -1,76 +1,623 @@
-{% extends 'base.html' %}
 {% load static %}
-{% load i18n %}
-{% block script %}
-    <script src="{% static 'js/map.js' %}"></script>
-{% endblock %}
-{% block content %}
+<!doctype html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang=""> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8" lang=""> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9" lang=""> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang=""> <!--<![endif]-->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Guia Paraguai</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="apple-touch-icon" href="{% static 'apple-touch-icon.png' %}">
 
-    <section id="carousel">
-        <div class="container">
-            <div class="row">
-                <div class="carousel">
-                    <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
-                        <!-- Indicators -->
-                        <ol class="carousel-indicators">
-                            {% for f in anuncios %}
-                                <li data-target="#carousel-example-generic" data-slide-to="{{ forloop.counter0 }}" {% if forloop.counter0 == 0 %}class="active"{% endif %}></li>
-                            {% endfor %}
-                        </ol>
+    <link rel="stylesheet" href="{% static 'css/normalize.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/owl.carousel.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/owl.theme.default.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/main.css' %}">
 
-                        <!-- Wrapper for slides -->
+    <script src="{%  static 'js/vendor/modernizr-2.8.3.min.js' %}"></script>
+</head>
+<body>
+        <!--[if lt IE 8]>
+            <p class="browserupgrade">Notamos que você está utilizando um navegador <strong>desatualizado</strong>. Por favor <a href="http://browsehappy.com/">atualize seu navegador</a> para melhorar sua experiência.</p>
+            <![endif]-->
+            <header class="header">
+                <div class="container">
+                    <div class="row">
+                        <div class="topbar">
+                            <div class="col-md-6">
+                                <nav class="social-nav pull-left">
+                                    <a href="#"><i class="fa fa-facebook"></i></a>
+                                    <a href="#"><i class="fa fa-twitter"></i></a>
+                                    <a href="#"><i class="fa fa-envelope"></i></a>
+                                    <a href="#"><i class="fa fa-instagram"></i></a>
+                                    <a href="#"><i class="fa fa-youtube"></i></a>
+                                </nav>
+                            </div>
+                            <div class="col-md-6">
+                                <nav class="top-menu pull-right">
+                                    <a href="#">Cadastrar minha empresa</a>
+                                    <a href="#">Tour 360º</a>
+                                    <a href="#">Temperatura: 32º</a>
+                                    <a href="#">Seja um anunciante</a>
+                                </nav>
+                            </div>
+                            <div class="clearfix"></div>    
+                        </div>
+                        <div class="col-xs-12">
+                            <a href="#" class="logo">
+                                <img src="{% static 'img/logo.png' %}" width="400" alt="">
+                            </a>
+                            <div class="clearfix"></div>
+                        </div>
+                        <div class="col-xs-12">
+                            <div class="main-search">
+                                <div class="search">
+                                    <form id='mainSearch'>
+                                        <button type="submit">Buscar</button>
+                                        <span>
+                                            <input type="search" placeholder="Encontre: Restaurantes, Bares, Hotéis e etc" name="term">        
+                                        </span>
+                                    </form>
 
-                        <div class="carousel-inner" role="listbox">
-                            {% for anuncio in anuncios %}
-                                <div class="item {% if forloop.counter == 1 %}active{% endif %}">
-                                    <a href="{{ anuncio.url }}">
-                                        <img src="{{ anuncio.banner.url }}" alt="1">
-                                    </a>
-                                    <div class="carousel-caption">
-
-                                    </div>
+                                    <div class="clearfix"></div>
                                 </div>
-                            {% endfor %}
+
+                            </div>
+                        </div>
+                        <div class="clearfix"></div>
+                        <div class="col-xs-12">
+                            <div class="main-nav">
+                                <nav>
+                                    <a href="#">Restaurantes</a>
+                                    <a href="#">Bares</a>
+                                    <a href="#">Baladas</a>
+                                    <a href="#">Onde Viajar</a>
+                                    <a href="#">Atrações</a>
+                                    <a href="#">Lojas</a>
+                                    <a href="#">Comidinhas</a>
+                                    <a href="#">Hotéis</a>
+                                    <a href="#">Mais categorias</a>
+                                </nav>
+                            </div>    
                         </div>
 
-                        <!-- Controls -->
-                        <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
-                            <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-                            <span class="sr-only">Previous</span>
-                        </a>
-                        <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
-                            <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-                            <span class="sr-only">Next</span>
-                        </a>
                     </div>
                 </div>
-            </div>
-        </div>
-    </section>
-    {% include 'core/widgets/busca.html' %}
+            </header>
+            <main class="main">
+                <div class="info">
+                    <div class="container">
+                        <h3 class="title text-center">
+                            O Guia Paraguai <b>é a sua referência</b> na fronteira 
+                        </h3>
+                        <div class="col-md-3">
+                            <div class="info-box">
+                                <i class="icon person"></i>
+                                <h3>5 mil</h3>
+                                de locais cadastrados
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="info-box">
+                                <i class="icon bubble"></i>
+                                <h3>20 mil</h3>
+                                de avaliações e opniões
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="info-box">
+                                <i class="icon heart"></i>
+                                <h3>500 mil</h3>
+                                de visitantes mensais
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="info-box">
+                                <i class="icon seek"></i>
+                                <h3>2 milhões</h3>
+                                de locais buscados
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="places">
+                    <h3><b>Lugares</b> mais visitados</h3>
+                    <h4>Lugares mais buscados pelos clientes no primeiro trimestre de 2017</h4>
+                    <div class="itens owl-carousel owl-theme">
+                        <div class="item">
+                            <a href="#">
+                                <div class="img">
+                                    <img src="{% static 'img/del/item1.jpg' %}"" alt="">
+                                </div>
+                                <div class="caption">
+                                    Hotel Cassino Acaray
+                                    <div class="clearfix"></div>
+                                    <span>Confira os preços!</span>
+                                </div>    
+                            </a>
+                        </div>
+                        <div class="item">
+                            <a href="#">
+                                <div class="img">
+                                    <img src="http://placehold.it/310x294" alt="">
+                                </div>
+                                <div class="caption">
+                                    Lorem ipsum dolor sit amet
+                                    <span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Obcaecati laudantium placeat a...</span>
+                                </div>    
+                            </a>
+                        </div>
+                        <div class="item">
+                            <a href="#">
+                                <div class="img">
+                                    <img src="http://placehold.it/310x294" alt="">
+                                </div>
+                                <div class="caption">
+                                    Lorem ipsum dolor sit amet
+                                    <span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Obcaecati laudantium placeat a...</span>
+                                </div>    
+                            </a>
+                        </div>
+                        <div class="item">
+                            <a href="#">
+                                <div class="img">
+                                    <img src="http://placehold.it/310x294" alt="">
+                                </div>
+                                <div class="caption">
+                                    Lorem ipsum dolor sit amet
+                                    <span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Obcaecati laudantium placeat a...</span>
+                                </div>    
+                            </a>
+                        </div>
+                        <div class="item">
+                            <a href="#">
+                                <div class="img">
+                                    <img src="http://placehold.it/310x294" alt="">
+                                </div>
+                                <div class="caption">
+                                    Lorem ipsum dolor sit amet
+                                    <span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Obcaecati laudantium placeat a...</span>
+                                </div>    
+                            </a>
+                        </div>
+                        <div class="item">
+                            <a href="#">
+                                <div class="img">
+                                    <img src="http://placehold.it/310x294" alt="">
+                                </div>
+                                <div class="caption">
+                                    Lorem ipsum dolor sit amet
+                                    <span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Obcaecati laudantium placeat a...</span>
+                                </div>    
+                            </a>
+                        </div>
+                        <div class="item">
+                            <a href="#">
+                                <div class="img">
+                                    <img src="http://placehold.it/310x294" alt="">
+                                </div>
+                                <div class="caption">
+                                    Lorem ipsum dolor sit amet
+                                    <span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Obcaecati laudantium placeat a...</span>
+                                </div>    
+                            </a>
+                        </div>
+                        <div class="item">
+                            <a href="#">
+                                <div class="img">
+                                    <img src="http://placehold.it/310x294" alt="">
+                                </div>
+                                <div class="caption">
+                                    Lorem ipsum dolor sit amet
+                                    <span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Obcaecati laudantium placeat a...</span>
+                                </div>    
+                            </a>
+                        </div>
+                        <div class="item">
+                            <a href="#">
+                                <div class="img">
+                                    <img src="http://placehold.it/310x294" alt="">
+                                </div>
+                                <div class="caption">
+                                    Lorem ipsum dolor sit amet
+                                    <span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Obcaecati laudantium placeat a...</span>
+                                </div>    
+                            </a>
+                        </div>
+                        <div class="item">
+                            <a href="#">
+                                <div class="img">
+                                    <img src="http://placehold.it/310x294" alt="">
+                                </div>
+                                <div class="caption">
+                                    Lorem ipsum dolor sit amet
+                                    <span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Obcaecati laudantium placeat a...</span>
+                                </div>    
+                            </a>
+                        </div>
+                        <div class="item">
+                            <a href="#">
+                                <div class="img">
+                                    <img src="http://placehold.it/310x294" alt="">
+                                </div>
+                                <div class="caption">
+                                    Lorem ipsum dolor sit amet
+                                    <span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Obcaecati laudantium placeat a...</span>
+                                </div>    
+                            </a>
+                        </div>
+                        <div class="item">
+                            <a href="#">
+                                <div class="img">
+                                    <img src="http://placehold.it/310x294" alt="">
+                                </div>
+                                <div class="caption">
+                                    Lorem ipsum dolor sit amet
+                                    <span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Obcaecati laudantium placeat a...</span>
+                                </div>    
+                            </a>
+                        </div>
 
-    <section id="estabelecimentos">
-        <div class="row">
-            <div class="container">
-                {% include 'core/widgets/estabelecimento_card.html' %}
-            </div>
-        </div>
-        <div class="row">
-            {% if estabelecimentos.paginator.num_pages > 1 %}
-                <ul class="pagination">
-                    {% with ''|center:estabelecimentos.paginator.num_pages as range %}
-                        {% for _ in range %}
-                            <li{% if forloop.counter == estabelecimentos.number %} class="active"{% endif %}><a href="?page={{ forloop.counter }}{{ parametros }}">{{ forloop.counter }}</a></li>
-                        {% endfor %}
-                    {% endwith %}
-                </ul>
-            {% endif %}
-        </div>
 
-    </section>
+                    </div>
 
-    <!-- VENUE -->
-    <section id="venue">
-        {% include 'core/widgets/mapa.html' %}
-    </section>
-{% endblock %}
+
+                </div>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-8">
+                            <h3 class="title hasborder">Locais mais <b>buscados</b></h3>
+                            <nav class="top-search">
+                                <a href="#">Lorem ipsum dolor sit amet.</a>
+                                <a href="#">Lorem ipsum dolor sit amet.</a>
+                                <a href="#">Lorem ipsum dolor sit amet.</a>
+                                <a href="#">Lorem ipsum dolor sit amet.</a>
+                                <a href="#">Lorem ipsum dolor sit amet.</a>
+                                <a href="#">Lorem ipsum dolor sit amet.</a>
+                                <a href="#">Lorem ipsum dolor sit amet.</a>
+                                <a href="#">Lorem ipsum dolor sit amet.</a>
+                                <a href="#">Lorem ipsum dolor sit amet.</a>
+                                <a href="#">Lorem ipsum dolor sit amet.</a>
+                                <a href="#">Lorem ipsum dolor sit amet.</a>
+                                <a href="#">Lorem ipsum dolor sit amet.</a>
+                                <a href="#">Lorem ipsum dolor sit amet.</a>
+                                <a href="#">Lorem ipsum dolor sit amet.</a>
+                                <a href="#">Lorem ipsum dolor sit amet.</a>
+                                <a href="#">Lorem ipsum dolor sit amet.</a>
+                                <a href="#">Lorem ipsum dolor sit amet.</a>
+                                <a href="#">Lorem ipsum dolor sit amet.</a>
+                                <a href="#">Lorem ipsum dolor sit amet.</a>
+                                <a href="#">Lorem ipsum dolor sit amet.</a>
+                                <a href="#">Lorem ipsum dolor sit amet.</a>
+                                <a href="#">Lorem ipsum dolor sit amet.</a>
+                                <a href="#">Lorem ipsum dolor sit amet.</a>
+                                <a href="#">Lorem ipsum dolor sit amet.</a>
+                                <a href="#">Lorem ipsum dolor sit amet.</a>
+                                <a href="#">Lorem ipsum dolor sit amet.</a>
+                                <a href="#">Lorem ipsum dolor sit amet.</a>
+                                <a href="#">Lorem ipsum dolor sit amet.</a>
+                                <a href="#">Lorem ipsum dolor sit amet.</a>
+                                <a href="#">Lorem ipsum dolor sit amet.</a>
+                                <a href="#">Lorem ipsum dolor sit amet.</a>
+                                <a href="#">Lorem ipsum dolor sit amet.</a>
+                                <a href="#">Lorem ipsum dolor sit amet.</a>
+                            </nav>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="boxed">
+                                <h3 class="title">Guia Paraguai <b>Recomenda</b></h3>
+                            </div>
+                            <div class="boxed">
+                                <ul class="recommend-list">
+                                    <li>
+                                        <a href="#" class="img">
+                                            <img src="http://placehold.it/94x83" alt="">
+                                        </a>
+                                        <a href="#" class="desc">
+                                            <h3>Lorem ipsum dolor sit amet.</h3>
+                                            <span class="clearfix"></span>
+                                            <h4>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Debitis libero eaque eveniet, a nisi,asd numquam at  quaerat...</h4>
+                                        </a>
+                                        <div class="clearfix"></div>
+                                    </li>
+                                    <li>
+                                        <a href="#" class="img">
+                                            <img src="http://placehold.it/94x83" alt="">
+                                        </a>
+                                        <a href="#" class="desc">
+                                            <h3>Lorem ipsum dolor sit amet.</h3>
+                                            <span class="clearfix"></span>
+                                            <h4>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Debitis libero eaque eveniet, a nisi,asd numquam at  quaerat...</h4>
+                                        </a>
+                                        <div class="clearfix"></div>
+                                    </li>
+                                    <li>
+                                        <a href="#" class="img">
+                                            <img src="http://placehold.it/94x83" alt="">
+                                        </a>
+                                        <a href="#" class="desc">
+                                            <h3>Lorem ipsum dolor sit amet.</h3>
+                                            <span class="clearfix"></span>
+                                            <h4>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Debitis libero eaque eveniet, a nisi,asd numquam at  quaerat...</h4>
+                                        </a>
+                                        <div class="clearfix"></div>
+                                    </li>
+                                    <li>
+                                        <a href="#" class="img">
+                                            <img src="http://placehold.it/94x83" alt="">
+                                        </a>
+                                        <a href="#" class="desc">
+                                            <h3>Lorem ipsum dolor sit amet.</h3>
+                                            <span class="clearfix"></span>
+                                            <h4>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Debitis libero eaque eveniet, a nisi,asd numquam at  quaerat...</h4>
+                                        </a>
+                                        <div class="clearfix"></div>
+                                    </li>
+
+                                </ul>
+                            </div>
+                        </div>
+                    </div><!-- row -->
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h3 class="title hasborder">Principais <b>Noticias</b></h3>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="news">
+                                <img src="http://placehold.it/555x235" width="100%" alt="">    
+                                <h4 class="title">Lorem ipsum dolor sit amet, consectetur adipisicing</h4>
+                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tempore veniam consequatur alias vero rerum fugiat enim officiis repudiandae. Quis, rerum, praesentium! Dignissimos, ad, nesciunt non consectetur vero facilis nihil officiis.</p>
+                            </div>
+
+                        </div>
+                        <div class="col-md-6">
+                            <div class="news">
+                                <img src="http://placehold.it/555x235" width="100%" alt="">    
+                                <h4 class="title">Lorem ipsum dolor sit amet, consectetur adipisicing</h4>
+                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tempore veniam consequatur alias vero rerum fugiat enim officiis repudiandae. Quis, rerum, praesentium! Dignissimos, ad, nesciunt non consectetur vero facilis nihil officiis.</p>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="reviews">
+
+                </div>
+                <div class="places text-center">
+                    <div class="container">
+                        <h3>
+                            Turismo e <b>Lazer</b>
+                        </h3>
+                        <h4>Os principais pontos turisticos do Paraguay e região</h4>
+                        <div class="row">
+                            <div class="col-md-3">
+                                <img src="{%  static 'img/del/turismo1.png' %}" width="100%" alt="">
+                                <p class="title">Descrição</p>
+                                <p class="desc">
+                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis ab, iusto iste nesciunt doloremque voluptatibus? Mollitia, libero, culpa, ex odio nostrum at ducimus numquam harum laboriosam explicabo ipsum atque dignissimos.
+                                </p>
+                                <a href="#" class="btn pull-right">Leia mais</a>
+                            </div>
+                            <div class="col-md-3">
+                                <img src="http://placehold.it/265x360" width="100%" alt="">
+                                <p class="title">Descrição</p>
+                                <p class="desc">
+                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis ab, iusto iste nesciunt doloremque voluptatibus? Mollitia, libero, culpa, ex odio nostrum at ducimus numquam harum laboriosam explicabo ipsum atque dignissimos.
+                                </p>
+                                <a href="#" class="btn pull-right">Leia mais</a>
+                            </div>
+                            <div class="col-md-3">
+                                <img src="http://placehold.it/265x360" width="100%" alt="">
+                                <p class="title">Descrição</p>
+                                <p class="desc">
+                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis ab, iusto iste nesciunt doloremque voluptatibus? Mollitia, libero, culpa, ex odio nostrum at ducimus numquam harum laboriosam explicabo ipsum atque dignissimos.
+                                </p>
+                                <a href="#" class="btn pull-right">Leia mais</a>
+                            </div>
+                            <div class="col-md-3">
+                                <img src="http://placehold.it/265x360" width="100%" alt="">
+                                <p class="title">Descrição</p>
+                                <p class="desc">
+                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis ab, iusto iste nesciunt doloremque voluptatibus? Mollitia, libero, culpa, ex odio nostrum at ducimus numquam harum laboriosam explicabo ipsum atque dignissimos.
+                                </p>
+                                <a href="#" class="btn pull-right">Leia mais</a>
+                            </div>
+                        </div>
+                        <div class="clearfix"></div>
+                        <div class="banners">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <img src="http://placehold.it/555x140" width="100%" alt="">
+                                </div>   
+                                <div class="col-md-6">
+                                    <img src="{%  static 'img/del/blu-cafe.png' %}" width="100%" alt="">
+                                </div>        
+                            </div>
+
+                        </div>
+                    </div>
+                </div> 
+                <div class="gastro-tips">
+                    <div class="container">
+                        <h3 class="title hasborder"> Gastronomia do <b>Paraguai</b></h3>
+                        <ul class="recommend-list">
+                            <li>
+                                <a href="#" class="img">
+                                    <img src="http://placehold.it/94x83" alt="">
+                                </a>
+                                <a href="#" class="desc">
+                                    <h3>Lorem ipsum dolor sit amet.</h3>
+                                    <span class="clearfix"></span>
+                                    <h4>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Debitis libero eaque eveniet, a nisi,asd numquam at  quaerat...</h4>
+                                </a>
+                                <div class="clearfix"></div>
+                            </li>
+                            <li>
+                                <a href="#" class="img">
+                                    <img src="http://placehold.it/94x83" alt="">
+                                </a>
+                                <a href="#" class="desc">
+                                    <h3>Lorem ipsum dolor sit amet.</h3>
+                                    <span class="clearfix"></span>
+                                    <h4>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Debitis libero eaque eveniet, a nisi,asd numquam at  quaerat...</h4>
+                                </a>
+                                <div class="clearfix"></div>
+                            </li>
+                            <li>
+                                <a href="#" class="img">
+                                    <img src="http://placehold.it/94x83" alt="">
+                                </a>
+                                <a href="#" class="desc">
+                                    <h3>Lorem ipsum dolor sit amet.</h3>
+                                    <span class="clearfix"></span>
+                                    <h4>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Debitis libero eaque eveniet, a nisi,asd numquam at  quaerat...</h4>
+                                </a>
+                                <div class="clearfix"></div>
+                            </li>
+                            <li>
+                                <a href="#" class="img">
+                                    <img src="http://placehold.it/94x83" alt="">
+                                </a>
+                                <a href="#" class="desc">
+                                    <h3>Lorem ipsum dolor sit amet.</h3>
+                                    <span class="clearfix"></span>
+                                    <h4>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Debitis libero eaque eveniet, a nisi,asd numquam at  quaerat...</h4>
+                                </a>
+                                <div class="clearfix"></div>
+                            </li>
+                            <li>
+                                <a href="#" class="img">
+                                    <img src="http://placehold.it/94x83" alt="">
+                                </a>
+                                <a href="#" class="desc">
+                                    <h3>Lorem ipsum dolor sit amet.</h3>
+                                    <span class="clearfix"></span>
+                                    <h4>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Debitis libero eaque eveniet, a nisi,asd numquam at  quaerat...</h4>
+                                </a>
+                                <div class="clearfix"></div>
+                            </li>
+                            <li>
+                                <a href="#" class="img">
+                                    <img src="http://placehold.it/94x83" alt="">
+                                </a>
+                                <a href="#" class="desc">
+                                    <h3>Lorem ipsum dolor sit amet.</h3>
+                                    <span class="clearfix"></span>
+                                    <h4>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Debitis libero eaque eveniet, a nisi,asd numquam at  quaerat...</h4>
+                                </a>
+                                <div class="clearfix"></div>
+                            </li>
+                            <li>
+                                <a href="#" class="img">
+                                    <img src="http://placehold.it/94x83" alt="">
+                                </a>
+                                <a href="#" class="desc">
+                                    <h3>Lorem ipsum dolor sit amet.</h3>
+                                    <span class="clearfix"></span>
+                                    <h4>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Debitis libero eaque eveniet, a nisi,asd numquam at  quaerat...</h4>
+                                </a>
+                                <div class="clearfix"></div>
+                            </li>
+                            <li>
+                                <a href="#" class="img">
+                                    <img src="http://placehold.it/94x83" alt="">
+                                </a>
+                                <a href="#" class="desc">
+                                    <h3>Lorem ipsum dolor sit amet.</h3>
+                                    <span class="clearfix"></span>
+                                    <h4>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Debitis libero eaque eveniet, a nisi,asd numquam at  quaerat...</h4>
+                                </a>
+                                <div class="clearfix"></div>
+                            </li>
+                            <li>
+                                <a href="#" class="img">
+                                    <img src="http://placehold.it/94x83" alt="">
+                                </a>
+                                <a href="#" class="desc">
+                                    <h3>Lorem ipsum dolor sit amet.</h3>
+                                    <span class="clearfix"></span>
+                                    <h4>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Debitis libero eaque eveniet, a nisi,asd numquam at  quaerat...</h4>
+                                </a>
+                                <div class="clearfix"></div>
+                            </li>
+                            <li>
+                                <a href="#" class="img">
+                                    <img src="http://placehold.it/94x83" alt="">
+                                </a>
+                                <a href="#" class="desc">
+                                    <h3>Lorem ipsum dolor sit amet.</h3>
+                                    <span class="clearfix"></span>
+                                    <h4>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Debitis libero eaque eveniet, a nisi,asd numquam at  quaerat...</h4>
+                                </a>
+                                <div class="clearfix"></div>
+                            </li>
+                            <li>
+                                <a href="#" class="img">
+                                    <img src="http://placehold.it/94x83" alt="">
+                                </a>
+                                <a href="#" class="desc">
+                                    <h3>Lorem ipsum dolor sit amet.</h3>
+                                    <span class="clearfix"></span>
+                                    <h4>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Debitis libero eaque eveniet, a nisi,asd numquam at  quaerat...</h4>
+                                </a>
+                                <div class="clearfix"></div>
+                            </li>
+                            <li>
+                                <a href="#" class="img">
+                                    <img src="http://placehold.it/94x83" alt="">
+                                </a>
+                                <a href="#" class="desc">
+                                    <h3>Lorem ipsum dolor sit amet.</h3>
+                                    <span class="clearfix"></span>
+                                    <h4>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Debitis libero eaque eveniet, a nisi,asd numquam at  quaerat...</h4>
+                                </a>
+                                <div class="clearfix"></div>
+                            </li>
+
+
+                        </ul>    
+                    </div>
+                </div>  
+            </main>
+            <footer class="footer">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <img src="{% static 'img/logo-footer.png' %}" width="100%" alt="" class="">
+                        </div>
+                        <div class="col-md-9">
+                            <div class="newsletter">
+                                <form id='mainSearch'>
+                                <button type="submit">Cadastrar</button>
+                                    <span>
+                                        <input type="search" placeholder="Cadastre-se e receba tudo sobre o Paraguai e Região" name="term">        
+                                    </span>
+                                </form>
+
+                                <div class="clearfix"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </footer>
+
+
+            <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+            <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.11.2.min.js"><\/script>')</script>
+            <script src="{% static 'js/vendor/owl.carousel.min.js' %}"></script>
+            <script src="{% static 'js/main.js' %}"></script>
+
+            <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
+            <script>
+                (function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
+                    function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;
+                e=o.createElement(i);r=o.getElementsByTagName(i)[0];
+                e.src='//www.google-analytics.com/analytics.js';
+                r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
+                ga('create','UA-XXXXX-X','auto');ga('send','pageview');
+            </script>
+        </body>
+        </html>
