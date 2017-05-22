@@ -11,8 +11,9 @@ Sistema de serviços fornecidos no Paraguai
 3. Ative o Virtualenv.
 4. Instale as dependencias.
 5. Configure a instancia com o .env
-6. Roda o collectstatic para configurar arquivos staticos
+6. Rode as migrations
 7. Execute os testes.
+8. Rode o servidor
 
 ```console
 git clone https://github.com/tyagow/servicos-paraguai sparaguaiproject
@@ -21,10 +22,30 @@ python -m venv .venv
 source .venv/bin/activate
 pip install -r requirements.txt
 cp contrib/env-sample .env
-python manage.py collectstatic
+python manage.py migrate
 python manage.py test
 python manage.py runserver
 ```
+
+## Como criar uma nova feature? 
+
+1) Atualize a branch master antes de criar qualquer branch
+2) Crie uma branch com o nome da feature ( novo_banner ), sempre apartir do branch master
+3) Modifique os arquivos na branche nova
+4) adicione os arquivos alterados ao git ( tente agrupar arquivos e comitalos em pequenos blocos assim fica mais facil de saber o que esta sendo feito) 
+5) envie a branch nova para o git
+6) volte para a branch master para criar outra feature
+
+```console
+git checkout master
+git pull origin master
+git checkout -b feature_name
+git add file
+git commit -m "mensagem descrevendo alteracao do(s) arquivo(s)adicionado(s)"
+git push origin feature_name
+git checkout master
+```
+
 
 ## Como fazer deploy ?
 
