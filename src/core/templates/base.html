@@ -18,17 +18,11 @@
     <script src="{% static 'js/vendor/modernizr-2.8.3.min.js' %}"></script>
 </head>
 <body>
-<header>
-    {% block  nav %}
+{% block  nav %}
+{% endblock %}
 
-    {% endblock %}
-</header>
-
-<main>
-    {% block content %}
-
-    {% endblock %}
-</main>
+{% block content %}
+{% endblock %}
 
 <footer>
   {% block footer %}{% endblock %}
