@@ -26,9 +26,4 @@ $(document).ready(function(){
 		autoplayTimeout:6000,
 		items:1
 	});
-
-	$("#rateYo").rateYo({
-	   rating: 3.6
-	 });
-
 });
