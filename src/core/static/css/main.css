@@ -414,6 +414,10 @@
 .main .extra-info{
 	margin-top: 20px;
 }
+.main .map{
+	width: 100%;
+	height: 350px;
+}
 hr{
 	border: 1px solid #f3f3f3;
 }

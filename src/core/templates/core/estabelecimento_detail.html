@@ -1,4 +1,6 @@
 {% extends 'base.html' %}
+{% load static %}
+}
     
 {% block title %}{{ estabelecimento.nome }}{% endblock %}
 
@@ -8,33 +10,64 @@
 
 
 {% block script %}
+      <script type="text/javascript" src="//maps.google.com/maps/api/js?sensor=true"></script>
+    <script src="{% static 'js/vendor/gmaps.min.js' %}"></script>
     <script src="{% static 'js/map-single.js' %}"></script>
 {% endblock %}
 
 
 {% block content %}
-    <section id="carousel-section">
-        {% include 'core/widgets/carousel.html' with fotos=estabelecimento.foto_set.all %}
-    </section>
-    <section id="header-estabelecimento">
-        {% include 'core/widgets/header-estabelecimento.html' %}
-    </section>
-    {% block descricao %}
-        <section id="descricao-section">
-            {% include 'core/widgets/descricao_estabelecimento.html' %}
-        </section>
-    {% endblock %}
-
-    <section id="avaliacoes">
-        <div class="row">
-            <div class="container">
-                {% include 'comments/comments.html' %}
+    
+    <main class="main">
+        <div class="container">
+            
+            <!--<div class="row">
+                <div class="col-xs-12">
+                    <img src="http://placehold.it/1170x90" width="100%" class="topbanner" alt="">
+                </div>
+            </div>!-->
+            
+             {% include 'core/widgets/header-estabelecimento.html' %}
+            
+            <div class="row">
+                <div class="place">
+                    <div class="col-md-6">
+                        <div class="pictures owl-carousel owl-theme">
+                            {% for f in estabelecimento.foto_set.all %}
+                                <div class="item">
+                                   <img src="{{ f.foto.url }}" alt="1">
+                               </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="about">
+                           <h3>Apresentação</h3>
+                           <p>
+                            {% include 'core/widgets/descricao_estabelecimento.html' %}
+                           </p> 
+                        </div>
+                    </div>
+                </div>
             </div>
+            <hr/>
+            <div class="row">
+                <div class="col-md-12">
+                    <div id="coordenadas"  data-coordenadas="{{ estabelecimento.coordenadas }}" style="display: none;"></div>
+                    <div class="map" id="map">
+                      {# {% include 'core/widgets/mapa-single.html' %} #}
+                    </div>    
+                </div>
+            </div>
+            <div class="extra-info">
+                <div class="row">
+                    <div class="col-xs-12">
+                        {% include 'comments/comments.html' %}
+                    </div>
+                </div>
+    
+            </div>
+                                
         </div>
-    </section>
-    <section id="venue">
-        {% include 'core/widgets/mapa-single.html' %}
-    </section>
-    </div>
-
+    </main>
 {% endblock %}
