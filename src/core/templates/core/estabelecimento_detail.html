@@ -1,9 +1,17 @@
 {% extends 'base.html' %}
-{% load static %}
+    
 {% block title %}{{ estabelecimento.nome }}{% endblock %}
+
+{% block  nav %}
+    {% include 'nav-interno.html' %}
+{% endblock %}
+
+
 {% block script %}
     <script src="{% static 'js/map-single.js' %}"></script>
 {% endblock %}
+
+
 {% block content %}
     <section id="carousel-section">
         {% include 'core/widgets/carousel.html' with fotos=estabelecimento.foto_set.all %}
