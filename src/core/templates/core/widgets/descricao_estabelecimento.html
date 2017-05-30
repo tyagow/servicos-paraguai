@@ -1,22 +1,8 @@
 {% load i18n %}
-<div class="row">
-    <div class="container">
-        <div class="col-md-4 ">
-            <div class="card">
-                <div class="card-header">
-                    <h4>{% trans 'Telefones' %}</h4>
-                </div>
-                <div class="card-body">
-                    {% for tel in estabelecimento.telefones.all %}
-                        <p>{{ tel.numero }}</p>
-                    {% endfor %}
-                </div>
-            </div>
-        </div>
-        <div class="col-md-8 col-xs-12">
-            <div class="descricao">
-                {{ estabelecimento.descricao|linebreaks }}
-            </div>
-        </div>
-    </div>
-</div>
+{{ estabelecimento.descricao|linebreaks }}
+<div class="clearfix"></div>
+<br>
+{% for tel in estabelecimento.telefones.all %}
+    <h4> <i class="fa fa-phone"></i> {{ tel.numero }}</h4>
+{% endfor %}
+      
