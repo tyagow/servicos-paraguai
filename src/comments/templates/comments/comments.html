@@ -1,16 +1,24 @@
 {% load i18n %}
 {% load ratings %}
-<div class="header-comentarios">
-    <h3>{% trans 'Avaliações' %}</h3>
-</div>
-<div class="row ratings">
-    {% ratings estabelecimento %}
-</div>
-<div class="row comments-row">
+
+<div class="row" id="comments">
+    <div class="col-md-12">
+        <div class="header-comentarios">
+            <h3>{% trans 'Reviews & Comentários' %}</h3>
+        </div>
+            
+    </div>
+    <div class="col-md-12">
+        <div class="body-comentarios">
+            <h4>{% trans 'Dê sua nota' %}</h4>
+            {% ratings estabelecimento %}
+             {% include 'comments/comment-form.html' with form=form url=estabelecimento.get_absolute_url %}
+        </div>     
+    </div>
     {% for comment in comments %}
-        <div class="col-sm-6 col-md-4">
+        <div class="col-sm-12">
             <div class="comment-card">
-                <p><strong>{{ comment.conteudo }}</strong></p>
+                <p>{{ comment.conteudo }}</p>
                 <small> {% trans 'por' %} {{ comment.nome }}</small>
             </div>
         </div>
@@ -27,6 +35,4 @@
         </ul>
     {% endif %}
 </div>
-<div class="col-md-8 col-md-offset-2">
-    {% include 'comments/comment-form.html' with form=form url=estabelecimento.get_absolute_url %}
-</div>
+

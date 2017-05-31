@@ -411,6 +411,9 @@
 	margin-bottom: 10px;
 	border-bottom: 1px solid #f3f3f3;
 }
+.main .place .ratings{
+	margin: 23px 0 0 20px;
+}
 .main .extra-info{
 	margin-top: 20px;
 }
@@ -420,6 +423,46 @@
 }
 hr{
 	border: 1px solid #f3f3f3;
+}
+
+#comments .header-comentarios{
+	background: #f3f3f3;
+	padding: 15px;
+}
+#comments .body-comentarios{
+	padding: 15px;
+}
+#comments h3{
+	padding: 0;
+	margin: 0;
+	font-family: 'humnst777';
+}
+
+#comments h4, #comments form label{
+	color: #939393;
+	text-transform: uppercase;
+	font-family: 'humnst777';
+	font-size: 18px;
+	font-weight: lighter;
+}
+#comments form{
+	margin-top: 20px;
+}
+
+#comments form input, #comments form textarea{
+	border-radius: 0;
+	padding: 5px;
+	border: 1px solid #d4d4d4;
+}
+
+#comments form input[type='submit']{
+	padding: 7px 20px;
+	color: #fff;
+	font-size: 18px;
+	font-family: 'humnst777';
+	float: right;
+	background: #2899c0;
+	border: none;
 }
 
 .footer{

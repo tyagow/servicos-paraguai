@@ -8,9 +8,13 @@
     {% include 'nav-interno.html' %}
 {% endblock %}
 
+{% block css %}
+    <link rel="stylesheet" href="{% static 'star-ratings/css/star-ratings.css' %}">
+{% endblock %}
 
 {% block script %}
-      <script type="text/javascript" src="//maps.google.com/maps/api/js?sensor=true"></script>
+    <script type="text/javascript" src="{% static 'star-ratings/js/dist/star-ratings.min.js' %}"></script>
+    <script type="text/javascript" src="//maps.google.com/maps/api/js?sensor=true"></script>
     <script src="{% static 'js/vendor/gmaps.min.js' %}"></script>
     <script src="{% static 'js/map-single.js' %}"></script>
 {% endblock %}
@@ -71,3 +75,4 @@
         </div>
     </main>
 {% endblock %}
+
