@@ -17,9 +17,12 @@
     </div>
     {% for comment in comments %}
         <div class="col-sm-12">
-            <div class="comment-card">
-                <p>{{ comment.conteudo }}</p>
-                <small> {% trans 'por' %} {{ comment.nome }}</small>
+            <div class="body-comentarios">
+                <h3>Comentários</h3>
+                <div class="comments-list">
+                    <p>{{ comment.conteudo }}</p>
+                    <small> {% trans 'por' %} {{ comment.nome }}</small>
+                </div>
             </div>
         </div>
     {% endfor %}
