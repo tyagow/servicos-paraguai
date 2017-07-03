@@ -1,0 +1,108 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-06-05 12:11-0300\n"
+"PO-Revision-Date: 2017-03-12 11:51-0300\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: es\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 1.8.12\n"
+
+#: admin.py:63
+msgid "Ticket não suporta esta ação."
+msgstr "Ticket no soporta esta acción."
+
+#: models.py:12
+msgid "Nova"
+msgstr "Nueva"
+
+#: models.py:13
+msgid "Em Progresso"
+msgstr "En progreso"
+
+#: models.py:14
+msgid "Resolvida"
+msgstr "Resuelta"
+
+#: models.py:15
+msgid "Fechada"
+msgstr "Cerrada"
+
+#: models.py:20
+msgid "Solicitar representação empresa"
+msgstr "Solicitar representación empresa"
+
+#: models.py:21
+msgid "Cadastrar Empresa"
+msgstr "Registrar empresa"
+
+#: models.py:31
+#, python-brace-format
+msgid "O usuário {usr} solicitou ser representante da empresa {emp}"
+msgstr "El usuario {usr} solicitó ser representante de la empresa {emp}"
+
+#: models.py:51
+#, python-brace-format
+msgid ""
+"O usuário {usr} solicitou o cadastro da empresa {emp} localizada na cidade "
+"{cidade} no endereço {endereco}."
+msgstr ""
+"El usuario {usr} solicitó el registro de la empresa {emp} ubicada en la "
+"ciudad {cidade} en la dirección {endereco}."
+
+#: models.py:63
+msgid "Criador"
+msgstr "Creador"
+
+#: models.py:69
+msgid "Date"
+msgstr "Date"
+
+#: models.py:70
+msgid "Update"
+msgstr "Update"
+
+#: models.py:71
+msgid "Titulo"
+msgstr "Titulo"
+
+#: models.py:72
+msgid "Descrição"
+msgstr "Descripción"
+
+#: models.py:73
+msgid "Responsavel"
+msgstr "Responsable"
+
+#: models.py:75
+msgid "Status"
+msgstr "Status"
+
+#: models.py:76
+msgid "Tipo"
+msgstr "Tipo"
+
+#: models.py:82
+msgid "Ticket"
+msgstr "Ticket"
+
+#: models.py:83
+msgid "Tickets"
+msgstr "Tickets"
+
+#: tests/test_forms.py:12 tests/test_forms.py:13
+msgid "Este campo é obrigatório."
+msgstr "Este campo es obligatorio."
+
+#~ msgid "tickets"
+#~ msgstr "tickets"

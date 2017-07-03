@@ -53,6 +53,7 @@ INSTALLED_APPS = [
     #project apps
     'src.core',
     'src.comments',
+    'src.tickets',
 
     #external apps
     'test_without_migrations',

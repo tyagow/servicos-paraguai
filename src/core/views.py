@@ -14,42 +14,11 @@ from src.core.models import Categoria, Estabelecimento, Anuncio
 
 
 def home(request):
-    cidades = [cidade[1] for cidade in Estabelecimento.CIDADES]
 
-    cidade = request.GET.get('cidade', None)
-    nome = request.GET.get('nome', None)
-    preco = request.GET.get('preco', None)
-    categoria = request.GET.get('categoria', None)
-    cidade = Estabelecimento.get_cidade_index(cidade)
-    valid_querystring = {k: v for k, v in request.GET.dict().items() if v}
-    if valid_querystring != request.GET.dict():
-        encoded_querystring = '?' + urllib.parse.urlencode(valid_querystring)
-        return HttpResponseRedirect(resolve_url('home') + encoded_querystring)
-
-    parametros = ''
-    for item, value in request.GET.dict().items():
-        if not item == 'page':
-            parametros += '&{}={}'.format(item, value)
-    parametros = parametros.replace(' ', '+')
-    query_estabelecimento = Estabelecimento.objects.busca(cidade=cidade, nome=nome, preco=preco, categoria=categoria)
-
-    paginator = Paginator(query_estabelecimento, settings.ESTABELECIMENTOS_POR_PAGINA)
-    page = request.GET.get('page')
-    try:
-        query_estabelecimento = paginator.page(page)
-    except PageNotAnInteger:
-        # If page is not an integer, deliver first page.
-        query_estabelecimento = paginator.page(1)
-    except EmptyPage:
-        # If page is out of range (e.g. 9999), deliver last page of results.
-        query_estabelecimento = paginator.page(paginator.num_pages)
+    query_estabelecimento = Estabelecimento.objects.all()
 
     context = {
         'estabelecimentos': query_estabelecimento,
-        'anuncios': Anuncio.objects.ativos(),
-        'cidades': cidades,
-        'categorias': Categoria.objects.all(),
-        'parametros': parametros
     }
     return render(request, 'index.html', context)
 
@@ -149,4 +118,3 @@ def categoria_detail(request, slug):
 def categorias(request):
     categorias = Categoria.objects.all()
     return render(request, 'core/categorias.html', {'categorias': categorias})
-
