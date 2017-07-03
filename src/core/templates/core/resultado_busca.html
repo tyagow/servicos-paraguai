@@ -2,56 +2,63 @@
 {% load static %}
 
 {% block  nav %}
-    {% include 'nav-index.html' %}
+    {% include 'nav-interno.html' %}
 {% endblock %}
 
 {% block content %}
 
 <main class="main">
-    <div class="info">
-        <div class="container">
-            <h3 class="title text-center">
-                O Guia Paraguai <b>é a sua referência</b> na fronteira 
-            </h3>
-            <div class="col-md-3">
-                <div class="info-box">
-                    <i class="icon person"></i>
-                    <h3>5 mil</h3>
-                    de locais cadastrados
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12 col-md-7 col-lg-7">
+                <br>
+                 <img src="http://placehold.it/585x80" width="100%" alt="">
+                <br>
+                <br>
+
+                <div class="list-estabelecimentos">
+
+                    {% for e in estabelecimentos %}
+                      <div class="estabelecimento">
+                        <div class="row">
+                            <div class="col-xs-4">
+                                <a href="#">
+                                    <div class="img">
+                                         <a href="{{ e.get_absolute_url }}">
+                                            {% if e.logo %}<img src="{{ e.logo.url }}" width="169" height="150" class="photo center" alt="">{% endif %}
+                                         </a>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="col-xs-8">
+                                <h3 class='title'>{{ e.nome }}</h3>
+                                <img src="{% static 'img/ratings.png' %}" alt="">
+                                <div class="clearfix"></div>
+                                <div class="address">
+                                    <br>
+                                    <p>
+                                        <i class="fa fa-home"></i> {{ e.endereco }} <br>
+                                        <i class="fa fa-phone"></i> {{ e.telefone }} 
+                                    </p>
+                                    
+                                </div>
+                            </div>
+                        </div>    
+                    </div>
+                    {% endfor %}
+
+                  
+                    
+
                 </div>
+                
             </div>
-            <div class="col-md-3">
-                <div class="info-box">
-                    <i class="icon bubble"></i>
-                    <h3>20 mil</h3>
-                    de avaliações e opniões
-                </div>
-            </div>
-            <div class="col-md-3">
-                <div class="info-box">
-                    <i class="icon heart"></i>
-                    <h3>500 mil</h3>
-                    de visitantes mensais
-                </div>
-            </div>
-            <div class="col-md-3">
-                <div class="info-box">
-                    <i class="icon seek"></i>
-                    <h3>2 milhões</h3>
-                    de locais buscados
-                </div>
+            <div class="col-sm-12 col-md-5 col-lg-5">
+                mapa   
             </div>
         </div>
     </div>
-
-
-    <div class="places">
-        <h3><b>Lugares</b> mais visitados</h3>
-        <h4>Lugares mais buscados pelos clientes no primeiro trimestre de 2017</h4>
-        <div class="itens owl-carousel owl-theme">
-            {% include 'core/widgets/estabelecimento_card.html' %}
-        </div>
-    </div>
+    
 </main>
 
 {% endblock %}
