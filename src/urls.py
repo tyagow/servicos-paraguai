@@ -16,7 +16,7 @@ Including another URLconf
 from django.conf.urls import url, include
 from django.contrib import admin
 
-from src.core.views import home, estabelecimento_detail, categoria_detail, categorias
+from src.core.views import home, estabelecimento_detail, categoria_detail, categorias, busca
 
 urlpatterns = [
     url(r'^i18n/', include('django.conf.urls.i18n'))
@@ -24,6 +24,7 @@ urlpatterns = [
 
 urlpatterns += [
     url(r'^$', home, name='home'),
+    url(r'^busca/$', busca, name='busca'),
     url(r'^estabelecimento/(?P<slug>[\w-]+)$', estabelecimento_detail, name='estabelecimento_detail'),
     url(r'^estabelecimento/$', home, name='estabelecimentos'),
     url(r'^categorias/(?P<slug>[\w-]+)$', categoria_detail, name='categoria_detail'),
