@@ -30,26 +30,26 @@
                       <div class="estabelecimento" data-coordenadas="{{ e.coordenadas }}" >
                         <div class="row">
                             <div class="col-xs-4">
-                                <a href="#">
+                                <a href="{{ e.get_absolute_url }}">
                                     <div class="img">
-                                         <a href="{{ e.get_absolute_url }}">
-                                            {% if e.logo %}<img src="{{ e.logo.url }}" width="100%" class="photo center" alt="">{% endif %}
-                                         </a>
+                                        {% if e.logo %}<img src="{{ e.logo.url }}" width="100%" class="photo center" alt="">{% endif %}
                                     </div>
                                 </a>
                             </div>
                             <div class="col-xs-8">
-                                <h3 class='title'>{{ e.nome }}</h3>
-                                <img src="{% static 'img/ratings.png' %}" alt="">
-                                <div class="clearfix"></div>
-                                <div class="address">
-                                    <br>
-                                    <p>
-                                        <i class="fa fa-home"></i> {{ e.endereco }} <br>
-                                         {% for tel in e.telefones.all %}<i class="fa fa-phone"></i> {{ tel.numero }} {% endfor %}
-                                    </p>
-                                    
-                                </div>
+                                <a href="{{ e.get_absolute_url }}">
+                                    <h3 class='title'>{{ e.nome }}</h3>
+                                    <img src="{% static 'img/ratings.png' %}" alt="">
+                                    <div class="clearfix"></div>
+                                    <div class="address">
+                                        <br>
+                                        <p>
+                                            <i class="fa fa-home"></i> {{ e.endereco }} <br>
+                                             {% for tel in e.telefones.all %}<i class="fa fa-phone"></i> {{ tel.numero }} {% endfor %}
+                                        </p>
+                                        
+                                    </div>    
+                                </a>
                             </div>
                         </div>    
                     </div>
