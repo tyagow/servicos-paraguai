@@ -1,16 +1,19 @@
 {% load ratings %}
 {% for e in estabelecimentos %}
-<div class="item">
-    <a href="{{ e.get_absolute_url }}">
-        <div class="img">
-            {% if e.logo %}<img src="{{ e.logo.url }}" class="photo center" alt="">{% endif %}
-        </div>
+    <div class="item">
+        <a href="{{ e.get_absolute_url }}">
+            <div class="img">
+                {% if e.logo %}<img src="{{ e.logo.url }}" class="photo center" alt="">{% endif %}
+            </div>
+            <div class="caption">
+                {{ e.nome }}
+                <span>{{ e.descricao }}</span>
+            </div>
+        </a>
         <div class="caption">
-            {{ e.nome }}
-            <span>{{ e.descricao }}</span>
-            <div class="clearfix"></div>
-            <!--{% ratings e %}!-->
-        </div>    
-    </a>
-</div>
+            {% ratings e %}
+                        <div class="clearfix"></div>
+
+        </div>
+    </div>
 {% endfor %}
