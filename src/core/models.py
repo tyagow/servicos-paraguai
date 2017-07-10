@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+from django.contrib.contenttypes.fields import GenericRelation
 from django.contrib.contenttypes.models import ContentType
 from django.db import models
 from django.shortcuts import resolve_url as r
@@ -6,6 +7,7 @@ from imagekit.models import ImageSpecField
 from mptt.fields import TreeManyToManyField
 from mptt.models import MPTTModel, TreeForeignKey
 from pilkit.processors import ResizeToFit
+from star_ratings.models import Rating
 
 from src.comments.models import Comment
 from src.core.managers import  AnuncioManager, EstabelecimentoManager
@@ -33,6 +35,9 @@ class Estabelecimento(models.Model):
     updated_at = models.DateTimeField(null=True, blank=True)
     coordenadas = models.CharField('Coordenadas', null=True, blank=True, max_length=40)
     categoria = TreeManyToManyField('Categoria', blank=True, related_name='estabelecimentos')
+
+    nota = GenericRelation(Rating, related_query_name='estabelecimentos')
+
 
     objects = EstabelecimentoManager()
 
