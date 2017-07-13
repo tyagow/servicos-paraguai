@@ -92,19 +92,6 @@ class EstabelecimentoDetailGet(TestCase):
     def test_template_used(self):
         self.assertTemplateUsed(self.response, 'core/estabelecimento_detail.html')
 
-    def test_html(self):
-        contents = [
-            'Fast Way',
-            'www.fastway.com',
-            'Fast Way Descrição',
-            'Avda. Rogelio Benitez, 061 500 763',
-            'Salto del Guairá',
-            '123456',
-        ]
-        for expected in contents:
-            with self.subTest():
-                self.assertContains(self.response, expected)
-
 
 class HotelDetailGet(TestCase):
     def setUp(self):
@@ -131,21 +118,6 @@ class HotelDetailGet(TestCase):
 
     def test_template_used(self):
         self.assertTemplateUsed(self.response, 'core/hotel_detail.html')
-
-    def test_html(self):
-        contents = [
-            'Fast Way',
-            'www.hotel.com',
-            'Fast Way Descrição',
-            'Avda. Rogelio Benitez, 061 500 763',
-            'Salto del Guairá',
-            '123456',
-            'Diária',
-            '100,00',
-        ]
-        for expected in contents:
-            with self.subTest():
-                self.assertContains(self.response, expected)
 
 
 class CategoriasGet(TestCase):
