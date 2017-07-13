@@ -7,26 +7,7 @@
 <header class="header">
     <div class="container">
         <div class="row">
-            <div class="topbar">
-                <div class="col-md-6">
-                    <nav class="social-nav pull-left">
-                        <a href="#"><i class="fa fa-facebook"></i></a>
-                        <a href="#"><i class="fa fa-twitter"></i></a>
-                        <a href="#"><i class="fa fa-envelope"></i></a>
-                        <a href="#"><i class="fa fa-instagram"></i></a>
-                        <a href="#"><i class="fa fa-youtube"></i></a>
-                    </nav>
-                </div>
-                <div class="col-md-6">
-                    <nav class="top-menu pull-right">
-                        <a href="#">Cadastrar minha empresa</a>
-                        <a href="#">Tour 360º</a>
-                        <a href="#">Temperatura: 32º</a>
-                        <a href="{% url 'tickets:anunciante' %}">Seja um anunciante</a>
-                    </nav>
-                </div>
-                <div class="clearfix"></div>    
-            </div>
+            {% include 'core/widgets/nav-base.html' %}
             <div class="col-xs-12">
                 <a href="#" class="logo">
                     <img src="{% static 'img/logo.png' %}" width="400" alt="">
