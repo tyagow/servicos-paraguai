@@ -25,6 +25,7 @@ class Estabelecimento(models.Model):
 
     )
     nome = models.CharField(max_length=120)
+    recomendado = models.BooleanField(default=False, blank=True)
     website = models.URLField()
     slug = models.SlugField(unique=True)
     logo = models.ImageField(upload_to=path_and_rename_logo, null=True)
