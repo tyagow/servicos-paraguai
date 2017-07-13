@@ -54,6 +54,7 @@ INSTALLED_APPS = [
     'src.core',
     'src.comments',
     'src.tickets',
+    'src.posts',
 
     #external apps
     'test_without_migrations',
@@ -63,6 +64,10 @@ INSTALLED_APPS = [
     'imagekit',
     'modeltranslation',
     'star_ratings',
+    'crispy_forms',
+    'pagedown',
+    'markdown_deux',
+    'bootstrap3',
 
     #translation no admin preci vir antes do contrib.admin
     'django.contrib.admin',
