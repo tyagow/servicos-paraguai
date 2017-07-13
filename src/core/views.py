@@ -11,14 +11,22 @@ from django.utils.translation import ugettext as _
 from src.comments.forms import CommentForm
 from src.comments.models import Comment
 from src.core.models import Categoria, Estabelecimento, Anuncio
+from src.posts.models import Post
 
 
 def home(request):
 
     query_estabelecimento = Estabelecimento.objects.all()
 
+    noticias = Post.objects.noticias().principais()
+
+    recomendados = Estabelecimento.objects.recomendados()
+
+
     context = {
         'estabelecimentos': query_estabelecimento,
+        'noticias': noticias,
+        'recomendados': recomendados
     }
     return render(request, 'index.html', context)
 
@@ -90,13 +98,12 @@ def estabelecimento_detail(request, slug):
         c_type = form.cleaned_data.get('content_type').lower()
         content_type = ContentType.objects.get(model=c_type)
         obj_id = form.cleaned_data.get('object_id')
-        content_data = form.cleaned_data.get('conteudo')
-        nome_data = form.cleaned_data.get('nome')
+        content_data = form.cleaned_data.get('content')
         new_comment, created = Comment.objects.get_or_create(
-            nome=nome_data,
+            user=request.user,
             content_type=content_type,
             object_id=obj_id,
-            conteudo=content_data
+            content=content_data
         )
         if created:
             form = CommentForm(None, initial=initial_data)
