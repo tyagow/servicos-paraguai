@@ -40,3 +40,6 @@ class EstabelecimentoManager(models.Manager):
             else:
                 queryFilter = super(EstabelecimentoManager, self).filter(nome__icontains=nome)
         return queryFilter.distinct()
+
+    def recomendados(self, *args, **kwargs):
+        return super(EstabelecimentoManager, self).filter(recomendado=True)
