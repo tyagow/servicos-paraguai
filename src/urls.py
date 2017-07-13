@@ -31,6 +31,7 @@ urlpatterns += [
     url(r'^categorias/$', categorias, name='categorias'),
     url(r'^api/', include('src.api.urls', namespace='api')),
     url(r'^tickets/', include('src.tickets.urls', namespace='tickets')),
+    url(r'^noticia/', include('src.posts.urls', namespace='noticias')),
     url(r'^ratings/', include('star_ratings.urls', namespace='ratings', app_name='ratings')),
     url(r'^admin/', admin.site.urls),
 ]
