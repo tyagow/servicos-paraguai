@@ -1,0 +1,80 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+
+{% block head_extra %} {{ form.media }} {% endblock head_extra %}
+
+{% block content %}
+    <div class="container">
+        <div class="col-sm-6">
+            <h1>Preview</h1>
+            <div class="content-preview">
+                <h3 id="preview-title"></h3>
+                <p id="preview-content"></p>
+            </div>
+        </div>
+        <div class='col-sm-6'>
+            <h1>Crie um post</h1>
+
+            <form method='POST' action='' enctype='multipart/form-data'>{% csrf_token %}
+                {{ form|crispy }}
+                <hr>
+                <input type='submit' class='btn btn-primary' value='Criar Post' />
+            </form>
+        </div>
+    </div>
+    <br>
+    <br>
+
+
+{% endblock content %}
+{% block script %}
+
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/marked/0.3.6/marked.min.js"></script>
+    <script type="text/javascript" charset="utf-8">
+        $(document).ready(function(){
+            $(".content-markdown").each(function () {
+                var content = $(this).text();
+                var markedContent = marked(content);
+                $(this).html(markedContent)
+            });
+
+            var contentIput = $("#id_content");
+
+            function setContent(value) {
+                var markedContent = marked(value);
+                $("#preview-content").html(markedContent);
+                $("#preview-content img").each(function () {
+                    $(this).addClass("img-responsive");
+                })
+
+            }
+
+            setContent(contentIput.val());
+
+            contentIput.keyup(function () {
+                var newContent = $(this).val();
+                console.log('nos');
+                setContent(newContent);
+            });
+
+            var titleInput = $("#id_title");
+
+            function setTitle(value) {
+                $("#preview-title").text(value)
+            }
+            setTitle(titleInput.val());
+
+            $("#preview-title").text(titleInput.val());
+            titleInput.keyup(function () {
+                var newTitle = $(this).val();
+                setTitle(newTitle)
+            });
+            $('.comment-reply-btn').click(function (event) {
+                event.preventDefault();
+                $(this).parent().next(".comment-reply").fadeToggle()
+            })
+
+
+        });
+    </script>
+{% endblock %}
