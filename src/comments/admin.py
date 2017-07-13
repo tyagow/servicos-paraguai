@@ -3,7 +3,7 @@ from src.comments.models import Comment
 
 
 class CommentsAdmin(admin.ModelAdmin):
-    list_display = ['nome', 'timestamp', 'aprovado']
+    list_display = ['user', 'timestamp', 'aprovado']
 
 
 admin.site.register(Comment, CommentsAdmin)

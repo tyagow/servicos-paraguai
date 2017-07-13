@@ -3,13 +3,9 @@
 	    {% csrf_token %}
 	    {{ form.content_type }}
 	    {{ form.object_id }}
-	    <div class="form-group">
-	    	<label>Nome</label>
-	    	{{ form.nome }}
-	    </div>
 	    <div class='form-group'>
 	    	<label>Comentário</label>
-	        {{ form.conteudo }}
+	        {{ form.content }}
 	    </div>
 	    
 	    <input type="submit" value="{% trans 'Publicar' %}" class="btn  btn-primary btn-submit-comentario">
