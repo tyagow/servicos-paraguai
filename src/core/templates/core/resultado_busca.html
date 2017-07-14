@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
-
+{% load ratings %}
 {% block  nav %}
     {% include 'nav-interno.html' %}
 {% endblock %}
@@ -27,7 +27,7 @@
                 <div class="list-estabelecimentos">
 
                     {% for e in estabelecimentos %}
-                      <div class="estabelecimento" data-coordenadas="{{ e.coordenadas }}" >
+                      <div class="estabelecimento" data-coordenadas="{{ e.get_coordenadas }}" >
                         <div class="row">
                             <div class="col-xs-4">
                                 <a href="{{ e.get_absolute_url }}">
@@ -39,7 +39,11 @@
                             <div class="col-xs-8">
                                 <a href="{{ e.get_absolute_url }}">
                                     <h3 class='title'>{{ e.nome }}</h3>
-                                    <img src="{% static 'img/ratings.png' %}" alt="">
+                                    {% ratings e read_only=True icon_height=22 icon_width=22 %}
+
+                                    <br>
+
+                                    <b>Total de avaliações {{ e.nota.count }}</b>
                                     <div class="clearfix"></div>
                                     <div class="address">
                                         <br>
