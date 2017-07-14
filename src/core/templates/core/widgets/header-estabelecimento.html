@@ -2,25 +2,27 @@
 <div class="row">
     <div class="place">
         <div class="col-xs-12">
-                <div class="breadcrumbs">
-                    <nav>
-                        <a href="/">
-                            Home
-                        </a>
-                        {% for categoria in estabelecimento.categoria.all %}
-                            <a href="{{ categoria.get_absolute_url }}">{{ categoria.nome }}</a>
-                        {% endfor %}
-                    </nav>
-                </div>
-        </div>
-        {% if messages %}
-            <div class="alert alert-success alert-dismissable messages fade in">
-                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-                {% for message in messages %}
-                    {{ message }}
-                {% endfor %}
+            <div class="breadcrumbs">
+                <nav>
+                    <a href="/">
+                        Home
+                    </a>
+                    {% for categoria in estabelecimento.categoria.all %}
+                        <a href="{{ categoria.get_absolute_url }}">{{ categoria.nome }}</a>
+                    {% endfor %}
+                </nav>
             </div>
-        {% endif %}
+        </div>
+        <div class="col-xs-12">
+            {% if messages %}
+                <div class="alert alert-success alert-dismissable messages fade in">
+                    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                    {% for message in messages %}
+                        {{ message }}
+                    {% endfor %}
+                </div>
+            {% endif %}
+        </div>
         <div class="col-xs-12">
             <h1 class="pull-left"><a href="{{ estabelecimento.website }}">{{ estabelecimento.nome }}</a></h1>
             <div class="pull-left">
