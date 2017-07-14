@@ -7,6 +7,8 @@ from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from django.http import HttpResponseRedirect
 from django.shortcuts import render, get_object_or_404, resolve_url
 from django.utils.translation import ugettext as _
+from star_ratings import app_settings
+from star_ratings.models import Rating
 
 from src.comments.forms import CommentForm
 from src.comments.models import Comment
@@ -109,10 +111,16 @@ def estabelecimento_detail(request, slug):
             form = CommentForm(None, initial=initial_data)
             messages.success(request, _('Seu comentário será moderado e adicionado em breve.'))
 
+    stars = [i for i in range(1, app_settings.STAR_RATINGS_RANGE + 1)]
+    rating = Rating.objects.for_instance(instance)
+
     context = {
         'estabelecimento': instance,
         'comments': comments,
         'form': form,
+        'coordenadas': instance.get_coordenadas,
+        'stars': stars,
+        'rating': rating,
     }
     return render(request, template_to_render, context)
 
