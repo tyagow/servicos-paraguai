@@ -1,18 +1,20 @@
 {% load i18n %}
 <style>
     #{{ id }} .star-ratings-rating-full, #{{ id }} .star-ratings-rating-empty {
-                                                       width: {{ icon_width }}px;
-                                                       height: {{ icon_height }}px;
-                                                   }
+        width: {{ icon_width }}px;
+        height: {{ icon_height }}px;
+        background: url({{ sprite_image }}) no-repeat;
+        background-size: {{ sprite_width }}px;
+    }
 
     #{{ id }} .star-ratings-rating-empty {
-                  background-position: -{{ icon_width }}px 0;
-              }
+        background-position: -{{ icon_width }}px 0;
+    }
 
-    {% if user.is_authenticated %}
-        #{{ id }} .star-ratings-rating-full:hover, #{{ id }} .star-ratings-rating-empty:hover {
-                                                                 background-position: -{{ icon_width|add:icon_width }}px 0;
-                                                             }
+    {% if user.is_authenticated and editable %}
+    #{{ id }} .star-ratings-rating-full:hover, #{{ id }} .star-ratings-rating-empty:hover {
+        background-position: -{{ icon_width|add:icon_width }}px 0;
+    }
     {% endif %}
 </style>
 <div id="{{ id }}" class="star-ratings" data-max-rating="{{ star_count }}" data-avg-rating="{{ rating.average }}">
@@ -21,10 +23,12 @@
             <ul class="star-ratings-rating-background">
                 {% for star in stars %}
                     <li>
-                        {% if user.is_authenticated or anonymous_ratings %}
-                            <a href="{% url 'ratings:rate' rating.content_type_id rating.object_id %}?return={{ request.path }}" data-score="{{ star }}" class="star-ratings-rate-action">
-                                <span class="star-ratings-rating-empty"></span>
-                            </a>
+                        {% if editable %}
+                        <a href="{% url 'ratings:rate' rating.content_type_id rating.object_id %}?return={{ request.path }}" data-score="{{ star }}" class="star-ratings-rate-action">
+                            <span class="star-ratings-rating-empty"></span>
+                        </a>
+                        {% elif user.is_authenticated %}
+                            <span class="star-ratings-rating-empty"></span>
                         {% else %}
                             <span class="star-ratings-rating-empty" title="{% trans 'Log in to rate' as title_login %}{{ title_login|escape }}"></span>
                         {% endif %}
@@ -35,31 +39,28 @@
             <ul class="star-ratings-rating-foreground" style="width: {{ percentage|floatformat }}%">
                 {% for star in stars %}
                     <li>
-                        {% if user.is_authenticated or anonymous_ratings %}
-                            <a href="{% url 'ratings:rate' rating.content_type_id rating.object_id %}?return={{ request.path }}" data-score="{{ star }}" class="star-ratings-rate-action">
-                                <span class="star-ratings-rating-full"></span>
-                            </a>
-                        {% else %}
-                            <span class="star-ratings-rating-full" title="Log in to rate"></span>
-                        {% endif %}
+                    {% if editable %}
+                    <a href="{% url 'ratings:rate' rating.content_type_id rating.object_id %}?return={{ request.path }}" data-score="{{ star }}" class="star-ratings-rate-action">
+                        <span class="star-ratings-rating-full"></span>
+                    </a>
+                    {% else %}
+                        <span class="star-ratings-rating-full" title="Log in to rate"></span>
+                    {% endif %}
                     </li>
                 {% endfor %}
             </ul>
         </div>
     {% endblock %}
     {% block rating_detail %}
-        {% block rating_average %}
-{#            <div class="star-ratings-rating-average">{% trans 'Average: ' %} <span class='star-ratings-rating-value'>{{ rating.average|floatformat:"-2" }}</span></div>#}
-        {% endblock rating_average %}
-        {% block rating_count %}
-{#            <div class="star-ratings-rating-count">{% trans 'Rating Count: ' %} <span class='star-ratings-rating-value'>{{ rating.count }}</span></div>#}
-        {% endblock rating_count %}
-        {% block rating_user %}
-{#            <div class="star-ratings-rating-user">{% trans 'You Rated: ' %} <span class='star-ratings-rating-value'>{% if user_rating %}{{ user_rating.score }}{% else %}{% trans 'Not rated' %}{% endif %}</span></div>#}
-            {% if not user.is_authenticated and not anonymous_ratings %}
-{#                <p>{% trans 'Please log in to rate.' %}</p>#}
-            {% endif %}
-        {% endblock rating_user %}
-        <div class="star-ratings-errors"></div>
+    {% block rating_average %}
+    {% endblock rating_average %}
+    {% block rating_count %}
+    {% endblock rating_count %}
+    {% block rating_user %}
+    {% if not user.is_authenticated and not anonymous_ratings and not read_only %}
+        <p>{% trans 'Voce precisa logar para poder dar uma nota.' %}</p>
+    {% endif %}
+    {% endblock rating_user %}
+    <div class="star-ratings-errors"></div>
     {% endblock rating_detail %}
 </div>
