@@ -6,10 +6,10 @@ from django.core.urlresolvers import reverse
 from django.db import models
 from django.db.models.signals import pre_save
 from django.utils import timezone
-
-from django.utils.text import slugify
 from django.utils.safestring import mark_safe
+from django.utils.text import slugify
 from markdown_deux import markdown
+
 from src.comments.models import Comment
 from src.posts.utils import get_read_time
 
@@ -23,7 +23,11 @@ class PostManagerQuerySet(models.QuerySet):
 
     def principais(self):
         total = self.count()-1
-        return self.all()[total-2:total]
+        if total >= 1:
+            return self.all()[total-2:total]
+        else:
+            return self.all()
+
 
 PostManager = models.Manager.from_queryset(PostManagerQuerySet)
 
@@ -31,6 +35,7 @@ TIPO_POST_CHOICES = getattr(settings, 'TIPO_POST_CHOICES', (
     (0, ("Noticia")),
     (1, ("Lazer Turismo")),
 ))
+
 
 def upload_location(instance, filename):
     # filebase, extension = filename.split(".")
@@ -53,11 +58,8 @@ class Post(models.Model):
     slug = models.SlugField(unique=True)
     image = models.ImageField(upload_to=upload_location,
                               null=True,
-                              blank=True,
-                              width_field="width_field",
-                              height_field="height_field")
-    height_field = models.IntegerField(default=0)
-    width_field = models.IntegerField(default=0)
+                              blank=True
+                              )
     content = models.TextField()
     draft = models.BooleanField(default=False)
     publish = models.DateField(auto_now=False, auto_now_add=False)
@@ -119,3 +121,4 @@ def pre_save_post_receiver(sender, instance, *args, **kwargs):
 
 # before save a post this signal is triggered
 pre_save.connect(pre_save_post_receiver, sender=Post)
+
