@@ -139,7 +139,7 @@ class Categoria(MPTTModel):
 class Anuncio(models.Model):
     banner = models.ImageField(upload_to=path_and_rename_banner)
     url = models.URLField()
-    estabelecimento = models.ForeignKey('Estabelecimento')
+    estabelecimento = models.ForeignKey('Estabelecimento', blank=True, null=True)
     ativo = models.BooleanField(default=False)
     created_at = models.DateTimeField(auto_now_add=True)
 
