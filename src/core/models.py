@@ -50,6 +50,12 @@ class Estabelecimento(models.Model):
     def __str__(self):
         return self.nome
 
+    def get_coordenadas(self):
+        if self.coordenadas:
+            return self.coordenadas
+        else:
+            return "-25.513475,-54.615440"
+
     def get_latitude_longitde(self):
         return map(lambda x: float(x), self.coordenadas.split(','))
 
