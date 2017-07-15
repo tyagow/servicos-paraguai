@@ -20,7 +20,8 @@ def home(request):
 
     query_estabelecimento = Estabelecimento.objects.all()
 
-    noticias = Post.objects.noticias().principais()
+    noticias = Post.objects.noticias().principais(2)
+    lazer = Post.objects.lazer().principais(4)
 
     recomendados = Estabelecimento.objects.recomendados(12)
 
@@ -31,6 +32,7 @@ def home(request):
     context = {
         'estabelecimentos': query_estabelecimento,
         'noticias': noticias,
+        'lazer': lazer,
         'recomendados': recomendados,
         'anuncios': anuncios,
         'mais_buscados': mais_buscados,
