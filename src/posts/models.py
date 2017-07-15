@@ -22,21 +22,26 @@ class PostManagerQuerySet(models.QuerySet):
         return self.filter(draft=False).filter(publish__lte=timezone.now())
 
     def noticias(self):
-        return self.active().filter(type=0)
+        return self.active().filter(type=0).order_by('-timestamp')
+
+    def lazer(self):
+        return self.active().filter(type=1).order_by('-timestamp')
 
     def principais(self, count=None):
         total = self.count()
+        if total == 0:
+            return []
         if not count:
-            return self.all().order_by('-timestamp')
+            return self.order_by('-timestamp')
         elif count > total:
             dif = count - total
-            principais = list(self.all())
+            principais = list(self.all().order_by('-timestamp'))
             while dif > 0:
                 index = self.aggregate(count=Count('id'))['count']
                 random_index = randint(0, index - 1)
                 principais.append(self.all()[random_index])
                 dif -= 1
-                
+
             return principais
         else:
             return self.order_by('-timestamp')[:count]
