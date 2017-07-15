@@ -11,7 +11,7 @@
     <div class="col-md-12">
         <div class="body-comentarios">
             <h4>{% trans 'Dê sua nota' %}</h4>
-            {% if request.user.is_autheticated %}
+            {% if request.user.is_authenticated %}
                 {% include 'comments/comment-form.html' with form=form url=estabelecimento.get_absolute_url %}
             {% else %}
                 <p class="text-center">{% trans 'Voce precisa estar logado para comentar.' %}

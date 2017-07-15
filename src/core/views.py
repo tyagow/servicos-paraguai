@@ -10,7 +10,7 @@ from django.utils.translation import ugettext as _
 from star_ratings import app_settings
 from star_ratings.models import Rating
 
-from src.comments.forms import CommentForm
+from src.comments.forms import CommentForm, CommentFormWithRate
 from src.comments.models import Comment
 from src.core.models import Categoria, Estabelecimento, Anuncio
 from src.posts.models import Post
@@ -100,7 +100,7 @@ def estabelecimento_detail(request, slug):
         'object_id': instance.id,
         'nota': 1
     }
-    form = CommentForm(request.POST or None, initial=initial_data)
+    form = CommentFormWithRate(request.POST or None, initial=initial_data)
 
     if form.is_valid():
         c_type = form.cleaned_data.get('content_type').lower()
