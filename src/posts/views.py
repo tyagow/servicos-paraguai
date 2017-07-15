@@ -24,6 +24,7 @@ from src.comments.forms import CommentForm
 from src.posts.forms import PostForm
 from src.posts.models import Post
 
+
 def post_create(request):
     if not request.user.is_staff or not request.user.is_superuser:
         raise Http404
@@ -33,7 +34,6 @@ def post_create(request):
         instance = form.save(commit=False)
         instance.user = request.user
         instance.save()
-        # message success
         messages.success(request, "Post criado com sucesso!")
         return HttpResponseRedirect(instance.get_absolute_url())
     context = {
