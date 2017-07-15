@@ -24,11 +24,13 @@ def home(request):
 
     recomendados = Estabelecimento.objects.recomendados()
 
+    anuncios = Anuncio.objects.ativos(count=2)
 
     context = {
         'estabelecimentos': query_estabelecimento,
         'noticias': noticias,
-        'recomendados': recomendados
+        'recomendados': recomendados,
+        'anuncios': anuncios,
     }
     return render(request, 'index.html', context)
 
