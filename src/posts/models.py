@@ -22,11 +22,9 @@ class PostManagerQuerySet(models.QuerySet):
         return self.active().filter(type=0)
 
     def principais(self):
-        total = self.count()-1
-        if total >= 1:
-            return self.all()[total-2:total]
-        else:
-            return self.all()
+        count = self.noticias().count()
+        index = count if count >= 2 else count
+        return self.noticias().order_by('-timestamp')[count-index:count]
 
 
 PostManager = models.Manager.from_queryset(PostManagerQuerySet)
