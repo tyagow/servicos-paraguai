@@ -123,12 +123,11 @@ def estabelecimento_detail(request, slug):
                 object_id=obj_id,
                 content=content_data
             )
-
         nota = form.cleaned_data.get('nota')
 
         rating = instance.nota.rate(user=request.user, instance=instance, score=int(nota))
-        print(rating)
-
+        new_comment.aprovado = False
+        new_comment.save()
         # if created:
         #     form = CommentForm(None, initial=initial_data)
         #     messages.success(request, _('Seu comentário será moderado e adicionado em breve.'))
