@@ -29,22 +29,20 @@
                     <br>
 
                     <div class="list-estabelecimentos">
-
                         {% for e in estabelecimentos %}
                             <div class="estabelecimento" data-coordenadas="{{ e.get_coordenadas }}" >
                                 <div class="row">
                                     <div class="col-xs-4">
-                                        <a href="{{ e.get_absolute_url }}">
+                                        <a href="{{ e.get_absolute_url }}?searchlog=True">
                                             <div class="img">
                                                 {% if e.logo %}<img src="{{ e.logo.url }}" width="100%" class="photo center" alt="">{% endif %}
                                             </div>
                                         </a>
                                     </div>
                                     <div class="col-xs-8">
-                                        <a href="{{ e.get_absolute_url }}">
+                                        <a href="{{ e.get_absolute_url }}?searchlog=True">
                                             <h3 class='title'>{{ e.nome }}</h3>
                                             {% ratings e read_only=True icon_height=22 icon_width=22 %}
-
                                             <br>
 
                                             <b>Total de avaliações {{ e.nota.count }}</b>
@@ -55,29 +53,19 @@
                                                     <i class="fa fa-home"></i> {{ e.endereco }} <br>
                                                     {% for tel in e.telefones.all %}<i class="fa fa-phone"></i> {{ tel.numero }} {% endfor %}
                                                 </p>
-
                                             </div>
                                         </a>
                                     </div>
                                 </div>
                             </div>
                         {% endfor %}
-
-
-
-
-
                     </div>
-
                 </div>
                 <div class="col-sm-12 col-md-6 col-lg-6">
-                    <div class="map" id="map">
-
-                    </div>
+                    <div class="map" id="map"></div>
                 </div>
             </div>
         </div>
-
     </main>
 
 {% endblock %}
