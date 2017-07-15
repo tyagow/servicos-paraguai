@@ -94,22 +94,42 @@ def estabelecimento_detail(request, slug):
     initial_data = {
         'content_type': instance.get_content_type,
         'object_id': instance.id,
+        'nota': 1
     }
     form = CommentForm(request.POST or None, initial=initial_data)
+
     if form.is_valid():
         c_type = form.cleaned_data.get('content_type').lower()
         content_type = ContentType.objects.get(model=c_type)
         obj_id = form.cleaned_data.get('object_id')
         content_data = form.cleaned_data.get('content')
-        new_comment, created = Comment.objects.get_or_create(
+        new_comment = Comment.objects.filter(
             user=request.user,
             content_type=content_type,
             object_id=obj_id,
-            content=content_data
-        )
-        if created:
-            form = CommentForm(None, initial=initial_data)
-            messages.success(request, _('Seu comentário será moderado e adicionado em breve.'))
+        ).first()
+        if new_comment:
+            new_comment.content = content_data
+            new_comment.save()
+
+        else:
+            new_comment = Comment.objects.create(
+                user=request.user,
+                content_type=content_type,
+                object_id=obj_id,
+                content=content_data
+            )
+
+        nota = form.cleaned_data.get('nota')
+
+        rating = instance.nota.rate(user=request.user, instance=instance, score=int(nota))
+        print(rating)
+
+        # if created:
+        #     form = CommentForm(None, initial=initial_data)
+        #     messages.success(request, _('Seu comentário será moderado e adicionado em breve.'))
+        messages.success(request, _('Seu comentário será moderado e adicionado em breve.'))
+        form = CommentForm(None, initial=initial_data)
 
     stars = [i for i in range(1, app_settings.STAR_RATINGS_RANGE + 1)]
     rating = Rating.objects.for_instance(instance)

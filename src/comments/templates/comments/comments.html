@@ -11,58 +11,25 @@
     <div class="col-md-12">
         <div class="body-comentarios">
             <h4>{% trans 'Dê sua nota' %}</h4>
-            <style>
-                #estrela_form .star-ratings-rating-full, #estrela_form .star-ratings-rating-empty {
-                    width: 28px;
-                    height: 28px;
-                    background: url(/static/star-ratings/images/stars.png) no-repeat;
-                    background-size: 84px;
-                }
-
-                #estrela_form .star-ratings-rating-empty {
-                    background-position: -28px 0;
-                }
-
-
-            </style>
-            <div id="estrela_form" class="star-ratings" data-max-rating="5" data-avg-rating="0">
-                <div class="star-ratings-rating-stars-container">
-                    <ul class="star-ratings-rating-background" >
-                        {% for star in stars %}
-                            <li>
-                                {% if user.is_authenticated  %}
-                                    <a href="{% url 'ratings:rate' rating.content_type_id rating.object_id %}?return={{ request.path }}" data-score="{{ star }}" class="star-ratings-rate-action">
-                                        <span class="star-ratings-rating-empty"></span>
-                                    </a>
-                                {% else %}
-                                    <span class="star-ratings-rating-empty" title="{% trans 'Log in to rate' as title_login %}{{ title_login|escape }}"></span>
-                                {% endif %}
-                            </li>
-                        {% endfor %}
-                    </ul>
-                    <ul class="star-ratings-rating-foreground" >
-                        {% for star in stars %}
-                            <li>
-                                <a href="{% url 'ratings:rate' rating.content_type_id rating.object_id %}?return={{ request.path }}" data-score="{{ star }}" class="star-ratings-rate-action">
-                                    <span class="star-ratings-rating-full"></span>
-                                </a>
-                            </li>
-                        {% endfor %}
-                    </ul>
-
-                </div>
-            </div>
-
-            {% include 'comments/comment-form.html' with form=form url=estabelecimento.get_absolute_url %}
+            {% if request.user.is_autheticated %}
+                {% include 'comments/comment-form.html' with form=form url=estabelecimento.get_absolute_url %}
+            {% else %}
+                <p class="text-center">{% trans 'Voce precisa estar logado para comentar.' %}
+                    <br>
+                    <a href="">{% trans 'Entre aqui.' %}</a>
+                </p>
+            {% endif %}
         </div>
     </div>
     {% for comment in comments %}
         <div class="col-sm-12">
             <div class="body-comentarios">
                 <h3>Comentários</h3>
+                <hr>
+                {% include 'comments/star.html' with total=comment.get_rate %}
                 <div class="comments-list">
-                    <p>{{ comment.conteudo }}</p>
-                    <small> {% trans 'por' %} {{ comment.nome }}</small>
+                    <p>{{ comment.content }}</p>
+                    <small> {% trans 'por' %} {{ comment.user }}</small>
                 </div>
             </div>
         </div>

@@ -3,6 +3,7 @@ from django.contrib.contenttypes.fields import GenericForeignKey
 from django.contrib.contenttypes.models import ContentType
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
+from star_ratings.models import UserRating
 
 
 class CommentManager(models.Manager):
@@ -30,3 +31,6 @@ class Comment(models.Model):
 
     def __str__(self):
         return self.user.username
+
+    def get_rate(self):
+        return UserRating.objects.for_instance_by_user(self.content_object, user=self.user).score
