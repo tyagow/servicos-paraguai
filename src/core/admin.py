@@ -48,7 +48,11 @@ class CategoriaAdmin(MPTTModelAdmin):
     exclude = ['nome']
 
 
+class AnuncioAdmin(admin.ModelAdmin):
+    list_display = ['url', 'created_at', 'ativo']
+
+
 admin.site.register(Estabelecimento, EstabelecimentoAdmin)
 admin.site.register(Categoria, CategoriaAdmin)
-admin.site.register(Anuncio)
+admin.site.register(Anuncio, AnuncioAdmin)
 
