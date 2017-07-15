@@ -49,7 +49,7 @@
             <h3><b>Lugares</b> mais visitados</h3>
             <h4>Lugares mais buscados pelos clientes no primeiro trimestre de 2017</h4>
             <div class="itens owl-carousel owl-theme">
-                {% include 'core/widgets/estabelecimento_card.html' %}
+                {% include 'core/widgets/estabelecimento_card.html' with estabelecimentos=mais_buscados %}
                 <div class="clearfix"></div>
             </div>
             <div class="clearfix"></div>
@@ -71,17 +71,17 @@
                     <div class="boxed">
                         <ul class="recommend-list">
                             {% for e in mais_buscados_recomendados %}
-                            <li>
-                                <a href="{{ e.get_absolute_url }}" class="img">
-                                    <img src="{{ e.logo.url }}" alt="{{ e.nome }}">
-                                </a>
-                                <a href="{{ e.get_absolute_url }}" class="desc">
-                                    <h3>{{ e.nome }}</h3>
-                                    <span class="clearfix"></span>
-                                    <h4>{{ e.descricao|truncatechars:60 }}</h4>
-                                </a>
-                                <div class="clearfix"></div>
-                            </li>
+                                <li>
+                                    <a href="{{ e.get_absolute_url }}" class="img">
+                                        <img src="{{ e.logo.url }}" alt="{{ e.nome }}">
+                                    </a>
+                                    <a href="{{ e.get_absolute_url }}" class="desc">
+                                        <h3>{{ e.nome }}</h3>
+                                        <span class="clearfix"></span>
+                                        <h4>{{ e.descricao|truncatechars:60 }}</h4>
+                                    </a>
+                                    <div class="clearfix"></div>
+                                </li>
                             {% endfor %}
                         </ul>
                     </div>
@@ -111,38 +111,16 @@
                 </h3>
                 <h4>Os principais pontos turisticos do Paraguay e região</h4>
                 <div class="row">
-                    <div class="col-md-3">
-                        <img src="static/img/del/turismo1.png" width="100%" alt="">
-                        <p class="title">Descrição</p>
-                        <p class="desc">
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis ab, iusto iste nesciunt doloremque voluptatibus? Mollitia, libero, culpa, ex odio nostrum at ducimus numquam harum laboriosam explicabo ipsum atque dignissimos.
-                        </p>
-                        <a href="#" class="btn pull-right">Leia mais</a>
-                    </div>
-                    <div class="col-md-3">
-                        <img src="http://placehold.it/265x360" width="100%" alt="">
-                        <p class="title">Descrição</p>
-                        <p class="desc">
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis ab, iusto iste nesciunt doloremque voluptatibus? Mollitia, libero, culpa, ex odio nostrum at ducimus numquam harum laboriosam explicabo ipsum atque dignissimos.
-                        </p>
-                        <a href="#" class="btn pull-right">Leia mais</a>
-                    </div>
-                    <div class="col-md-3">
-                        <img src="http://placehold.it/265x360" width="100%" alt="">
-                        <p class="title">Descrição</p>
-                        <p class="desc">
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis ab, iusto iste nesciunt doloremque voluptatibus? Mollitia, libero, culpa, ex odio nostrum at ducimus numquam harum laboriosam explicabo ipsum atque dignissimos.
-                        </p>
-                        <a href="#" class="btn pull-right">Leia mais</a>
-                    </div>
-                    <div class="col-md-3">
-                        <img src="http://placehold.it/265x360" width="100%" alt="">
-                        <p class="title">Descrição</p>
-                        <p class="desc">
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis ab, iusto iste nesciunt doloremque voluptatibus? Mollitia, libero, culpa, ex odio nostrum at ducimus numquam harum laboriosam explicabo ipsum atque dignissimos.
-                        </p>
-                        <a href="#" class="btn pull-right">Leia mais</a>
-                    </div>
+                    {% for post in lazer %}
+                        <div class="col-md-3">
+                            <img src="0{{ post.image.url }}" width="100%" alt="">
+                            <p class="title">{{ post.title }}</p>
+                            <p class="desc">
+                                {{ post.descricao }}
+                            </p>
+                            <a href="{{ post.get_absolute_url }}" class="btn pull-right">Leia mais</a>
+                        </div>
+                    {% endfor %}
                 </div>
                 <div class="clearfix"></div>
                 <div class="banners">
