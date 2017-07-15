@@ -15,65 +15,69 @@
 
 {% block content %}
 
-<main class="main">
-    <div class="container">
-        <div class="row">
-            <div class="col-sm-12 col-md-6 col-lg-6">
-                <br>
-                 <img src="http://placehold.it/585x80" width="100%" alt="">
-                <br>
-                <br>
-
-                <div class="list-estabelecimentos">
-
-                    {% for e in estabelecimentos %}
-                      <div class="estabelecimento" data-coordenadas="{{ e.get_coordenadas }}" >
-                        <div class="row">
-                            <div class="col-xs-4">
-                                <a href="{{ e.get_absolute_url }}">
-                                    <div class="img">
-                                        {% if e.logo %}<img src="{{ e.logo.url }}" width="100%" class="photo center" alt="">{% endif %}
-                                    </div>
-                                </a>
-                            </div>
-                            <div class="col-xs-8">
-                                <a href="{{ e.get_absolute_url }}">
-                                    <h3 class='title'>{{ e.nome }}</h3>
-                                    {% ratings e read_only=True icon_height=22 icon_width=22 %}
-
-                                    <br>
-
-                                    <b>Total de avaliações {{ e.nota.count }}</b>
-                                    <div class="clearfix"></div>
-                                    <div class="address">
-                                        <br>
-                                        <p>
-                                            <i class="fa fa-home"></i> {{ e.endereco }} <br>
-                                             {% for tel in e.telefones.all %}<i class="fa fa-phone"></i> {{ tel.numero }} {% endfor %}
-                                        </p>
-                                        
-                                    </div>    
-                                </a>
-                            </div>
-                        </div>    
-                    </div>
+    <main class="main">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12 col-md-6 col-lg-6">
+                    <br>
+                    {% for anuncio in anuncios %}
+                        <a href="{{ anuncio.url }}">
+                            <img src="{{ anuncio.banner.url }}" width="100%" alt="">
+                        </a>
                     {% endfor %}
+                    <br>
+                    <br>
+
+                    <div class="list-estabelecimentos">
+
+                        {% for e in estabelecimentos %}
+                            <div class="estabelecimento" data-coordenadas="{{ e.get_coordenadas }}" >
+                                <div class="row">
+                                    <div class="col-xs-4">
+                                        <a href="{{ e.get_absolute_url }}">
+                                            <div class="img">
+                                                {% if e.logo %}<img src="{{ e.logo.url }}" width="100%" class="photo center" alt="">{% endif %}
+                                            </div>
+                                        </a>
+                                    </div>
+                                    <div class="col-xs-8">
+                                        <a href="{{ e.get_absolute_url }}">
+                                            <h3 class='title'>{{ e.nome }}</h3>
+                                            {% ratings e read_only=True icon_height=22 icon_width=22 %}
+
+                                            <br>
+
+                                            <b>Total de avaliações {{ e.nota.count }}</b>
+                                            <div class="clearfix"></div>
+                                            <div class="address">
+                                                <br>
+                                                <p>
+                                                    <i class="fa fa-home"></i> {{ e.endereco }} <br>
+                                                    {% for tel in e.telefones.all %}<i class="fa fa-phone"></i> {{ tel.numero }} {% endfor %}
+                                                </p>
+
+                                            </div>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endfor %}
 
 
-                  
-                    
+
+
+
+                    </div>
 
                 </div>
-                
-            </div>
-            <div class="col-sm-12 col-md-6 col-lg-6">
-                <div class="map" id="map">
-                     
-                </div>    
+                <div class="col-sm-12 col-md-6 col-lg-6">
+                    <div class="map" id="map">
+
+                    </div>
+                </div>
             </div>
         </div>
-    </div>
-    
-</main>
+
+    </main>
 
 {% endblock %}

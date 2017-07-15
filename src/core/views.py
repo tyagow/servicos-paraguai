@@ -24,7 +24,7 @@ def home(request):
 
     recomendados = Estabelecimento.objects.recomendados()
 
-    anuncios = Anuncio.objects.ativos(count=2)
+    anuncios = Anuncio.objects.ativos(2)
 
     context = {
         'estabelecimentos': query_estabelecimento,
@@ -66,12 +66,14 @@ def busca(request):
         # If page is out of range (e.g. 9999), deliver last page of results.
         query_estabelecimento = paginator.page(paginator.num_pages)
 
+    anuncios = Anuncio.objects.ativos(count=1)
+
     context = {
         'estabelecimentos': query_estabelecimento,
-        'anuncios': Anuncio.objects.ativos(),
         'cidades': cidades,
         'categorias': Categoria.objects.all(),
-        'parametros': parametros
+        'parametros': parametros,
+        'anuncios': anuncios
     }
     return render(request, 'core/resultado_busca.html', context)
 

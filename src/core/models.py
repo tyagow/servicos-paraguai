@@ -143,7 +143,7 @@ class Categoria(MPTTModel):
 
 
 class Anuncio(models.Model):
-    banner = models.ImageField(upload_to=path_and_rename_banner)
+    banner = models.ImageField(upload_to=path_and_rename_banner, help_text='### ATENÇÃO - TAMANHO DA IMAGEM PRECISA SER 585x80 ###')
     url = models.URLField()
     estabelecimento = models.ForeignKey('Estabelecimento', blank=True, null=True)
     ativo = models.BooleanField(default=False)
