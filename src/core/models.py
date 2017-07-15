@@ -37,8 +37,8 @@ class Estabelecimento(models.Model):
     coordenadas = models.CharField('Coordenadas', null=True, blank=True, max_length=40)
     categoria = TreeManyToManyField('Categoria', blank=True, related_name='estabelecimentos')
 
+    search_hits = models.PositiveIntegerField('Total de buscas acessadas', default=1)
     nota = GenericRelation(Rating, related_query_name='estabelecimentos')
-
 
     objects = EstabelecimentoManager()
 
