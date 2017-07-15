@@ -75,12 +75,17 @@ def post_detail(request, slug=None):
             user=request.user,
             content_type=content_type,
             object_id=obj_id,
-            content=content_data,
             # parent=parent_obj,
         )
+        if not created:
+            new_comment.aprovado = False
+        new_comment.content = content_data
+        new_comment.save()
+
         # Redirect for clear form comment ....
         messages.success(request, _("Comentário aguardando aprovação."))
-        return HttpResponseRedirect(new_comment.content_object.get_absolute_url())
+        comment_form = CommentForm(None, initial=initial_data)
+        # return HttpResponseRedirect(new_comment.content_object.get_absolute_url())
 
     comments = instance.comments
     context = {
