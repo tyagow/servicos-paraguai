@@ -15,4 +15,4 @@ class CommentForm(forms.Form):
 
 
 class CommentFormWithRate(CommentForm):
-    nota = forms.IntegerField(widget=forms.HiddenInput)
+    nota = forms.IntegerField(widget=forms.HiddenInput, required=True)

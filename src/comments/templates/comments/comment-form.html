@@ -44,15 +44,14 @@
 
         </div>
     </div>
-
     {{ form.content_type }}
     {{ form.object_id }}
     <div class='form-group'>
         <label>Comentário</label>
         {{ form.content }}
     </div>
-    {{ form.nota }}
-    {#    <input id="id_nota" name="nota" type="hidden" value="1">#}
+{#    {{ form.nota }}#}
+        <input id="id_nota" name="nota" type="hidden" value="1">
     <input type="submit" value="{% trans 'Publicar' %}" class="btn  btn-primary btn-submit-comentario">
 </form>
 <script>
