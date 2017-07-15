@@ -1,11 +1,22 @@
 from decimal import Decimal
+from random import randint
+
 from django.db import models
+from django.db.models import Count
 
 
-class AnuncioManager(models.Manager):
-    def ativos(self, *args, **kwargs):
-        return super(AnuncioManager, self).filter(ativo=True)
+class AnuncioQuerySet(models.QuerySet):
+    def ativos(self, count=None):
+        if not count:
+            return self.filter(ativo=True)
+        if count >= self.count():
+            return self.filter(ativo=True)
 
+        count = self.aggregate(count=Count('id'))['count']
+        random_index = randint(0, count - 1)
+        return self.filter(ativo=True)[random_index:random_index+2]
+
+AnuncioManager = models.Manager.from_queryset(AnuncioQuerySet)
 
 class CategoriaManager(models.Manager):
     def principais(self, *args, **kwargs):
