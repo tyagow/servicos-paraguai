@@ -1,10 +1,34 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>$Title$</title>
-</head>
-<body>
-$END$
-</body>
-</html>
+{% load i18n %}
+<style>
+    #custom_form .star-ratings-rating-full, #custom_form .star-ratings-rating-empty {
+        width: 28px;
+        height: 28px;
+        background: url(/static/star-ratings/images/stars.png) no-repeat;
+        background-size: 84px;
+    }
+
+    #custom_form .star-ratings-rating-empty {
+        background-position: -28px 0;
+    }
+
+
+</style>
+<div id="custom_form" class="star-ratings" data-max-rating="{{ total }}" data-avg-rating="{{ total }}">
+    <div class="star-ratings-rating-stars-container">
+        <ul class="star-ratings-rating-background" >
+                <li><span class="star-ratings-rating-empty"></span></li>
+                <li><span class="star-ratings-rating-empty"></span></li>
+                <li><span class="star-ratings-rating-empty"></span></li>
+                <li><span class="star-ratings-rating-empty"></span></li>
+                <li><span class="star-ratings-rating-empty"></span></li>
+        </ul>
+        <ul class="star-ratings-rating-foreground" >
+            {% for star in "01234" %}
+                {% if forloop.counter0 < total %}
+                    <li><span class="star-ratings-rating-full"></span></li>
+                {% endif %}
+            {% endfor %}
+        </ul>
+
+    </div>
+</div>
