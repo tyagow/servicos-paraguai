@@ -1,3 +1,4 @@
+
 import unicodedata
 
 
@@ -10,7 +11,10 @@ def path_and_rename_fotos(instance, filename):
 
 
 def path_and_rename_banner(instance, filename):
-    return '{}/{}/{}'.format(instance.estabelecimento.slug, 'banner', filename)
+    if instance.estabelecimento:
+        return '{}/{}/{}'.format(instance.estabelecimento.slug, 'banner', filename)
+    else:
+        return '{}/{}/{}'.format('sem-estabelecimento', 'banner', filename)
 
 
 def path_and_rename_categoria(instance, filename):
