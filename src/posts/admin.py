@@ -5,10 +5,10 @@ from src.posts.models import Post
 
 
 class PostModelAdmin(admin.ModelAdmin):
-    list_display = ["title", "updated", "timestamp"]
-    list_filter = ["updated", "timestamp"]
+    list_display = ["title", "type", "updated", "timestamp"]
+    list_filter = ["type", "updated", "timestamp"]
 
-    search_fields = ["title", "content"]
+    search_fields = ["type", "title", "content"]
 
     class Meta:
         model = Post
