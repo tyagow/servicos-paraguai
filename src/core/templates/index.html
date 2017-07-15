@@ -59,39 +59,9 @@
                 <div class="col-md-8">
                     <h3 class="title hasborder">Locais mais <b>buscados</b></h3>
                     <nav class="top-search">
-                        <a href="#">Lorem ipsum dolor sit amet.</a>
-                        <a href="#">Lorem ipsum dolor sit amet.</a>
-                        <a href="#">Lorem ipsum dolor sit amet.</a>
-                        <a href="#">Lorem ipsum dolor sit amet.</a>
-                        <a href="#">Lorem ipsum dolor sit amet.</a>
-                        <a href="#">Lorem ipsum dolor sit amet.</a>
-                        <a href="#">Lorem ipsum dolor sit amet.</a>
-                        <a href="#">Lorem ipsum dolor sit amet.</a>
-                        <a href="#">Lorem ipsum dolor sit amet.</a>
-                        <a href="#">Lorem ipsum dolor sit amet.</a>
-                        <a href="#">Lorem ipsum dolor sit amet.</a>
-                        <a href="#">Lorem ipsum dolor sit amet.</a>
-                        <a href="#">Lorem ipsum dolor sit amet.</a>
-                        <a href="#">Lorem ipsum dolor sit amet.</a>
-                        <a href="#">Lorem ipsum dolor sit amet.</a>
-                        <a href="#">Lorem ipsum dolor sit amet.</a>
-                        <a href="#">Lorem ipsum dolor sit amet.</a>
-                        <a href="#">Lorem ipsum dolor sit amet.</a>
-                        <a href="#">Lorem ipsum dolor sit amet.</a>
-                        <a href="#">Lorem ipsum dolor sit amet.</a>
-                        <a href="#">Lorem ipsum dolor sit amet.</a>
-                        <a href="#">Lorem ipsum dolor sit amet.</a>
-                        <a href="#">Lorem ipsum dolor sit amet.</a>
-                        <a href="#">Lorem ipsum dolor sit amet.</a>
-                        <a href="#">Lorem ipsum dolor sit amet.</a>
-                        <a href="#">Lorem ipsum dolor sit amet.</a>
-                        <a href="#">Lorem ipsum dolor sit amet.</a>
-                        <a href="#">Lorem ipsum dolor sit amet.</a>
-                        <a href="#">Lorem ipsum dolor sit amet.</a>
-                        <a href="#">Lorem ipsum dolor sit amet.</a>
-                        <a href="#">Lorem ipsum dolor sit amet.</a>
-                        <a href="#">Lorem ipsum dolor sit amet.</a>
-                        <a href="#">Lorem ipsum dolor sit amet.</a>
+                        {% for e in mais_buscados %}
+                            <a href="{{ e.get_absolute_url }}">{{ e.nome }}</a>
+                        {% endfor %}
                     </nav>
                 </div>
                 <div class="col-md-4">
@@ -100,50 +70,19 @@
                     </div>
                     <div class="boxed">
                         <ul class="recommend-list">
+                            {% for e in mais_buscados_recomendados %}
                             <li>
-                                <a href="#" class="img">
-                                    <img src="http://placehold.it/94x83" alt="">
+                                <a href="{{ e.get_absolute_url }}" class="img">
+                                    <img src="{{ e.logo.url }}" alt="{{ e.nome }}">
                                 </a>
-                                <a href="#" class="desc">
-                                    <h3>Lorem ipsum dolor sit amet.</h3>
+                                <a href="{{ e.get_absolute_url }}" class="desc">
+                                    <h3>{{ e.nome }}</h3>
                                     <span class="clearfix"></span>
-                                    <h4>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Debitis libero eaque eveniet, a nisi,asd numquam at  quaerat...</h4>
+                                    <h4>{{ e.descricao|truncatechars:60 }}</h4>
                                 </a>
                                 <div class="clearfix"></div>
                             </li>
-                            <li>
-                                <a href="#" class="img">
-                                    <img src="http://placehold.it/94x83" alt="">
-                                </a>
-                                <a href="#" class="desc">
-                                    <h3>Lorem ipsum dolor sit amet.</h3>
-                                    <span class="clearfix"></span>
-                                    <h4>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Debitis libero eaque eveniet, a nisi,asd numquam at  quaerat...</h4>
-                                </a>
-                                <div class="clearfix"></div>
-                            </li>
-                            <li>
-                                <a href="#" class="img">
-                                    <img src="http://placehold.it/94x83" alt="">
-                                </a>
-                                <a href="#" class="desc">
-                                    <h3>Lorem ipsum dolor sit amet.</h3>
-                                    <span class="clearfix"></span>
-                                    <h4>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Debitis libero eaque eveniet, a nisi,asd numquam at  quaerat...</h4>
-                                </a>
-                                <div class="clearfix"></div>
-                            </li>
-                            <li>
-                                <a href="#" class="img">
-                                    <img src="http://placehold.it/94x83" alt="">
-                                </a>
-                                <a href="#" class="desc">
-                                    <h3>Lorem ipsum dolor sit amet.</h3>
-                                    <span class="clearfix"></span>
-                                    <h4>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Debitis libero eaque eveniet, a nisi,asd numquam at  quaerat...</h4>
-                                </a>
-                                <div class="clearfix"></div>
-                            </li>
+                            {% endfor %}
                         </ul>
                     </div>
                 </div>
