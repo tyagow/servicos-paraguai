@@ -22,8 +22,10 @@ def home(request):
 
     noticias = Post.objects.noticias().principais()
 
-    recomendados = Estabelecimento.objects.recomendados()
+    recomendados = Estabelecimento.objects.recomendados(12)
 
+    mais_buscados = Estabelecimento.objects.mais_buscados(32)
+    mais_buscados_recomendados = Estabelecimento.objects.mais_buscados().recomendados(8)
     anuncios = Anuncio.objects.ativos(2)
 
     context = {
@@ -31,6 +33,8 @@ def home(request):
         'noticias': noticias,
         'recomendados': recomendados,
         'anuncios': anuncios,
+        'mais_buscados': mais_buscados,
+        'mais_buscados_recomendados': mais_buscados_recomendados,
     }
     return render(request, 'index.html', context)
 
@@ -80,6 +84,13 @@ def busca(request):
 
 def estabelecimento_detail(request, slug):
     instance = get_object_or_404(Estabelecimento, slug=slug)
+    log = request.GET.get('searchlog')
+    if log:
+        total_hits = instance.search_hits
+        instance.search_hits = total_hits + 1
+        instance.save()
+        return HttpResponseRedirect(instance.get_absolute_url())
+
     template_to_render = 'core/estabelecimento_detail.html'
     if instance.is_hotel:
         template_to_render = 'core/hotel_detail.html'
