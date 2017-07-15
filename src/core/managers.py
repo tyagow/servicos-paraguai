@@ -7,14 +7,25 @@ from django.db.models import Count
 
 class AnuncioQuerySet(models.QuerySet):
     def ativos(self, count=None):
-        if not count or count > self.count():
+        total = self.count()
+        if not count:
             return self.filter(ativo=True)
+        elif count > total:
+            dif = count - total
+            principais = list(self.all())
+            index = self.aggregate(count=Count('id'))['count']
+            while dif > 0:
+                random_index = randint(0, index - 1)
+                principais.append(self.all()[random_index])
+                dif -= 1
+            return principais
         else:
             index = self.aggregate(count=Count('id'))['count']
             random_index = randint(0, index - 1)
             if random_index + count >= index:
                 random_index = index - count
             return self.filter(ativo=True)[random_index:random_index+count]
+
 
 AnuncioManager = models.Manager.from_queryset(AnuncioQuerySet)
 
