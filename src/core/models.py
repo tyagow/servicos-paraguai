@@ -152,7 +152,10 @@ class Anuncio(models.Model):
     objects = AnuncioManager()
 
     def __str__(self):
-        return self.estabelecimento.nome
+        if self.estabelecimento:
+            return self.estabelecimento.nome
+        else:
+            return self.url
 
 
 class Caracteristica(models.Model):
