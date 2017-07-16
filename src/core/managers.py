@@ -66,6 +66,8 @@ class EstabelecimentoQuerySet(models.QuerySet):
 
     def recomendados(self, count=None):
         total = self.count()
+        if total == 0:
+            return None
         if not count:
             return self.filter(recomendado=True)
         elif count > total:
