@@ -88,6 +88,8 @@ class EstabelecimentoQuerySet(models.QuerySet):
 
     def mais_buscados(self, count=None):
         total = self.count()
+        if total == 0:
+            return []
         self = self.order_by('-search_hits')
         if not count:
             return self.all()
