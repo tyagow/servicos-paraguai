@@ -5,8 +5,6 @@ from django.contrib.auth import (
 )
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.views import deprecate_current_app
-from django.core.paginator import EmptyPage, Paginator
-from django.core.paginator import PageNotAnInteger
 from django.http import HttpResponseRedirect
 from django.shortcuts import redirect, resolve_url
 from django.template.response import TemplateResponse
@@ -17,11 +15,10 @@ from django.views.decorators.csrf import csrf_protect
 from django.views.decorators.debug import sensitive_post_parameters
 from django.views.generic import DetailView
 from django.views.generic import UpdateView
-from registration.backends.simple.views import RegistrationView
 
+from src.accounts.forms import UserLoginForm
 from src.accounts.mixins import UserPassesTestMixin
 from src.accounts.models import Profile
-from .forms import UserLoginForm, UserRegisterForm
 
 
 def logout_view(request):
@@ -43,10 +40,10 @@ class UserProfileDetail(UserPassesTestMixin, DetailView):
     model = Profile
 
 
-class MyRegistrationView(RegistrationView):
-
-    form_class = UserRegisterForm
-    success_url = '/'
+# class MyRegistrationView(RegistrationView):
+#
+#     form_class = UserRegisterForm
+#     success_url = '/'
 
 
 def _get_login_redirect_url(request, redirect_to):

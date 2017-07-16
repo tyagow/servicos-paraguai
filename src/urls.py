@@ -16,9 +16,7 @@ Including another URLconf
 from django.conf.urls import url, include
 from django.contrib import admin
 
-from src.accounts.views import UserProfileUpdate, UserProfileDetail, profile, MyRegistrationView, login
 from src.core.views import home, estabelecimento_detail, categoria_detail, categorias, busca
-from django.contrib.auth import views as auth_views
 
 
 urlpatterns = [

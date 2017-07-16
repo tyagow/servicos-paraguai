@@ -22,7 +22,7 @@ class UserAdmin(BaseUserAdmin):
 class ProfileForm(forms.ModelForm):
     class Meta:
         model = Profile
-        fields = ['user', 'status']
+        fields = ['user']
 
     def __init__(self, *args, **kwargs):
         super(ProfileForm, self).__init__(*args, **kwargs)
@@ -34,9 +34,7 @@ class ProfileForm(forms.ModelForm):
 
 class ProfileAdmin(admin.ModelAdmin):
     form = ProfileForm
-    list_display = ['user', 'status', 'email']
-    list_filter = ['status']
-    ordering = ['status']
+    list_display = ['user', 'email']
 
     def email(self, obj):
         return obj.user.email if obj.user.email else 'Não Cadastrado'
