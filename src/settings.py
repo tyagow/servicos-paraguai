@@ -69,7 +69,7 @@ INSTALLED_APPS = [
     'pagedown',
     'markdown_deux',
     'bootstrap3',
-    'registration',
+    # 'registration',
     'social_django',
 
     #translation no admin preci vir antes do contrib.admin
