@@ -13,14 +13,18 @@ from django.utils.translation import ugettext_lazy as _
 class Profile(models.Model):
 
     user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
-    slug = models.SlugField(unique=True, null=True)
-    avatar = models.URLField(null=True)
+    slug = models.SlugField(unique=True, blank=True)
+    avatar = models.URLField(blank=True)
 
     def __str__(self):
         return self.user.username
 
     def get_absolute_url(self):
         return reverse('user_profile',  kwargs={"slug": self.slug})
+
+    @property
+    def avatar_normal(self):
+        return str(self.avatar).replace('large', 'normal')
 
 
 def create_slug(instance, new_slug=None):

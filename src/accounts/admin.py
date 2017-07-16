@@ -18,23 +18,26 @@ class UserAdmin(BaseUserAdmin):
 # admin.site.unregister(User)
 # admin.site.register(User, UserAdmin)
 
-
-class ProfileForm(forms.ModelForm):
-    class Meta:
-        model = Profile
-        fields = ['user']
-
-    def __init__(self, *args, **kwargs):
-        super(ProfileForm, self).__init__(*args, **kwargs)
-
-    def save(self, *args, **kwargs):
-        instance = super(ProfileForm, self).save()
-        return instance
+#
+# class ProfileForm(forms.ModelForm):
+#     class Meta:
+#         model = Profile
+#         fields = ['user', 'user.email', 'avatar']
+#
+#     def __init__(self, *args, **kwargs):
+#         super(ProfileForm, self).__init__(*args, **kwargs)
+#
+#     def save(self, *args, **kwargs):
+#         instance = super(ProfileForm, self).save()
+#         return instance
 
 
 class ProfileAdmin(admin.ModelAdmin):
-    form = ProfileForm
+    # form = ProfileForm
     list_display = ['user', 'email', 'avatar']
+
+    class Meta:
+        fields = ['user', 'email', 'avatar']
 
     def email(self, obj):
         return obj.user.email if obj.user.email else 'Não Cadastrado'
