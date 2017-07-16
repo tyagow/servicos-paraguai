@@ -67,7 +67,7 @@ class EstabelecimentoQuerySet(models.QuerySet):
     def recomendados(self, count=None):
         total = self.count()
         if total == 0:
-            return None
+            return self
         if not count:
             return self.filter(recomendado=True)
         elif count > total:
@@ -89,7 +89,7 @@ class EstabelecimentoQuerySet(models.QuerySet):
     def mais_buscados(self, count=None):
         total = self.count()
         if total == 0:
-            return []
+            return self
         self = self.order_by('-search_hits')
         if not count:
             return self.all()
