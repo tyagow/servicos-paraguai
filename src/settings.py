@@ -55,7 +55,7 @@ INSTALLED_APPS = [
     'src.comments',
     'src.tickets',
     'src.posts',
-    # 'src.accounts',
+    'src.accounts',
 
     #external apps
     'test_without_migrations',
@@ -241,4 +241,5 @@ SOCIAL_AUTH_PIPELINE = (
     'social_core.pipeline.social_auth.associate_user',
     'social_core.pipeline.social_auth.load_extra_data',
     'social_core.pipeline.user.user_details',
+    'src.core.pipeline',
 )

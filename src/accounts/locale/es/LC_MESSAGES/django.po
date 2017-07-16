@@ -1,0 +1,71 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-03-30 11:51-0300\n"
+"PO-Revision-Date: 2017-03-11 14:09-0300\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: en\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 1.8.12\n"
+
+#: forms.py:21 forms.py:34
+msgid "Usuário"
+msgstr "Usuario"
+
+#: forms.py:26 forms.py:45
+msgid "Senha"
+msgstr "Contraseña"
+
+#: forms.py:36
+msgid "Crie um nome de usuário"
+msgstr "Crear un nombre de usuario"
+
+#: forms.py:39
+msgid "Formato invalido de usuário, utilize: nome_sobrenome, nome.sobrenome e não utilize espaços."
+msgstr "Formato de usuario no válido, utilice: nombre_apellido, nombre.apellido y no utilice espacios."
+
+#: forms.py:43
+msgid "Confirme o email"
+msgstr "Confirma su correo electrónico"
+
+#: forms.py:50
+msgid "Confirme senha"
+msgstr "Confirma su contraseña"
+
+#: forms.py:72
+msgid "Emails precisam ser identicos"
+msgstr "correos electrónicos tienen que ser idénticos"
+
+#: models.py:18
+msgid "Cliente"
+msgstr "Cliente"
+
+#: models.py:19
+msgid "Usuário aguardando autorização para responder como Empresa"
+msgstr "El usuario espera autorización para responder como Empresa"
+
+#: models.py:20
+msgid "Representante de empresa autorizado"
+msgstr "Representante de empresa autorizado"
+
+#~ msgid ""
+#~ "Por favor entre o correto usuario e senha, cuidado com letras maiuculas."
+#~ msgstr ""
+#~ "Por favor, entre el correcto usuario y contraseña, tenga cuidado con las "
+#~ "mayúsculas"
+
+#~ msgid "Esta conta não está ativa!"
+#~ msgstr "¡Esta cuenta no está activa!"
+
+#~ msgid "Escreva a mesma senha do campo acima."
+#~ msgstr "Escriba el mismo campo de la contraseña anterior."
