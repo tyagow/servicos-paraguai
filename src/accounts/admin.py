@@ -34,7 +34,7 @@ class ProfileForm(forms.ModelForm):
 
 class ProfileAdmin(admin.ModelAdmin):
     form = ProfileForm
-    list_display = ['user', 'email']
+    list_display = ['user', 'email', 'avatar']
 
     def email(self, obj):
         return obj.user.email if obj.user.email else 'Não Cadastrado'

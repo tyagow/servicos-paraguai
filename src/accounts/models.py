@@ -34,12 +34,11 @@ def create_slug(instance, new_slug=None):
         return create_slug(instance, new_slug=new_slug)
     return slug
 
-#
-# @receiver(post_save, sender=User)
-# def create_user_profile(sender, instance, created, **kwargs):
-#     if created:
-#         profile = Profile.objects.create(user=instance)
-#         profile.slug = create_slug(instance)
-#     profile.save()
+
+@receiver(post_save, sender=User)
+def create_user_profile(sender, instance, created, **kwargs):
+    if created:
+        profile = Profile.objects.create(user=instance)
+        profile.save()
 
 
