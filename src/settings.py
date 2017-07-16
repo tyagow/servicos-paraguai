@@ -194,7 +194,7 @@ AWS_DEFAULT_ACL = ''
 # This is used by the `static` template tag from `static`, if you're using that. Or if anything else
 # refers directly to STATIC_URL. So it's safest to always set it.
 
-if DEBUG:
+if DEBUG and not PRODUCAO:
     STATIC_URL = '/static/'
     STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
     MEDIA_URL = '/media/'
