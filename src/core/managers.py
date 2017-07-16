@@ -8,6 +8,8 @@ from django.db.models import Count
 class AnuncioQuerySet(models.QuerySet):
     def ativos(self, count=None):
         total = self.count()
+        if total == 0:
+            return self
         if not count:
             return self.filter(ativo=True)
         elif count > total:
