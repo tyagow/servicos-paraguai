@@ -160,10 +160,10 @@ USE_TZ = True
 
 STAGE = config('STAGE', default=False)
 
-if not DEBUG and not STAGE:
-    PREPEND_WWW = True
-else:
-    PREPEND_WWW = False
+# if not DEBUG and not STAGE:
+#     PREPEND_WWW = True
+# else:
+#     PREPEND_WWW = False
 
 
 # Static files (CSS, JavaScript, Images)
