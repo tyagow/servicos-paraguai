@@ -16,7 +16,10 @@ Including another URLconf
 from django.conf.urls import url, include
 from django.contrib import admin
 
+from src.accounts.views import UserProfileUpdate, UserProfileDetail, profile, MyRegistrationView, login
 from src.core.views import home, estabelecimento_detail, categoria_detail, categorias, busca
+from django.contrib.auth import views as auth_views
+
 
 urlpatterns = [
     url(r'^i18n/', include('django.conf.urls.i18n'))
@@ -33,5 +36,34 @@ urlpatterns += [
     url(r'^tickets/', include('src.tickets.urls', namespace='tickets')),
     url(r'^noticia/', include('src.posts.urls', namespace='noticias')),
     url(r'^ratings/', include('star_ratings.urls', namespace='ratings', app_name='ratings')),
+
+    # url(r'^password/change/$',
+    #     auth_views.password_change,
+    #     name='password_change'),
+    # url(r'^password/change/done/$',
+    #     auth_views.password_change_done,
+    #     name='password_change_done'),
+    # url(r'^password/reset/$',
+    #     auth_views.password_reset,
+    #     name='password_reset'),
+    # url(r'^password/reset/done/$',
+    #     auth_views.password_reset_done,
+    #     name='password_reset_done'),
+    # url(r'^password/reset/complete/$',
+    #     auth_views.password_reset_complete,
+    #     name='password_reset_complete'),
+    # url(r'^password/reset/confirm/(?P<uidb64>[0-9A-Za-z]+)-(?P<token>.+)/$',
+    #     auth_views.password_reset_confirm,
+    #     name='password_reset_confirm'),
+    # url(r'^accounts/profile/(?P<pk>[0-9]+)/update/$', UserProfileUpdate.as_view(), name='user_profile_update'),
+    # url(r'^accounts/profile/(?P<slug>[\w-]+)/$', UserProfileDetail.as_view(), name='user_profile'),
+    # url(r'^accounts/profile/$', profile, name='my_user_profile'),
+    # url(r'^accounts/register/$', MyRegistrationView.as_view(), name='registration_register'),
+    # url(r'^accounts/login/$', login, name='auth_login'),
+    # url(r'^accounts/', include('registration.backends.simple.urls')),
+    url(r'^oauth/', include('social_django.urls', namespace='social')),  # <--
+
+
     url(r'^admin/', admin.site.urls),
+
 ]

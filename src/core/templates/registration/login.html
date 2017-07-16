@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% load bootstrap3 %}
+{% block content %}
+    <div class="container">
+        <div class="col-md-6 col-md-offset-3 col-sm-8">
+            <h2>Login</h2>
+            <form method="post">
+                {% csrf_token %}
+                {% bootstrap_form form layout="vertical" %}
+                <button type="submit" class="btn btn-success">Login</button>
+            </form>
+{#            <br>#}
+{#            <p><strong> Ou </strong></p>#}
+{#            <a href="{% url 'social:begin' 'twitter' %}">Logar com Twitter</a><br>#}
+{#            <a href="{% url 'social:begin' 'facebook' %}">Logar com Facebook</a>#}
+        </div>
+    </div>
+{% endblock %}

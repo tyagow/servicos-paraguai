@@ -558,3 +558,11 @@ hr{
 	border-top:1px solid #111; 
 	margin-top:20px;
 }
+
+/*Facebook*/
+
+.btn-fb {
+    background: url('../img/facebook-icon.jpg') center!important;
+    width: 100px;
+    height: 28px;
+}

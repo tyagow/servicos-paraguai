@@ -55,6 +55,7 @@ INSTALLED_APPS = [
     'src.comments',
     'src.tickets',
     'src.posts',
+    'src.accounts',
 
     #external apps
     'test_without_migrations',
@@ -68,6 +69,8 @@ INSTALLED_APPS = [
     'pagedown',
     'markdown_deux',
     'bootstrap3',
+    'registration',
+    'social_django',
 
     #translation no admin preci vir antes do contrib.admin
     'django.contrib.admin',
@@ -83,6 +86,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'django.middleware.locale.LocaleMiddleware',
+    'social_django.middleware.SocialAuthExceptionMiddleware',  # <--
 ]
 
 ROOT_URLCONF = 'src.urls'
@@ -99,6 +104,8 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
                 'django.template.context_processors.i18n',
+                'social_django.context_processors.backends',  # <--
+                'social_django.context_processors.login_redirect',  # <--
 
             ],
         },
@@ -151,6 +158,14 @@ USE_L10N = True
 USE_TZ = True
 
 
+STAGE = config('STAGE', default=False)
+
+if not DEBUG and not STAGE:
+    PREPEND_WWW = True
+else:
+    PREPEND_WWW = False
+
+
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.10/howto/static-files/
 
@@ -199,3 +214,31 @@ STAR_RATINGS_STAR_WIDTH = 32
 
 # Paginator
 ESTABELECIMENTOS_POR_PAGINA = 6
+
+
+AUTHENTICATION_BACKENDS = (
+    'social_core.backends.facebook.FacebookOAuth2',
+    'django.contrib.auth.backends.ModelBackend',
+)
+
+SOCIAL_AUTH_FACEBOOK_KEY = config('SOCIAL_AUTH_FACEBOOK_KEY')  # App ID
+SOCIAL_AUTH_FACEBOOK_SECRET = config('SOCIAL_AUTH_FACEBOOK_SECRET')  # App Secret
+LOGIN_REDIRECT_URL = 'core:home'
+
+SOCIAL_AUTH_FACEBOOK_SCOPE = ['email']
+SOCIAL_AUTH_FACEBOOK_PROFILE_EXTRA_PARAMS = {
+    'fields': 'id,name,email',
+}
+
+SOCIAL_AUTH_PIPELINE = (
+    'social_core.pipeline.social_auth.social_details',
+    'social_core.pipeline.social_auth.social_uid',
+    'social_core.pipeline.social_auth.auth_allowed',
+    'social_core.pipeline.social_auth.social_user',
+    'social_core.pipeline.user.get_username',
+    'social_core.pipeline.social_auth.associate_by_email',  # <--- enable this one
+    'social_core.pipeline.user.create_user',
+    'social_core.pipeline.social_auth.associate_user',
+    'social_core.pipeline.social_auth.load_extra_data',
+    'social_core.pipeline.user.user_details',
+)
