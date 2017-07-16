@@ -7,7 +7,7 @@ def get_avatar(backend, strategy, details, response,
     if backend.name == 'facebook':
         url = "http://graph.facebook.com/%s/picture?type=large" % response['id']
     if url:
-        if not user.profile:
+        if not hasattr(user, 'profile'):
             Profile.objects.create(user=user, avatar=url)
         user.profile.avatar = url
         user.save()
