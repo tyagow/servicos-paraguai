@@ -8,6 +8,7 @@
 {% block content %}
     <div class="text-center">
     </div>
+
     <main class="main">
         <div class="info">
             <div class="container">
@@ -79,7 +80,7 @@
                                     <a href="{{ e.get_absolute_url }}" class="desc">
                                         <h3>{{ e.nome }}</h3>
                                         <span class="clearfix"></span>
-                                        <h4>{{ e.descricao|truncatechars:60 }}</h4>
+                                        <h4>{{ e.descricao|truncatechars_html:60 }}</h4>
                                     </a>
                                     <div class="clearfix"></div>
                                 </li>
@@ -114,10 +115,10 @@
                 <div class="row">
                     {% for post in lazer %}
                         <div class="col-md-3">
-                            <img src="0{{ post.image.url }}" width="100%" alt="">
+                            <img src="{{ post.image.url }}" width="100%" alt="">
                             <p class="title">{{ post.title }}</p>
                             <p class="desc">
-                                {{ post.descricao }}
+                                {{ post.get_markdown|truncatechars_html:120 }}
                             </p>
                             <a href="{{ post.get_absolute_url }}" class="btn pull-right">Leia mais</a>
                         </div>
