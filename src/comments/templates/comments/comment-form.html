@@ -50,7 +50,9 @@
 
                 </div>
             </div>
-            <img src="{{ request.user.profile.avatar_normal }}" alt="">
+            {% if request.user.profile.avatar_normal %}
+                <img src="{{ request.user.profile.avatar_normal }}" alt="">
+            {% endif %}
         </div>
         <div class="col-sm-10">
 
