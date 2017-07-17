@@ -3,17 +3,17 @@ from django.contrib.contenttypes.fields import GenericRelation
 from django.contrib.contenttypes.models import ContentType
 from django.db import models
 from django.shortcuts import resolve_url as r
+from django.utils.translation import ugettext as _
 from imagekit.models import ImageSpecField
 from mptt.fields import TreeManyToManyField
 from mptt.models import MPTTModel, TreeForeignKey
 from pilkit.processors import ResizeToFit
-from star_ratings.models import Rating
+from star_ratings.models import Rating, UserRating
 
 from src.comments.models import Comment
-from src.core.managers import  AnuncioManager, EstabelecimentoManager
+from src.core.managers import AnuncioManager, EstabelecimentoManager
 from src.core.utils import path_and_rename_logo, path_and_rename_fotos, path_and_rename_categoria, \
     path_and_rename_banner
-from django.utils.translation import ugettext as _
 
 
 class Estabelecimento(models.Model):
@@ -49,6 +49,9 @@ class Estabelecimento(models.Model):
 
     def __str__(self):
         return self.nome
+
+    def get_average_rate(self):
+        return Rating.objects.for_instance(self).average
 
     def get_coordenadas(self):
         if self.coordenadas:

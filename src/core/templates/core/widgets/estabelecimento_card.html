@@ -11,7 +11,7 @@
             </div>
         </a>
         <div class="caption">
-            {% ratings e %}
+            {% include 'core/widgets/star.html' with total=e.get_average_rate %}
                         <div class="clearfix"></div>
 
         </div>

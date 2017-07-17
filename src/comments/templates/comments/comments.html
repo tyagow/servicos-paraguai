@@ -18,7 +18,7 @@
             <div class="body-comentarios">
                 <h3>Comentários</h3>
                 <hr>
-                {% include 'comments/star.html' with total=comment.get_rate %}
+                {% include 'core/widgets/star.html' with total=comment.get_rate %}
                 <div class="comments-list">
                     <p>{{ comment.content }}</p>
                     <small> {% trans 'por' %} {{ comment.user }}</small>
