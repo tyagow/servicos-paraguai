@@ -22,3 +22,4 @@ django-markdown-deux
 django-bootstrap3
 social-auth-app-django
 requests
+sparkpost
