@@ -1,9 +1,10 @@
 {% load i18n %}
+{% load static %}
 <style>
     #custom_form .star-ratings-rating-full, #custom_form .star-ratings-rating-empty {
         width: 28px;
         height: 28px;
-        background: url(/static/star-ratings/images/stars.png) no-repeat;
+        background: url({% static 'star-ratings/images/stars.png' %}) no-repeat;
         background-size: 84px;
     }
 

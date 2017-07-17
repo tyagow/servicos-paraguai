@@ -1,10 +1,11 @@
 {% load i18n %}
+{% load static %}
 {% if request.user.is_authenticated %}
     <style>
         #estrela_form .star-ratings-rating-full, #estrela_form .star-ratings-rating-empty {
             width: 28px;
             height: 28px;
-            background: url(/static/star-ratings/images/stars.png) no-repeat;
+            background: url({% static 'star-ratings/images/stars.png' %}) no-repeat;
             background-size: 84px;
         }
 
