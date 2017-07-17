@@ -14,7 +14,7 @@ class Profile(models.Model):
 
     user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     slug = models.SlugField(unique=True, blank=True)
-    avatar = models.URLField(blank=True)
+    avatar = models.URLField(blank=True, null=True)
 
     def __str__(self):
         return self.user.username
