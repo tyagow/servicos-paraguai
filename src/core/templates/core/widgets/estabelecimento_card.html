@@ -10,7 +10,7 @@
                     {{ e.nome }}
                 </div>
                 {% include 'core/widgets/star.html' with total=e.get_average_rate %}
-                <span>{{ e.descricao }}</span>
+                <span>{{ e.descricao|truncatechars_html:120 }}... Saiba Mais</span>
                 <div class="clearfix"></div>
                 
             </div>

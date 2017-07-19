@@ -266,7 +266,7 @@
 	font-size: 16px;
 	display: block;
 	transition: 0.4s;
-	height: 80px;
+	height: 90px;
 	overflow: hidden;
 
 }
@@ -286,7 +286,7 @@
 	background: #000;
 	color: #fff;
 	padding: 15px;
-	height: 230px;
+	height: 180px;
 	overflow: hidden;
 
 }
@@ -296,6 +296,7 @@
 
 .main .top-search a{
 	display: inline-block;
+	width: 180px;
 	background: url('../img/sprite.png') no-repeat;
 	background-position: 0 -114px;
 	padding-left: 18px;
