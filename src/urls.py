@@ -33,6 +33,7 @@ urlpatterns += [
     url(r'^api/', include('src.api.urls', namespace='api')),
     url(r'^tickets/', include('src.tickets.urls', namespace='tickets')),
     url(r'^noticia/', include('src.posts.urls', namespace='noticias')),
+    url(r'^newsletters/', include('src.newsletters.urls', namespace='newsletters')),
     url(r'^ratings/', include('star_ratings.urls', namespace='ratings', app_name='ratings')),
 
     # url(r'^password/change/$',

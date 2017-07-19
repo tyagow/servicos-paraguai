@@ -56,6 +56,7 @@ INSTALLED_APPS = [
     'src.tickets',
     'src.posts',
     'src.accounts',
+    'src.newsletters',
 
     #external apps
     'test_without_migrations',
