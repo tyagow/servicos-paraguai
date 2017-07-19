@@ -9,9 +9,18 @@ class EnvioNewsLetter(models.Model):
     timestamp = models.DateTimeField('Criado em', auto_now_add=True)
     response = models.CharField('Response Spark', max_length=200)
 
-    def __unicode__(self):
+    def __str__(self):
         return self.campanha
 
     class Meta:
         verbose_name = u'Envio de Newsletter'        
         verbose_name_plural = u'Envio de Newsletters'
+
+
+class CadastroNewsLetter(models.Model):
+    email = models.CharField('Email', max_length=120)
+    timestamp = models.DateTimeField('Criado em', auto_now_add=True)
+    ativo = models.BooleanField('Ativo', default=True)
+
+    def __str__(self):
+        return self.email

@@ -1,7 +1,7 @@
 from django import forms
 
-from src.newsletter.models import EnvioNewsLetter
-from src.newsletter.utils import get_sparkpost_template_list, get_sparkpost_recipients_list
+from src.newsletters.models import EnvioNewsLetter, CadastroNewsLetter
+from src.newsletters.utils import get_sparkpost_template_list, get_sparkpost_recipients_list
 
 
 class NewsletterModelForm(forms.ModelForm):
@@ -13,3 +13,8 @@ class NewsletterModelForm(forms.ModelForm):
         super(NewsletterModelForm, self).__init__(*args, **kwargs)
         self.fields['template'] = forms.ChoiceField(choices=[(o['id'], o['name']) for o in get_sparkpost_template_list()])
         self.fields['recipients'] = forms.ChoiceField(choices=[(o['id'], o['name']) for o in get_sparkpost_recipients_list()])
+
+
+class CadastroNewsLetterForm(forms.ModelForm):
+    class Meta:
+        model = CadastroNewsLetter

@@ -28,10 +28,10 @@
             </div>
             <div class="clearfix"></div>
             <div class="newsletter">
-                <form id='mainSearch'>
+                <form id='mainSearch' action="{% url 'newsletters:create' %}">
                 <button type="submit">Cadastrar</button>
                     <span>
-                        <input type="search" placeholder="Cadastre-se e receba tudo sobre o Paraguai e Região" name="term">        
+                        <input type="search" placeholder="Cadastre-se e receba tudo sobre o Paraguai e Região" name="email">
                     </span>
                 </form>
 

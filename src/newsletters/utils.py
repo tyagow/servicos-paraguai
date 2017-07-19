@@ -31,7 +31,7 @@ def enviar_sparkpost(newsletter):
         newsletter.enviado = True
         newsletter.response = response
         newsletter.save()
-        print (str(newsletter) + ' - enviado.')
+        print(str(newsletter) + ' - enviado.')
     except SparkPostAPIException as err:
         print(err.status)
         print(err.response.json())

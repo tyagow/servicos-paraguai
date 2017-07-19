@@ -1,8 +1,8 @@
 from django.contrib import admin
 
-from src.newsletter.forms import NewsletterModelForm
-from src.newsletter.models import EnvioNewsLetter
-from src.newsletter.utils import enviar_sparkpost
+from src.newsletters.forms import NewsletterModelForm
+from src.newsletters.models import EnvioNewsLetter
+from src.newsletters.utils import enviar_sparkpost
 
 
 def enviar_newsletter_pendentes(modeladmin, request, queryset):
@@ -13,7 +13,7 @@ enviar_newsletter_pendentes.short_description = 'Enviar Newsletter selecionada'
 
 
 class EnvioNewsLetterAdmin(admin.ModelAdmin):
-    list_display = ['__unicode__', 'enviado', 'template', 'recipients', 'timestamp',]
+    list_display = ['__str__', 'enviado', 'template', 'recipients', 'timestamp',]
     actions = [enviar_newsletter_pendentes]
     form = NewsletterModelForm
     readonly_fields = ('response', 'enviado')
