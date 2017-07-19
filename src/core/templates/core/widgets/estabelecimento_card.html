@@ -6,15 +6,14 @@
                 {% if e.logo %}<img src="{{ e.logo.url }}" class="photo center" alt="">{% endif %}
             </div>
             <div class="caption">
-                {{ e.nome }}
+                <div class="name">
+                    {{ e.nome }}
+                </div>
+                {% include 'core/widgets/star.html' with total=e.get_average_rate %}
                 <span>{{ e.descricao }}</span>
+                <div class="clearfix"></div>
+                
             </div>
         </a>
-        <div class="caption">
-            {% include 'core/widgets/star.html' with total=e.get_average_rate %}
-
-                        <div class="clearfix"></div>
-
-        </div>
     </div>
 {% endfor %}

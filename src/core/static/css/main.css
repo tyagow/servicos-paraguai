@@ -266,22 +266,27 @@
 	font-size: 16px;
 	display: block;
 	transition: 0.4s;
-	height: 50px;
+	height: 80px;
 	overflow: hidden;
 
 }
+.main .places .itens .item a .caption .name{
+	margin: 0 0 10px 0;
+
+}
 .main .places .itens .item a .caption span{
+	
 	font-size: 12px;
 	display: block;
 	font-weight: normal;
-	margin: -3px 0;
+	margin: 5px 0;
 }
 
 .main .places .itens .item a:hover .caption{
 	background: #000;
 	color: #fff;
 	padding: 15px;
-	height: 180px;
+	height: 230px;
 	overflow: hidden;
 
 }
