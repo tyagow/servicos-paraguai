@@ -15,10 +15,12 @@ STATUS_CHOICES = getattr(settings, 'TICKETS_STATUS_CHOICES', (
 
 TIPO_CHOICES = getattr(settings, 'TICKETS_TIPO_CHOICES', (
     (0, _("Tornar-se Anunciante")),
+    (1, _("Cadastrar Empresa")),
+
 ))
 
 TORNAR_ANUNCIANTE = 0
-
+CADASTRAR_EMPRESA = 1
 
 class TicketManager(models.Manager):
     def anunciante(self, nome, email, _descricao, user=None):
@@ -29,6 +31,21 @@ class TicketManager(models.Manager):
             titulo=titulo,
             descricao=descricao,
             tipo=TORNAR_ANUNCIANTE
+        )
+        ticket.save()
+        return ticket
+
+    def cadastro_empresa(self, empresa, email, descricao, user):
+        titulo = '{} - {}'.format(TIPO_CHOICES[0][1], email)
+        if not descricao:
+            descricao = _('O usuário {usr} solicitou o cadastro da empresa {emp}.').format(usr=user, emp=empresa)
+        else:
+            descricao.prepend('O usuário {usr} solicitou o cadastro da empresa {emp}.'.format(usr=user, emp=empresa))
+        ticket = Ticket(
+            criador=user,
+            titulo=titulo,
+            descricao=descricao,
+            tipo=CADASTRAR_EMPRESA
         )
         ticket.save()
         return ticket
