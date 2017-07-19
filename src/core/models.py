@@ -28,7 +28,7 @@ class Estabelecimento(models.Model):
     recomendado = models.BooleanField(default=False, blank=True)
     website = models.URLField()
     slug = models.SlugField(unique=True)
-    logo = models.ImageField(upload_to=path_and_rename_logo, null=True)
+    logo = models.ImageField(upload_to=path_and_rename_logo, null=True, help_text='### ATENÇÃO - TAMANHO DA IMAGEM PRECISA SER 310x294 ###')
     descricao = models.TextField()
     endereco = models.CharField(max_length=60)
     cidade = models.CharField(max_length=1, choices=CIDADES)
@@ -112,7 +112,7 @@ class Telefone(models.Model):
 
 class Foto(models.Model):
     estabelecimento = models.ForeignKey('Estabelecimento')
-    foto = models.ImageField(upload_to=path_and_rename_fotos, null=True, blank=True)
+    foto = models.ImageField(upload_to=path_and_rename_fotos, null=True, blank=True, help_text='### ATENÇÃO - TAMANHO DA IMAGEM PRECISA SER 800x800 ###')
 
     def __str__(self):
         return self.foto.name

@@ -76,7 +76,8 @@ class Post(models.Model):
     slug = models.SlugField(unique=True)
     image = models.ImageField(upload_to=upload_location,
                               null=True,
-                              blank=True
+                              blank=True,
+                              help_text='### ATENÇÃO - TAMANHO DA IMAGEM PRECISA SER 555x235 NOTICIA OU 265x360 PARA LAZER / TURISMO ###'
                               )
     content = models.TextField()
     draft = models.BooleanField(default=False)
