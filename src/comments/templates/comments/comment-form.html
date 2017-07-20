@@ -52,6 +52,8 @@
             </div>
             {% if request.user.profile.avatar_normal %}
                 <img src="{{ request.user.profile.avatar_normal }}" alt="">
+            {% else %}
+                <img src="{% static 'img/avatar-holder.png' %}" alt="">
             {% endif %}
         </div>
         <div class="col-sm-10">

@@ -25,8 +25,12 @@ class Profile(models.Model):
     @property
     def avatar_normal(self):
         if not self.avatar:
-            self.avatar = "http://graph.facebook.com/%s/picture?type=large".format(self.user.social_auth.first().uid)
-            self.save()
+            if self.user.social_auth.first():
+                self.avatar = "http://graph.facebook.com/%s/picture?type=large".format(self.user.social_auth.first().uid)
+                self.save()
+            else:
+                return ''
+
         return str(self.avatar).replace('large', 'normal')
 
 
