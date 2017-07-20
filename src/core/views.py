@@ -29,6 +29,8 @@ def home(request):
     mais_buscados_recomendados = Estabelecimento.objects.mais_buscados().recomendados(8)
     anuncios = Anuncio.objects.ativos(2)
 
+    categorias = Categoria.objects.recomendadas(6)
+
     context = {
         'estabelecimentos': query_estabelecimento,
         'noticias': noticias,
@@ -37,6 +39,7 @@ def home(request):
         'anuncios': anuncios,
         'mais_buscados': mais_buscados,
         'mais_buscados_recomendados': mais_buscados_recomendados,
+        'categorias': categorias
     }
     return render(request, 'index.html', context)
 
@@ -163,7 +166,27 @@ def estabelecimento_detail(request, slug):
 
 def categoria_detail(request, slug):
     categoria = Categoria.objects.get(slug=slug)
-    return render(request, 'core/categoria_detail.html', {'categoria': categoria})
+    query_estabelecimento = Estabelecimento.objects.busca(categoria=categoria.nome)
+
+    paginator = Paginator(query_estabelecimento, settings.ESTABELECIMENTOS_POR_PAGINA)
+    page = request.GET.get('page')
+    try:
+        query_estabelecimento = paginator.page(page)
+    except PageNotAnInteger:
+        # If page is not an integer, deliver first page.
+        query_estabelecimento = paginator.page(1)
+    except EmptyPage:
+        # If page is out of range (e.g. 9999), deliver last page of results.
+        query_estabelecimento = paginator.page(paginator.num_pages)
+
+    anuncios = Anuncio.objects.ativos(count=1)
+
+    context = {
+        'estabelecimentos': query_estabelecimento,
+        'categorias': Categoria.objects.all(),
+        'anuncios': anuncios
+    }
+    return render(request, 'core/resultado_busca.html', context)
 
 
 def categorias(request):

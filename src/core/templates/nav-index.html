@@ -33,17 +33,23 @@
             <div class="col-xs-12">
                 <div class="main-nav">
                     <nav>
-                        <a href="#">Restaurantes</a>
-                        <a href="#">Bares</a>
-                        <a href="#">Baladas</a>
-                        <a href="#">Onde Viajar</a>
-                        <a href="#">Atrações</a>
-                        <a href="#">Lojas</a>
-                        <a href="#">Comidinhas</a>
-                        <a href="#">Hotéis</a>
-                        <a href="#">Mais categorias</a>
+                        {% if categorias %}
+                            {% for c in categorias %}
+                                <a href="{{ c.get_absolute_url }}">{{ c.nome }}</a>
+                            {% endfor %}
+                        {% else %}
+                            <a href="#">Restaurantes</a>
+                            <a href="#">Bares</a>
+                            <a href="#">Atrações</a>
+                            <a href="#">Lojas</a>
+                            <a href="#">Comidinhas</a>
+                            <a href="#">Hotéis</a>
+                        {% endif %}
+                        <a href="{% url 'noticias:list' %}?t=noticia">Noticias</a>
+                        <a href="{% url 'noticias:list' %}?t=lazer">Lazer / Turismo</a>
+                        <a href="{% url 'categorias' %}">Mais categorias</a>
                     </nav>
-                </div>    
+                </div>
             </div>
 
         </div>

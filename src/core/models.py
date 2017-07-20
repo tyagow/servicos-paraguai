@@ -11,7 +11,7 @@ from pilkit.processors import ResizeToFit
 from star_ratings.models import Rating, UserRating
 
 from src.comments.models import Comment
-from src.core.managers import AnuncioManager, EstabelecimentoManager
+from src.core.managers import AnuncioManager, EstabelecimentoManager, CategoriaManager
 from src.core.utils import path_and_rename_logo, path_and_rename_fotos, path_and_rename_categoria, \
     path_and_rename_banner
 
@@ -128,6 +128,10 @@ class Categoria(MPTTModel):
                                       processors=[ResizeToFit(32, 32)],
                                       format='PNG',
                                       options={'quality': 100})
+
+    recomendado = models.BooleanField(default=False)
+
+    objects = CategoriaManager()
 
     class MPTTMeta:
         order_insertion_by = ['nome']

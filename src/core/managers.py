@@ -22,7 +22,7 @@ class AnuncioQuerySet(models.QuerySet):
                 dif -= 1
             return principais
         else:
-            index = self.aggregate(count=Count('id'))['count']
+            index = self.filter(ativo=True).aggregate(count=Count('id'))['count']
             random_index = randint(0, index - 1)
             if random_index + count >= index:
                 random_index = index - count
@@ -39,6 +39,32 @@ class CategoriaManager(models.Manager):
     def is_hotel(self, *args, **kwargs):
         query = super(CategoriaManager, self).filter(nome__icontains='Hospedagem')
         return len(query) > 0
+
+    def recomendadas(self, count=None):
+        total = self.filter(recomendado=True).count()
+        sem_recomedandos = False
+        if total == 0:
+            total = self.count()
+            sem_recomedandos = True
+        else:
+            self = self.filter(recomendado=True)
+        if not count and not sem_recomedandos:
+            return self.filter(recomendado=True)
+        elif count > total:
+            dif = count - total
+            principais = list(self.all())
+            index = self.aggregate(count=Count('id'))['count']
+            while dif > 0:
+                random_index = randint(0, index - 1)
+                principais.append(self.all()[random_index])
+                dif -= 1
+            return principais
+        else:
+            index = self.filter(recomendado=True).aggregate(count=Count('id'))['count']
+            random_index = randint(0, index - 1)
+            if random_index + count >= index:
+                random_index = index - count
+            return self.filter(recomendado=True)[random_index:random_index + count]
 
 
 class EstabelecimentoQuerySet(models.QuerySet):
@@ -82,7 +108,7 @@ class EstabelecimentoQuerySet(models.QuerySet):
                 dif -= 1
             return principais
         else:
-            index = self.aggregate(count=Count('id'))['count']
+            index = self.filter(recomendado=True).aggregate(count=Count('id'))['count']
             random_index = randint(0, index - 1)
             if random_index + count >= index:
                 random_index = index - count

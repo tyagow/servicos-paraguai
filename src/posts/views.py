@@ -100,9 +100,20 @@ def post_detail(request, slug=None):
 
 def post_list(request):
     today = timezone.now().date()
-    queryset_list = Post.objects.active()  # .order_by("-timestamp")
-    if request.user.is_staff or request.user.is_superuser:
-        queryset_list = Post.objects.all()
+    tipo = request.GET.get('t')
+
+    if tipo:
+        if 'noticia' in tipo:
+            queryset_list = Post.objects.noticias()
+        elif 'lazer' in tipo:
+            queryset_list = Post.objects.lazer()
+        else:
+            queryset_list = Post.objects.active()
+    else:
+        queryset_list = Post.objects.active()
+
+    # if request.user.is_staff or request.user.is_superuser:
+    #     queryset_list = Post.objects.all()
 
     query = request.GET.get("q")
     if query:
