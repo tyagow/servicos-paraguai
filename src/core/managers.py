@@ -46,6 +46,8 @@ class CategoriaManager(models.Manager):
         if total == 0:
             total = self.count()
             sem_recomedandos = True
+            if total == 0:
+                return self
         else:
             self = self.filter(recomendado=True)
         if not count and not sem_recomedandos:
