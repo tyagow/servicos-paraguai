@@ -21,6 +21,8 @@
     <div class="container">
         <div class="row">
             <div id="post-details">
+                {% include 'core/widgets/messages_display.html' %}
+
                 <div class='col-xs-12'>
                     <div class="img" {% if instance.image %} style="background-image:url('{{ instance.image.url }}');" {% endif %}>
                         <div class="title">
@@ -59,7 +61,6 @@
             </div>
             
         </div>
-    {% include 'core/widgets/messages_display.html' %}
         
 
             <!-- <p>
@@ -82,8 +83,37 @@ Linkedin
 
 </p> -->
             <div class='row'>
-                <div class='col-sm-12'>
-                    <div>
+                <div class="col-xs-12">
+                    <h3>{% trans 'Comentários' %}</h3>
+                    {% for comment in comments %}
+                        <blockquote>
+                            <p>{{ comment.content }}</p>
+                            <footer>via {{ comment.user }} | {{ comment.timestamp|timesince }} ago  </footer>
+                            <div class="comment-reply">
+                                {% for child_comment in comment.children %}
+                                    <blockquote>
+                                        <p>{{ child_comment.content }}</p>
+                                        <footer>via {{ child_comment.user }} | {{ child_comment.timestamp|timesince }} ago</footer>
+                                    </blockquote>
+                                {% endfor %}
+                                {#                                    {% if request.user.is_authenticated %}#}
+                                {##}
+                                {#                                        <form method="POST">{% csrf_token %}#}
+                                {#                                            {{ comment_form|crispy }}#}
+                                {#                                            <input type="hidden" name="parent_id" value='{{ comment.id }}'>#}
+                                {#                                            <input type="submit" value="Post comment" class="btn btn-default">#}
+                                {#                                        </form>#}
+                                {#                                    {% else %}#}
+                                {#                                        <p>You must log in to comment</p>#}
+                                {#                                    {% endif %}#}
+                            </div>
+
+
+                        </blockquote>
+                        <hr/>
+                    {% endfor %}
+                </div>
+                <div class='col-xs-12'>
                         <h3>{% trans 'Deixe seu comentário' %}</h3>
                         {% if request.user.is_authenticated %}
                             <form method="POST">{% csrf_token %}
@@ -95,39 +125,8 @@ Linkedin
                         {% else %}
                             <p>{% trans 'Voce precisa estar logado para comentar.' %}</p>
                         {% endif %}
-                        {% for comment in comments %}
-                            <blockquote>
-                                <p>{{ comment.content }}</p>
-                                <footer>via {{ comment.user }} | {{ comment.timestamp|timesince }} ago  </footer>
-                                <div class="comment-reply">
-                                    {% for child_comment in comment.children %}
-                                        <blockquote>
-                                            <p>{{ child_comment.content }}</p>
-                                            <footer>via {{ child_comment.user }} | {{ child_comment.timestamp|timesince }} ago</footer>
-                                        </blockquote>
-                                    {% endfor %}
-                                    {#                                    {% if request.user.is_authenticated %}#}
-                                    {##}
-                                    {#                                        <form method="POST">{% csrf_token %}#}
-                                    {#                                            {{ comment_form|crispy }}#}
-                                    {#                                            <input type="hidden" name="parent_id" value='{{ comment.id }}'>#}
-                                    {#                                            <input type="submit" value="Post comment" class="btn btn-default">#}
-                                    {#                                        </form>#}
-                                    {#                                    {% else %}#}
-                                    {#                                        <p>You must log in to comment</p>#}
-                                    {#                                    {% endif %}#}
-                                </div>
-
-
-                            </blockquote>
-                            <hr/>
-                        {% endfor %}
-                    </div>
-                    {#        <div class="fb-comments" data-href="{{ request.build_absolute_uri }}" data-numposts="5"></div>#}
-
                 </div>
             </div>
         </div>
-    </div>
 
 {% endblock content %}
