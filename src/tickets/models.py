@@ -23,24 +23,24 @@ TORNAR_ANUNCIANTE = 0
 CADASTRAR_EMPRESA = 1
 
 class TicketManager(models.Manager):
-    def anunciante(self, nome, email, _descricao, user=None):
-        titulo = "{} - {}  ( {} )".format(TIPO_CHOICES[0][0], nome, email)
+    def anunciante(self, nome, email, _descricao, user):
+        titulo = "{} - {}  ( {} )".format(TIPO_CHOICES[0][1], nome, email)
         descricao = _descricao
         ticket = Ticket(
             criador=user,
             titulo=titulo,
             descricao=descricao,
-            tipo=TORNAR_ANUNCIANTE
+            tipo=TORNAR_ANUNCIANTE,
         )
         ticket.save()
         return ticket
 
     def cadastro_empresa(self, empresa, email, descricao, user):
-        titulo = '{} - {}'.format(TIPO_CHOICES[0][1], email)
+        titulo = '{} - {}'.format(TIPO_CHOICES[1][1], email)
         if not descricao:
             descricao = _('O usuário {usr} solicitou o cadastro da empresa {emp}.').format(usr=user, emp=empresa)
         else:
-            descricao.prepend('O usuário {usr} solicitou o cadastro da empresa {emp}.'.format(usr=user, emp=empresa))
+            descricao = ('O usuário {usr} solicitou o cadastro da empresa {emp}. {des}'.format(usr=user, emp=empresa, des=descricao))
         ticket = Ticket(
             criador=user,
             titulo=titulo,
