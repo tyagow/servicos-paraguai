@@ -313,6 +313,8 @@
 }
 .main .recommend-list{
 	padding: 0;
+	height: 400px;
+	overflow: hidden;
 }
 .main .recommend-list li{
 	display: block;
@@ -481,6 +483,65 @@ hr{
 	border: none;
 }
 
+#post-details .img{
+	position: relative;
+	overflow: hidden;
+	background-position: center center;
+	height: 400px;
+	margin-top: 20px;
+}
+
+#post-details .img:before{
+	position: absolute;
+	content: '';
+	bottom: 0;
+	width: 100%;
+	background: -moz-linear-gradient(top, rgba(0,0,0,0) 0%, rgba(0,0,0,0.80) 100%); /* FF3.6-15 */
+	background: -webkit-linear-gradient(top, rgba(0,0,0,0) 0%,rgba(0,0,0,0.80) 100%); /* Chrome10-25,Safari5.1-6 */
+	background: linear-gradient(to bottom, rgba(0,0,0,0) 0%,rgba(0,0,0,0.80) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', endColorstr='#a6000000',GradientType=0 ); /* IE6-9 */
+	z-index: 10;
+	height: 200px;
+}
+#post-details .title{
+	position: absolute;
+	bottom: 10px;
+	width: 100%;
+	padding: 0 20px;
+	margin: 0 auto;
+	transition: .3s;
+}
+
+#post-details .title .read-time{
+	clear: both;
+	float: left;
+	font-size: 12px;
+	padding: 3px 5px;
+	background: #999;
+	color: #fff;
+	position: relative;
+	z-index: 12;
+}
+
+#post-details .title .date{
+	background: #ff9e40;
+	color: #fff;
+	z-index: 12;
+	position: relative;
+	padding: 5px 10px;
+}
+#post-details .title h1{
+	color: #fff;
+	z-index: 12;
+	position: relative;
+}
+#post-details .post-detail-item, 
+#post-details .post-detail-item p{
+	font-size: 1.50rem;
+	line-height: 1.75;
+	text-align: justify;
+	color: #000;
+}
 .footer{
 	background: #000;
 	color: #ddd;

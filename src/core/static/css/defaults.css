@@ -63,3 +63,21 @@ a:hover, a:focus{
 .text-center{
     text-align: center!important;
 }
+
+form textarea, form input{
+    border-radius: 0!important;
+}
+form input[type='submit']{
+    background: #ffb400;
+    color: #000;
+    font-weight: bold;
+    padding: 10px 20px;
+    margin: 10px 0;
+    text-transform: uppercase;
+    border: none;
+    transition: .2s ease-in-out;
+}
+form input[type='submit']:hover{
+    background: #000;
+    color: #fff;
+}
