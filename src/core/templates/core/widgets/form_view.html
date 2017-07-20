@@ -1,6 +1,10 @@
 {% extends 'base.html' %}
 {% load crispy_forms_tags %}
 {% load i18n %}
+{% block  nav %}
+    {% include 'nav-index.html' %}
+{% endblock %}
+
 {% block content %}
     <div class="container">
         <form method="POST">
