@@ -165,7 +165,10 @@ def estabelecimento_detail(request, slug):
 
 
 def categoria_detail(request, slug):
-    categoria = Categoria.objects.get(slug=slug)
+    try:
+        categoria = Categoria.objects.get(slug=slug)
+    except:
+        return HttpResponseRedirect(slug)
     query_estabelecimento = Estabelecimento.objects.busca(categoria=categoria.nome)
 
     paginator = Paginator(query_estabelecimento, settings.ESTABELECIMENTOS_POR_PAGINA)
