@@ -27,7 +27,7 @@
             <h1 class="pull-left"><a href="{{ estabelecimento.website }}">{{ estabelecimento.nome }}</a></h1>
             <div class="pull-left">
                 <div class="ratings">
-                    {% ratings estabelecimento icon_height=28 icon_width=28 read_only=True %}
+                    {% include 'core/widgets/star.html' with total=estabelecimento.get_average_rate %}
                 </div>
             </div>
         </div>
