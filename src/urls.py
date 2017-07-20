@@ -34,7 +34,7 @@ urlpatterns += [
     url(r'^noticia/', include('src.posts.urls', namespace='noticias')),
     url(r'^newsletters/', include('src.newsletters.urls', namespace='newsletters')),
     url(r'^ratings/', include('star_ratings.urls', namespace='ratings', app_name='ratings')),
-    url(r'^(?P<slug>[\w-]+)/$', categoria_detail, name='categoria_detail'),
+    url(r'^categorias/(?P<slug>[\w-]+)/$', categoria_detail, name='categoria_detail'),
 
     # url(r'^password/change/$',
     #     auth_views.password_change,

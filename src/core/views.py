@@ -4,7 +4,7 @@ from django.conf import settings
 from django.contrib import messages
 from django.contrib.contenttypes.models import ContentType
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, Http404
 from django.shortcuts import render, get_object_or_404, resolve_url
 from django.utils.translation import ugettext as _
 from star_ratings import app_settings
@@ -168,7 +168,7 @@ def categoria_detail(request, slug):
     try:
         categoria = Categoria.objects.get(slug=slug)
     except:
-        return HttpResponseRedirect(slug)
+        raise Http404
     query_estabelecimento = Estabelecimento.objects.busca(categoria=categoria.nome)
 
     paginator = Paginator(query_estabelecimento, settings.ESTABELECIMENTOS_POR_PAGINA)
