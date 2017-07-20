@@ -20,6 +20,6 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='profile',
             name='slug',
-            field=models.SlugField(blank=True, unique=True),
+            field=models.SlugField(blank=True, unique=True, null=True),
         ),
     ]
