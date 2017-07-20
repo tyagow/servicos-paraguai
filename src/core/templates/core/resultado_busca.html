@@ -42,7 +42,7 @@
                                     <div class="col-xs-8">
                                         <a href="{{ e.get_absolute_url }}?searchlog=True">
                                             <h3 class='title'>{{ e.nome }}</h3>
-                                            {% ratings e read_only=True icon_height=22 icon_width=22 %}
+                                            {% ratings e icon_height=22 icon_width=22 read_only=True %}
                                             <br>
 
                                             <b>Total de avaliações {{ e.nota.count }}</b>
