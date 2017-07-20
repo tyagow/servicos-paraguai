@@ -26,7 +26,7 @@ class Profile(models.Model):
     def avatar_normal(self):
         if not self.avatar:
             if self.user.social_auth.first():
-                self.avatar = "http://graph.facebook.com/%s/picture?type=large".format(self.user.social_auth.first().uid)
+                self.avatar = "http://graph.facebook.com/{}/picture?type=large".format(self.user.social_auth.first().uid)
                 self.save()
             else:
                 return ''
