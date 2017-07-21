@@ -81,3 +81,11 @@ form input[type='submit']:hover{
     background: #000;
     color: #fff;
 }
+
+form label{
+    color: #939393;
+    text-transform: uppercase;
+    font-family: 'humnst777';
+    font-size: 18px;
+    font-weight: lighter;
+}

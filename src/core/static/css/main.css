@@ -443,6 +443,35 @@ hr{
 	border: 1px solid #f3f3f3;
 }
 
+.comment{
+	display: block;
+}
+.comment .user-photo{
+	float: left;
+	margin: 10px;
+}
+.comment .user-content{
+	float: left;
+	margin: 10px;
+}
+.comment .name{
+	display: block;
+	margin: 0;
+	font-size: 18px;
+	font-weight: bold;
+	text-transform: capitalize;
+}
+.comment .date{
+	color: #999;
+	font-size: 11px;
+	display: block;
+	margin-top: 0px;
+}
+.comment .content{
+	font-size: 13px;
+	color: #333;
+	margin-top: -5px;
+}
 #comments .header-comentarios{
 	background: #f3f3f3;
 	padding: 15px;
@@ -472,17 +501,6 @@ hr{
 	padding: 5px;
 	border: 1px solid #d4d4d4;
 }
-
-#comments form input[type='submit']{
-	padding: 7px 20px;
-	color: #fff;
-	font-size: 18px;
-	font-family: 'humnst777';
-	float: right;
-	background: #2899c0;
-	border: none;
-}
-
 #post-details .img{
 	position: relative;
 	overflow: hidden;
