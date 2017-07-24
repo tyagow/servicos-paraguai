@@ -24,7 +24,7 @@
             {% endif %}
         </div>
         <div class="col-xs-12">
-            <h1 class="pull-left"><a href="{{ estabelecimento.website }}">{{ estabelecimento.nome }}</a></h1>
+            <h1 class="pull-left">{{ estabelecimento.nome }}</h1>
             <div class="pull-left">
                 <div class="ratings">
                     {% include 'core/widgets/star.html' with total=estabelecimento.get_average_rate %}
