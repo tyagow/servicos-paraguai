@@ -18,7 +18,25 @@
     <main class="main">
         <div class="container">
             <div class="row">
+                <div class="col-xs-12">
+                    <div class="breadcrumbs">
+                        <nav>
+                            <a href="/">
+                                Home
+                            </a>
+
+                            <a href="#">
+                                Resultados da busca ou Categorias
+                            </a>
+                            <a href="#">
+                                Termo buscado ou nome da categoria
+                            </a>
+                            
+                        </nav>
+                    </div>
+                </div>
                 <div class="col-sm-12 col-md-6 col-lg-6">
+                    {% if anuncios %}
                     <br>
                     {% for anuncio in anuncios %}
                         <a href="{{ anuncio.url }}">
@@ -27,7 +45,9 @@
                     {% endfor %}
                     <br>
                     <br>
-
+                    {% else %}
+                        <h1>{{ categoria.nome }}</h1>
+                    {% endif %}
                     <div class="list-estabelecimentos">
                         {% for e in estabelecimentos %}
                             <div class="estabelecimento" data-coordenadas="{{ e.get_coordenadas }}" >
@@ -43,10 +63,7 @@
                                         <a href="{{ e.get_absolute_url }}?searchlog=True">
                                             <h3 class='title'>{{ e.nome }}</h3>
                                             {% include 'core/widgets/star.html' with total=e.get_average_rate %}
-
-                                            <br>
-
-                                            <b>Total de avaliações {{ e.nota.count }}</b>
+                                            <b class='rate'>{{ e.nota.count }} avalições</b>
                                             <div class="clearfix"></div>
                                             <div class="address">
                                                 <br>

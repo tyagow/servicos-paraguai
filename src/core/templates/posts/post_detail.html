@@ -18,126 +18,143 @@
 
 
 {% block content %}
-    <div class="container">
-        <div class="row">
-            <div id="post-details">
-                {% include 'core/widgets/messages_display.html' %}
-
-                <div class='col-xs-12'>
-                    <div class="img" {% if instance.image %} style="background-image:url('{{ instance.image.url }}');" {% endif %}>
-                        <div class="title">
-                            <small class="date">
-                                {% if instance.draft %}
-                                <span style='color:red;'>Draft</span> 
-                                {% endif %}
-                                <i class="fa fa-calendar"></i>
-                                {{ instance.publish }}
-                            </small>
-                            <div class="clearfix"></div>
-                            <small class="read-time">
-                                <i class="fa fa-clock-o"></i>
-                                {% trans 'Tempo de leitura' %}: {% if instance.read_time <= 1 %} < 1 {% trans 'minuto' %}{% else %}{{ instance.read_time }} {% trans 'minutos' %}{% endif %}
-                            </small>
-                            <div class="clearfix"></div>
-                            <h1>{{ title }}</h1>
+<main class="main">
+        <div class="container">
+            <div class="row">
+                <div id="post-details">
+                    {% include 'core/widgets/messages_display.html' %}
+                    <div class="col-xs-12">
+                        <div class="breadcrumbs">
+                            <nav>
+                                <a href="/">
+                                    Home
+                                </a>
+                                <a href="#">
+                                    Noticias
+                                </a>
+                                <a href="#">
+                                    Titulo da noticia
+                                </a>
+                            </nav>
                         </div>
                     </div>
-                    <p>
-                        
-                    </p>
-                    {% if instance.user.get_full_name %}
-                        <p>Author: {{ instance.user.get_full_name }}</p>
-                    {% endif %}
-                    <p>
-                        <div class="fb-like" data-href="{{ request.build_absolute_uri }}" data-layout="button_count" data-action="like" data-show-faces="true" data-share="true"></div>
-                        <hr/>
-                    </p>    
-                </div>
-                <div class="col-xs-12">
-                    <div class="post-detail-item">
-                        {{ instance.get_markdown }}
+                    <div class='col-xs-12'>
+                        <div class="img" {% if instance.image %} style="background-image:url('{{ instance.image.url }}');" {% endif %}>
+                            <div class="title">
+                                <small class="date">
+                                    {% if instance.draft %}
+                                    <span style='color:red;'>Draft</span> 
+                                    {% endif %}
+                                    <i class="fa fa-calendar"></i>
+                                    {{ instance.publish }}
+                                </small>
+                                <div class="clearfix"></div>
+                                <small class="read-time">
+                                    <i class="fa fa-clock-o"></i>
+                                    {% trans 'Tempo de leitura' %}: {% if instance.read_time <= 1 %} < 1 {% trans 'minuto' %}{% else %}{{ instance.read_time }} {% trans 'minutos' %}{% endif %}
+                                </small>
+                                <div class="clearfix"></div>
+                                <h1>{{ title }}</h1>
+                            </div>
+                        </div>
+                        <p>
+                            
+                        </p>
+                        {% if instance.user.get_full_name %}
+                            <p>Author: {{ instance.user.get_full_name }}</p>
+                        {% endif %}
+                        <p>
+                            <div class="fb-like" data-href="{{ request.build_absolute_uri }}" data-layout="button_count" data-action="like" data-show-faces="true" data-share="true"></div>
+                            <hr/>
+                        </p>    
                     </div>
-                </div>   
+                    <div class="col-xs-12">
+                        <div class="post-detail-item">
+                            {{ instance.get_markdown }}
+                        </div>
+                    </div>   
+                </div>
+                
             </div>
             
-        </div>
-        
 
-            <!-- <p>
-<a href="https://www.facebook.com/sharer/sharer.php?u={{ request.build_absolute_uri }}">
-Facebook
-</a>
+                <!-- <p>
+    <a href="https://www.facebook.com/sharer/sharer.php?u={{ request.build_absolute_uri }}">
+    Facebook
+    </a>
 
-<a href="https://twitter.com/home?status={{ instance.content|truncatechars:80|urlify }}%20{{ request.build_absolute_uri }}">
-Twitter
-</a>
+    <a href="https://twitter.com/home?status={{ instance.content|truncatechars:80|urlify }}%20{{ request.build_absolute_uri }}">
+    Twitter
+    </a>
 
-<a href='https://plus.google.com/share?url={{ request.build_absolute_uri }}'>
+    <a href='https://plus.google.com/share?url={{ request.build_absolute_uri }}'>
 
 
-<a href="https://www.linkedin.com/shareArticle?mini=true&url={{ request.build_absolute_uri }}&title={{ instance.title }}&summary={{ share_string }}&source={{ request.build_absolute_uri }}">
-Linkedin
-</a>
+    <a href="https://www.linkedin.com/shareArticle?mini=true&url={{ request.build_absolute_uri }}&title={{ instance.title }}&summary={{ share_string }}&source={{ request.build_absolute_uri }}">
+    Linkedin
+    </a>
 
-<a href="http://www.reddit.com/submit?url={{ request.build_absolute_uri }}&title={{ share_string }}.">Reddit</a>
+    <a href="http://www.reddit.com/submit?url={{ request.build_absolute_uri }}&title={{ share_string }}.">Reddit</a>
 
-</p> -->
-            <div class='row'>
-                <div class="col-xs-12">
-                    {% if comments %}
-                        <h3>{% trans 'Comentários' %}</h3>
-                        <hr>
-                        {% for comment in comments %}
-                            <div class="comment">
-                                <div class="user-photo">
-                                    {% if comment.user.profile.avatar_normal %}
-                                        <img src="{{comment.user.profile.avatar_normal}}" alt="">
-                                    {% else %}
-                                        <img src="{% static 'img/avatar-holder.png' %}" width="60" alt="">
-                                    {% endif %}
+    </p> -->
+                <div class='row'>
+                    <div class="col-xs-12">
+                        {% if comments %}
+                            <h3>{% trans 'Comentários' %}</h3>
+                            <hr>
+                            {% for comment in comments %}
+                                <div class="comment">
+                                    <div class="user-photo">
+                                        {% if comment.user.profile.avatar_normal %}
+                                            <img src="{{comment.user.profile.avatar_normal}}" alt="">
+                                        {% else %}
+                                            <img src="{% static 'img/avatar-holder.png' %}" width="60" alt="">
+                                        {% endif %}
+                                    </div>
+                                    <div class="user-content">
+                                        <p class="name">{{ comment.user }}</p>
+                                        <p class="date">{{ comment.timestamp|timesince }} atrás</p>
+                                        <p class="content">{{ comment.content }}</p>
+                                    </div>
                                 </div>
-                                <div class="user-content">
-                                    <p class="name">{{ comment.user }}</p>
-                                    <p class="date">{{ comment.timestamp|timesince }} atrás</p>
-                                    <p class="content">{{ comment.content }}</p>
-                                </div>
-                            </div>
-                                <div class="comment-reply">
-                                    {% for child_comment in comment.children %}
-                                        <blockquote>
-                                            <p>{{ child_comment.content }}</p>
-                                            <footer>via {{ child_comment.user }} | {{ child_comment.timestamp|timesince }} ago</footer>
-                                        </blockquote>
-                                    {% endfor %}
-                                    {#                                    {% if request.user.is_authenticated %}#}
-                                    {##}
-                                    {#                                        <form method="POST">{% csrf_token %}#}
-                                    {#                                            {{ comment_form|crispy }}#}
-                                    {#                                            <input type="hidden" name="parent_id" value='{{ comment.id }}'>#}
-                                    {#                                            <input type="submit" value="Post comment" class="btn btn-default">#}
-                                    {#                                        </form>#}
-                                    {#                                    {% else %}#}
-                                    {#                                        <p>You must log in to comment</p>#}
-                                    {#                                    {% endif %}#}
-                                </div>
+                                    <div class="comment-reply">
+                                        {% for child_comment in comment.children %}
+                                            <blockquote>
+                                                <p>{{ child_comment.content }}</p>
+                                                <footer>via {{ child_comment.user }} | {{ child_comment.timestamp|timesince }} ago</footer>
+                                            </blockquote>
+                                        {% endfor %}
+                                        {#                                    {% if request.user.is_authenticated %}#}
+                                        {##}
+                                        {#                                        <form method="POST">{% csrf_token %}#}
+                                        {#                                            {{ comment_form|crispy }}#}
+                                        {#                                            <input type="hidden" name="parent_id" value='{{ comment.id }}'>#}
+                                        {#                                            <input type="submit" value="Post comment" class="btn btn-default">#}
+                                        {#                                        </form>#}
+                                        {#                                    {% else %}#}
+                                        {#                                        <p>You must log in to comment</p>#}
+                                        {#                                    {% endif %}#}
+                                    </div>
 
-                        {% endfor %}
-                    {% endif %}
-                </div>
-                <div class='col-xs-12'>
-                        <h3>{% trans 'Deixe seu comentário' %}</h3>
-                        {% if request.user.is_authenticated %}
-                            <form method="POST">{% csrf_token %}
-                                {{ comment_form|crispy }}
-                                <div class="pull-right">
-                                    <input type="submit" value="{% trans 'Enviar comentário' %}" class="btn btn-primary">
-                                </div>
-                            </form>
-                        {% else %}
-                            <p>{% trans 'Voce precisa estar logado para comentar.' %}</p>
+                            {% endfor %}
                         {% endif %}
+                    </div>
+                    <div class='col-xs-12'>
+                            <h3>{% trans 'Deixe seu comentário' %}</h3>
+                            {% if request.user.is_authenticated %}
+                                <form method="POST">{% csrf_token %}
+                                    {{ comment_form|crispy }}
+                                    <div class="pull-right">
+                                        <input type="submit" value="{% trans 'Enviar comentário' %}" class="btn btn-primary">
+                                    </div>
+                                </form>
+                            {% else %}
+                                <p>{% trans 'Voce precisa estar logado para comentar.' %}</p>
+                            {% endif %}
+                    </div>
                 </div>
             </div>
-        </div>
+</main>
+ 
 
 {% endblock content %}
