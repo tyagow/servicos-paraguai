@@ -442,6 +442,22 @@
 	color: #999!important;
 }
 
+.main .post-list .thumbnail{
+	border-radius: 0;
+}
+.main .post-list .post h3 a{
+	color: #000;
+	margin: 3px 0;
+	display: block;
+}
+.main .post-list .post .date{
+	background: #ff9e40;
+	color: #fff;
+	z-index: 12;
+	position: relative;
+	padding: 5px 10px;
+}
+
 hr{
 	border: 1px solid #f3f3f3;
 }
