@@ -71,16 +71,12 @@ def post_detail(request, slug=None):
             if parent_qs.exists():
                 parent_obj = parent_qs.first()
 
-        new_comment, created = Comment.objects.get_or_create(
+        new_comment = Comment.objects.create(
             user=request.user,
             content_type=content_type,
             object_id=obj_id,
-            # parent=parent_obj,
+            content=content_data
         )
-        if not created:
-            new_comment.aprovado = False
-        new_comment.content = content_data
-        new_comment.save()
 
         # Redirect for clear form comment ....
         messages.success(request, _("Comentário aguardando aprovação."))
