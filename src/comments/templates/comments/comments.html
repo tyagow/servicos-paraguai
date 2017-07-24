@@ -1,31 +1,49 @@
 {% load i18n %}
 {% load ratings %}
+{% load static %}
 
 <div class="row" id="comments">
     <div class="col-md-12">
         <div class="header-comentarios">
-            <h3>{% trans 'Reviews & Comentários' %}</h3>
+            <h3>{% trans 'Avaliações & Comentários' %}</h3>
         </div>
-
+        <div class="body-comentarios">
+            {% for comment in comments %}
+                <div class="comment">
+                    <div class="user-photo">
+                        {% if comment.user.profile.avatar_normal %}
+                            <img src="{{comment.user.profile.avatar_normal}}" class="radius" alt="">
+                        {% else %}
+                            <img src="{% static 'img/avatar-holder.png' %}" width="60" alt="">
+                        {% endif %}
+                    </div>
+                    <div class="user-content">
+                        <p class="name">{{ comment.user }}</p>
+                        <p class="date">{{ comment.timestamp|timesince }} atrás</p>
+                        {% include 'core/widgets/star.html' with total=comment.get_rate %}
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="clearfix"></div>
+                    <div class="content">
+                        <br>
+                        <p>{{ comment.content }}</p>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="clearfix"></div>
+            {% endfor %}
+        </div>
+        
     </div>
+    
     <div class="col-md-12">
         <div class="body-comentarios">
             {% include 'comments/comment-form.html' with form=form url=estabelecimento.get_absolute_url %}
         </div>
     </div>
-    {% for comment in comments %}
-        <div class="col-sm-12">
-            <div class="body-comentarios">
-                <h3>Comentários</h3>
-                <hr>
-                {% include 'core/widgets/star.html' with total=comment.get_rate %}
-                <div class="comments-list">
-                    <p>{{ comment.content }}</p>
-                    <small> {% trans 'por' %} {{ comment.user }}</small>
-                </div>
-            </div>
-        </div>
-    {% endfor %}
+    
+
+    
 </div>
 <div class="row">
     {% if comments.paginator.num_pages > 1 %}

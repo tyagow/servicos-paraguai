@@ -43,6 +43,9 @@ textarea {
     padding: 0.2em 0;
 }
 
+.radius{
+    border-radius: 100%!important;
+}
 
 a:hover, a:focus{
     text-decoration: none!important;

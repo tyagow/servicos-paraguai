@@ -15,61 +15,69 @@
 
 
     </style>
-    <form action="{{ url }}" method="POST">
-        {% csrf_token %}
-        <div class="col-sm-12"><h4>{% trans 'DÊ SUA NOTA' %}</h4></div>
-        <div class="col-sm-2">
 
+    
+    <div class="row">
+       <form action="{{ url }}" method="POST">
+           {% csrf_token %}
+           
+           <div class="col-sm-12"><h4>{% trans 'DÊ SUA NOTA' %}</h4></div>
+           <div class="col-sm-2">
+               <div id="estrela_form" class="star-ratings text-center" data-max-rating="5" data-avg-rating="1,000">
+                   <div class="star-ratings-rating-stars-container">
+                       <ul class="star-ratings-rating-background" >
+                           {% for star in stars %}
+                               <li>
+                                   {% if user.is_authenticated  %}
+                                       <span onclick="update_nota({{ star }})" onmouseover="update_nota_layout({{ star }})"
+                                             onmouseleave="update_nota_layout(0)" class="star-ratings-rating-empty"></span>
+                                   {% else %}
+                                       <span class="star-ratings-rating-empty" title="{% trans 'Log in to rate' as title_login %}{{ title_login|escape }}"></span>
+                                   {% endif %}
+                               </li>
+                           {% endfor %}
+                       </ul>
+                       <ul class="star-ratings-rating-foreground" >
+                           <li><span id="nota_1" onclick="update_nota(1)" onmouseover="update_nota_layout(1)"
+                                     onmouseleave="update_nota_layout(0)" class="star-ratings-rating-full"></span></li>
+                           <li><span id="nota_2" onclick="update_nota(2)" onmouseover="update_nota_layout(2)"
+                                     onmouseleave="update_nota_layout(0)" class="star-ratings-rating-full" style="display: none;"></span></li>
+                           <li><span id="nota_3" onclick="update_nota(3)" onmouseover="update_nota_layout(3)"
+                                     onmouseleave="update_nota_layout(0)" class="star-ratings-rating-full" style="display: none;"></span></li>
+                           <li><span id="nota_4" onclick="update_nota(4)" onmouseover="update_nota_layout(4)"
+                                     onmouseleave="update_nota_layout(0)" class="star-ratings-rating-full" style="display: none;"></span></li>
+                           <li><span id="nota_5" onclick="update_nota(5)" onmouseover="update_nota_layout(5)"
+                                     onmouseleave="update_nota_layout(0)" class="star-ratings-rating-full" style="display: none;"></span></li>
+                       </ul>
 
-            <div id="estrela_form" class="star-ratings" data-max-rating="5" data-avg-rating="1,000">
-                <div class="star-ratings-rating-stars-container">
-                    <ul class="star-ratings-rating-background" >
-                        {% for star in stars %}
-                            <li>
-                                {% if user.is_authenticated  %}
-                                    <span onclick="update_nota({{ star }})" onmouseover="update_nota_layout({{ star }})"
-                                          onmouseleave="update_nota_layout(0)" class="star-ratings-rating-empty"></span>
-                                {% else %}
-                                    <span class="star-ratings-rating-empty" title="{% trans 'Log in to rate' as title_login %}{{ title_login|escape }}"></span>
-                                {% endif %}
-                            </li>
-                        {% endfor %}
-                    </ul>
-                    <ul class="star-ratings-rating-foreground" >
-                        <li><span id="nota_1" onclick="update_nota(1)" onmouseover="update_nota_layout(1)"
-                                  onmouseleave="update_nota_layout(0)" class="star-ratings-rating-full"></span></li>
-                        <li><span id="nota_2" onclick="update_nota(2)" onmouseover="update_nota_layout(2)"
-                                  onmouseleave="update_nota_layout(0)" class="star-ratings-rating-full" style="display: none;"></span></li>
-                        <li><span id="nota_3" onclick="update_nota(3)" onmouseover="update_nota_layout(3)"
-                                  onmouseleave="update_nota_layout(0)" class="star-ratings-rating-full" style="display: none;"></span></li>
-                        <li><span id="nota_4" onclick="update_nota(4)" onmouseover="update_nota_layout(4)"
-                                  onmouseleave="update_nota_layout(0)" class="star-ratings-rating-full" style="display: none;"></span></li>
-                        <li><span id="nota_5" onclick="update_nota(5)" onmouseover="update_nota_layout(5)"
-                                  onmouseleave="update_nota_layout(0)" class="star-ratings-rating-full" style="display: none;"></span></li>
-                    </ul>
+                   </div>
+               </div>
 
-                </div>
-            </div>
-            {% if request.user.profile.avatar_normal %}
-                <img src="{{ request.user.profile.avatar_normal }}" alt="">
-            {% else %}
-                <img src="{% static 'img/avatar-holder.png' %}" alt="">
-            {% endif %}
-        </div>
-        <div class="col-sm-10">
+               {% if request.user.profile.avatar_normal %}
+                   <img src="{{ request.user.profile.avatar_normal }}" width='100%' class='radius text-center' alt="">
+               {% else %}
+                   <img src="{% static 'img/avatar-holder.png' %}" width='100%' class='radius text-center'  alt="">
+               {% endif %}
+               <p class="text-center"><b>Nome do usuário</b></p>
+           </div>
+           <div class="col-sm-10">
 
-            {{ form.content_type }}
-            {{ form.object_id }}
+               {{ form.content_type }}
+               {{ form.object_id }}
 
-            <div class='form-group'>
+               <div class='form-group'>
 
-                <label>Comentário</label>
-                {{ form.content }}
-            </div>
-        </div>
-        <input id="id_nota" name="nota" type="hidden" value="1">
-        <input type="submit" value="{% trans 'Publicar' %}" class="btn  btn-primary">
-    </form>
+                   <label>Comentário</label>
+                   {{ form.content }}
+               </div>
+               <input id="id_nota" name="nota" type="hidden" value="1">
+               <input type="submit" value="{% trans 'Publicar' %}" class="btn pull-right">
+           </div>
+          
+       </form> 
+    </div>
+
+    
     <script>
 
         function update_nota_layout(nota) {
