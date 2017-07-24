@@ -240,12 +240,15 @@
 	margin: 0 auto 20px auto;
 	text-transform: none;
 }
-.main .places .desc{
-	color:#8d8d8d;
+.main .places .desc,.main .places .desc p{
+	color:#8d8d8d!important;
+	height: 100px;
+	overflow: hidden;
 }
 .main .places .btn{
 	background: #ffae00;
 	padding: 5px;
+	border-radius: 0;
 	color: #fff;
 	transition: .3s ease-in-out;
 }

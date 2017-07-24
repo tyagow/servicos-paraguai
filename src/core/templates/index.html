@@ -118,9 +118,9 @@
                         <div class="col-md-3">
                             <img src="{{ post.image.url }}" width="100%" alt="">
                             <p class="title">{{ post.title }}</p>
-                            <p class="desc">
+                            <div class="desc">
                                 {{ post.get_markdown|truncatechars_html:120 }}
-                            </p>
+                            </div>
                             <a href="{{ post.get_absolute_url }}" class="btn pull-right">Leia mais</a>
                         </div>
                     {% endfor %}
