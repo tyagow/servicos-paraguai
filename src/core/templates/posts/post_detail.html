@@ -101,42 +101,6 @@ Linkedin
                                 <p class="content">{{ comment.content }}</p>
                             </div>
                         </div>
-                        <div class="clearfix"></div>
-                            <div class="comment-reply">
-                                {% for child_comment in comment.children %}
-                                    <blockquote>
-                                        <p>{{ child_comment.content }}</p>
-                                        <footer>via {{ child_comment.user }} | {{ child_comment.timestamp|timesince }} ago</footer>
-                                    </blockquote>
-                                {% endfor %}
-                                {#                                    {% if request.user.is_authenticated %}#}
-                                {##}
-                                {#                                        <form method="POST">{% csrf_token %}#}
-                                {#                                            {{ comment_form|crispy }}#}
-                                {#                                            <input type="hidden" name="parent_id" value='{{ comment.id }}'>#}
-                                {#                                            <input type="submit" value="Post comment" class="btn btn-default">#}
-                                {#                                        </form>#}
-                                {#                                    {% else %}#}
-                                {#                                        <p>You must log in to comment</p>#}
-                                {#                                    {% endif %}#}
-                            </div>
-
-                    {% endfor %}
-                    {% for comment in comments %}
-                        <div class="comment">
-                            <div class="user-photo">
-                                {% if comment.user.profile.avatar_normal %}
-                                    <img src="{{comment.user.profile.avatar_normal}}" alt="">
-                                {% else %}
-                                    <img src="{% static 'img/avatar-holder.png' %}" width="60" alt="">
-                                {% endif %}
-                            </div>
-                            <div class="user-content">
-                                <p class="name">{{ comment.user }}</p>
-                                <p class="date">{{ comment.timestamp|timesince }} atrás</p>
-                                <p class="content">{{ comment.content }}</p>
-                            </div>
-                        </div>
                             <div class="comment-reply">
                                 {% for child_comment in comment.children %}
                                     <blockquote>
