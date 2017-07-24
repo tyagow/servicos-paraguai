@@ -62,8 +62,10 @@
                                     <div class="col-xs-8">
                                         <a href="{{ e.get_absolute_url }}?searchlog=True">
                                             <h3 class='title'>{{ e.nome }}</h3>
-                                            {% include 'core/widgets/star.html' with total=e.get_average_rate %}
-                                            <b class='rate'>{{ e.nota.count }} avalições</b>
+                                            <span class="stars">
+                                                {% include 'core/widgets/star.html' with total=e.get_average_rate %}
+                                            </span>
+                                            <span class='rate'>{{ e.nota.count }} avalições</span>
                                             <div class="clearfix"></div>
                                             <div class="address">
                                                 <br>
