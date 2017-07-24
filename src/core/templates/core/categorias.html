@@ -1,28 +1,48 @@
 {% extends 'base.html' %}
 {% load mptt_tags %}
+
+{% block  nav %}
+    {% include 'nav-interno.html' %}
+{% endblock %}
 {% block content %}
-    <section id="categories">
-        <div class="body-container">
+    <main class="main">
+        <div class="container">
             <div class="row">
-                <div class="container">
-                    <div class="col-md-4">
-                        {% for node,structure in categorias|tree_info %}
-                            {% if not node.parent %}
-                                <h3 class="categorias-titulo"><a href="{{ node.get_absolute_url }}">
-                                    {{ node.nome }}
-                                </a></h3>
-                            {% else %}
-                                <p><a class="sub-categorias-titulo" href="{{ node.get_absolute_url }}">
-                                    {{ node.nome }}
-                                </a></p>
-                            {% endif %}
-                            {% if 1 in structure.closed_levels %}</div>{% cycle '' '' '</div>' %}{% if not 0 in structure.closed_levels %}{% cycle '' '' "<div class='row'>" %}<div class="col-md-4">{% endif %}{% endif %}
-                        {% endfor %}
-                        </div>
+                <div class="col-xs-12">
+                    <div class="breadcrumbs">
+                        <nav>
+                            <a href="/">
+                                Home
+                            </a>
+                            <a href="#">
+                                Categorias
+                            </a>
+                        </nav>
+                    </div>
                 </div>
             </div>
+            <div class="row">
+                <div class="col-xs-12">
+                    <h1>Categorias</h1>
+
+                </div>
+                <div class="col-md-4">
+                    {% for node,structure in categorias|tree_info %}
+                        {% if not node.parent %}
+                            <h3 class="categorias-titulo"><a href="{{ node.get_absolute_url }}">
+                                {{ node.nome }}
+                            </a></h3>
+                        {% else %}
+                            <p><a class="sub-categorias-titulo" href="{{ node.get_absolute_url }}">
+                                {{ node.nome }}
+                            </a></p>
+                        {% endif %}
+                        {% if 1 in structure.closed_levels %}</div>{% cycle '' '' '</div>' %}{% if not 0 in structure.closed_levels %}{% cycle '' '' "<div class='row'>" %}<div class="col-md-4">{% endif %}{% endif %}
+                    {% endfor %}
+                    </div>
+            </div>
         </div>
-    </section>
+    </main>
 {% endblock %}
 
 

@@ -26,4 +26,17 @@ $(document).ready(function(){
 		autoplayTimeout:6000,
 		items:1
 	});
+
+	$.simpleWeather({
+	   location: 'Ciudad del Este, PY',
+	   woeid: '',
+	   unit: 'C',
+	   success: function(weather) {
+	     html = weather.temp+'&deg;'+weather.units.temp;
+	     $(".weather").html(html);
+	   },
+	   error: function(error) {
+	     $(".weather").html('');
+	   }
+	 });
 });
