@@ -6,11 +6,47 @@
 {% endblock %}
 
 {% block content %}
-    <div class="container">
-        <form method="POST">
-            {% csrf_token %}
-            {{ form|crispy }}
-            <button type="submit">{% trans 'Enviar' %}</button>
-        </form>
-    </div>
+	<main class="main">
+		<div class="container">
+			<div class="row">
+				<div class="col-xs-12">
+                    <div class="breadcrumbs">
+                        <nav>
+                            <a href="/">
+                                Home
+                            </a>
+
+                            <a href="#">
+                                Seja um anunciante
+                            </a>
+                           
+                            
+                        </nav>
+                    </div>
+                </div>
+			</div>
+			<div class="row">
+				<div class="col-md-6">
+					<h1>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</h1>
+					<h3>Molestiae, dolorem. Hic sequi aperiam voluptate veritatis, ad aliquid eius corporis ipsa rerum.</h3>
+					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eius at dicta molestiae asperiores doloremque porro itaque totam, dolorem labore enim quae, fuga quod, sed ab voluptate suscipit officia alias obcaecati!</p>
+					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cum, iure quo cupiditate eligendi doloribus voluptas labore reiciendis nesciunt eos beatae neque mollitia nostrum blanditiis, sequi excepturi qui impedit minus dolorum.</p>
+					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eius at dicta molestiae asperiores doloremque porro itaque totam, dolorem labore enim quae, fuga quod, sed ab voluptate suscipit officia alias obcaecati!</p>
+					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cum, iure quo cupiditate eligendi doloribus voluptas labore reiciendis nesciunt eos beatae neque mollitia nostrum blanditiis, sequi excepturi qui impedit minus dolorum.</p>
+					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eius at dicta molestiae asperiores doloremque porro itaque totam, dolorem labore enim quae, fuga quod, sed ab voluptate suscipit officia alias obcaecati!</p>
+					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cum, iure quo cupiditate eligendi doloribus voluptas labore reiciendis nesciunt eos beatae neque mollitia nostrum blanditiis, sequi excepturi qui impedit minus dolorum.</p>
+				</div>
+				<div class="col-md-6">
+					<form method="POST">
+					    {% csrf_token %}
+					    {{ form|crispy }}
+					    <button type="submit">{% trans 'Enviar' %}</button>
+					</form>
+				</div>
+			</div>
+			
+		    
+		</div>	
+	</main>
+    
 {% endblock %}
