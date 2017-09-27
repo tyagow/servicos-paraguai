@@ -18,9 +18,9 @@
                 <div class="main-search">
                     <div class="search">
                         <form id='mainSearch' action="{% url 'busca' %}">
-                            <button type="submit">Buscar</button>
+                            <button type="submit">{% trans 'Buscar' %}</button>
                             <span>
-                                <input type="search" placeholder="Encontre: Restaurantes, Bares, Hotéis e etc" name="nome">        
+                                <input type="search" placeholder="{% trans 'Encontre: Restaurantes, Bares, Hotéis e etc' %}" name="nome">        
                             </span>
                         </form>
 
@@ -45,9 +45,9 @@
                             <a href="#">Comidinhas</a>
                             <a href="#">Hotéis</a>
                         {% endif %}
-                        <a href="{% url 'noticias:list' %}?t=noticia">Noticias</a>
-                        <a href="{% url 'noticias:list' %}?t=lazer">Lazer / Turismo</a>
-                        <a href="{% url 'categorias' %}">Mais categorias</a>
+                        <a href="{% url 'noticias:list' %}?t=noticia">{% trans 'Noticias' %}</a>
+                        <a href="{% url 'noticias:list' %}?t=lazer">{% trans 'Lazer / Turismo' %}</a>
+                        <a href="{% url 'categorias' %}">{% trans 'Mais categorias' %}</a>
                     </nav>
                 </div>
             </div>
