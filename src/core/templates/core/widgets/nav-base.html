@@ -1,3 +1,4 @@
+{% load i18n %}
 <div class="topbar">
     <div class="container">
         <div class="row">
@@ -12,10 +13,10 @@
             </div>
             <div class="col-md-6">
                 <nav class="top-menu pull-right">
-                    {#<a href="{% url 'tickets:cadastrar-empresa' %}">Cadastrar minha empresa</a>#}
-                    {#<a href="#">Tour 360º</a>#}
-                    <a href="#">Temperatura em Ciudad del Este: <span class="weather">Buscando...</span></a>
-                    <a href="{% url 'tickets:anunciante' %}">Seja um anunciante</a>
+                    {#<a href="{% url 'tickets:cadastrar-empresa' %}">{% trans 'Cadastrar minha empresa' %}</a>#}
+                    {#<a href="#">{% trans 'Tour 360º' %}</a>#}
+                    <a href="#">{% trans 'Temperatura em Ciudad del Este:' %} <span class="weather">{% trans 'Buscando...' %}</span></a>
+                    <a href="{% url 'tickets:anunciante' %}">{% trans 'Seja um anunciante' %}</a>
                 </nav>
             </div>
             <div class="clearfix"></div>
