@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
+{% load i18n %}
 
-{% block title %}404. Página não encontrada{% endblock %}
+{% block title %}{% trans '404. Página não encontrada' %}{% endblock %}
 {% block  nav %}
     {% include 'nav-interno.html' %}
 {% endblock %}
@@ -10,13 +11,11 @@
 <section>
     <div class="content row padding-bottom-3 desktop-12 container">
 
-        <h1>404</h1>
-        <h2>Página não encontrada</h2>
+        <h1>{% trans '404' %}</h1>
+        <h2>{% trans 'Página não encontrada' %}</h2>
         <div class="desktop-6">
-            <p>O endereço que você solicitou não existe.</p>
+            <p>{% trans 'O endereço que você solicitou não existe.' %}</p>
         </div>
     </div>
 </section>
 {% endblock %}
-
-{% load static %}
