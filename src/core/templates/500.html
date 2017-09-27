@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 
-{% block title %}500. Erro interno inesperado{% endblock %}
+{% block title %}{% trans '500. Erro interno inesperado' %}{% endblock %}
 {% block  nav %}
     {% include 'nav-interno.html' %}
 {% endblock %}
@@ -10,12 +10,12 @@
 <section>
     <div class="content row padding-bottom-3 desktop-12 container">
 
-        <h1>500</h1>
-        <h2>Erro interno inesperado</h2>
+        <h1>{% trans '500' %}</h1>
+        <h2>{% trans 'Erro interno inesperado' %}</h2>
         <div class="desktop-6">
-            <p>Desculpe. Ocorreu um erro inesperado.</p>
-            <p>Nossa equipe já foi notificada do problema.<br />
-               Caso necessário entre em contato com <a href="mailto:tyagow@hotmail.com.br?subject=500 Erro interno inesperado">tyagow@hotmail.com.br</a></p>
+            <p>{% trans 'Desculpe. Ocorreu um erro inesperado.' %}</p>
+            <p>{% trans 'Nossa equipe já foi notificada do problema.' %}<br />
+               {% trans 'Caso necessário entre em contato com <a href="mailto:tyagow@hotmail.com.br?subject=500 Erro interno inesperado">tyagow@hotmail.com.br</a>' %}</p>
         </div>
     </div>
 </section>
