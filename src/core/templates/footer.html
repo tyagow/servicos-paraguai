@@ -1,4 +1,5 @@
 {% load static %}
+{% load i18n %}
 <div class="container">
     <div class="row">
         <div class="col-md-3">
@@ -7,7 +8,7 @@
         <div class="col-md-9">
             <div class="pull-right">
                 <div class="social">
-                    <span>Siga-nos em nossas redes sociais: </span>
+                    <span>{% trans 'Siga-nos em nossas redes sociais:' %} </span>
                     <div class="pull-right">
                         <nav>
                             <a href="#">
@@ -29,9 +30,9 @@
             <div class="clearfix"></div>
             <div class="newsletter">
                 <form id='mainSearch' action="{% url 'newsletters:create' %}">
-                <button type="submit">Cadastrar</button>
+                <button type="submit">{% trans 'Cadastrar' %}</button>
                     <span>
-                        <input type="search" placeholder="Cadastre-se e receba tudo sobre o Paraguai e Região" name="email">
+                        <input type="search" placeholder="{% trans 'Cadastre-se e receba tudo sobre o Paraguai e Região' %}" name="email">
                     </span>
                 </form>
 
@@ -41,5 +42,5 @@
     </div>
 </div>
 <div class="end">
-    Guia Paraguai - 2017 - Todos os direitos Reservados
+    {% trans 'Guia Paraguai - 2017 - Todos os direitos Reservados' %}
 </div>
