@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
-
-{% block title %}403. Proibido{% endblock %}
+{% load i18n %}
+{% block title %}{% trans '403. Proibido' %}{% endblock %}
 {% block  nav %}
     {% include 'nav-interno.html' %}
 {% endblock %}
@@ -10,13 +10,11 @@
 <section>
     <div class="content row padding-bottom-3 desktop-12 container">
 
-        <h1>403</h1>
-        <h2>Proibido</h2>
+        <h1>{% trans '403' %}</h1>
+        <h2>{% trans 'Proibido' %}</h2>
         <div class="desktop-6">
-            <p>Você não tem permissão para acessar este endereço.</p>
+            <p>{% trans 'Você não tem permissão para acessar este endereço.' %}</p>
         </div>
     </div>
 </section>
 {% endblock %}
-
-{% load static %}
