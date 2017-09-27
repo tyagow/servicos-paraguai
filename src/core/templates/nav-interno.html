@@ -1,4 +1,5 @@
 {% load static %}
+{% load i18n %}
 <header class="header intern">
 
     {% include 'core/widgets/nav-base.html' %}
@@ -14,9 +15,9 @@
                     <div class="main-search">
                         <div class="search">
                             <form id='mainSearch' action="{% url 'busca' %}">
-                                <button type="submit">Buscar</button>
+                                <button type="submit">{% trans 'Buscar' %}</button>
                                 <span>
-                                    <input type="search" placeholder="Encontre: Restaurantes, Bares, Hotéis e etc" name="nome">        
+                                    <input type="search" placeholder="{% trans 'Encontre: Restaurantes, Bares, Hotéis e etc' %}" name="nome">        
                                 </span>
                             </form>
 
