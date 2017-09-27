@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load i18n %}
 
 {% block  nav %}
     {% include 'nav-index.html' %}
@@ -13,34 +14,34 @@
         <div class="info">
             <div class="container">
                 <h3 class="title text-center">
-                    O Guia Paraguai <b>é a sua referência</b> na fronteira
+                    {% trans 'O Guia Paraguai <b>é a sua referência</b> na fronteira' %}
                 </h3>
                 <div class="col-md-3">
                     <div class="info-box">
                         <i class="icon person"></i>
-                        <h3>5 mil</h3>
-                        de locais cadastrados
+                        <h3>5 {% trans 'mil' %}</h3>
+                        {% trans 'de locais cadastrados' %}
                     </div>
                 </div>
                 <div class="col-md-3">
                     <div class="info-box">
                         <i class="icon bubble"></i>
-                        <h3>20 mil</h3>
-                        de avaliações e opniões
+                        <h3>20 {% trans 'mil' %}</h3>
+                        {% trans 'de avaliações e opniões' %}
                     </div>
                 </div>
                 <div class="col-md-3">
                     <div class="info-box">
                         <i class="icon heart"></i>
-                        <h3>500 mil</h3>
-                        de visitantes mensais
+                        <h3>500 {% trans 'mil' %}</h3>
+                        {% trans 'de visitantes mensais' %}
                     </div>
                 </div>
                 <div class="col-md-3">
                     <div class="info-box">
                         <i class="icon seek"></i>
-                        <h3>2 milhões</h3>
-                        de locais buscados
+                        <h3>2 {% trans 'milhões' %}</h3>
+                        {% trans 'de locais buscados' %}
                     </div>
                 </div>
             </div>
@@ -48,8 +49,8 @@
 
 
         <div class="places">
-            <h3><b>Lugares</b> mais visitados</h3>
-            <h4>Lugares mais buscados pelos clientes no primeiro trimestre de 2017</h4>
+            <h3><b>{% trans 'Lugares' %}</b> {% trans 'mais visitados' %}</h3>
+            <h4>{% trans 'Lugares mais buscados pelos clientes no primeiro trimestre de 2017' %}</h4>
             <div class="itens owl-carousel owl-theme">
                 {% include 'core/widgets/estabelecimento_card.html' with estabelecimentos=mais_buscados %}
                 <div class="clearfix"></div>
@@ -60,7 +61,7 @@
         <div class="container" style='margin-top:40px;'>
             <div class="row">
                 <div class="col-md-8">
-                    <h3 class="title hasborder">Locais mais <b>buscados</b></h3>
+                    <h3 class="title hasborder">{% trans 'Locais mais <b>buscados</b>' %}</h3>
                     <nav class="top-search">
                         {% for e in mais_buscados %}
                             <a href="{{ e.get_absolute_url }}">{{ e.nome }}</a>
@@ -69,7 +70,7 @@
                 </div>
                 <div class="col-md-4">
                     <div class="boxed">
-                        <h3 class="title">Guia Paraguai <b>Recomenda</b></h3>
+                        <h3 class="title">{% trans 'Guia Paraguai <b>Recomenda</b>' %}</h3>
                     </div>
                     <div class="boxed">
                         <ul class="recommend-list">
@@ -92,7 +93,7 @@
             </div>
             <div class="row">
                 <div class="col-md-12">
-                    <h3 class="title hasborder">Principais <b>Noticias</b></h3>
+                    <h3 class="title hasborder">{% trans 'Principais <b>Noticias</b>' %}</h3>
                 </div>
                 {% for noticia in noticias %}
                     <div class="col-md-6">
@@ -110,9 +111,9 @@
         <div class="places text-center">
             <div class="container">
                 <h3>
-                    Turismo e <b>Lazer</b>
+                    {% trans 'Turismo e <b>Lazer</b>' %}
                 </h3>
-                <h4>Os principais pontos turisticos do Paraguay e região</h4>
+                <h4>{% trans 'Os principais pontos turisticos do Paraguay e região' %}</h4>
                 <div class="row">
                     {% for post in lazer %}
                         <div class="col-md-3">
