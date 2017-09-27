@@ -1,12 +1,9 @@
 {% extends "base.html" %}
+{% load i18n %}
 
 {% block  nav %}
     {% include 'nav-interno.html' %}
 {% endblock %}
-
-
-
-
 
 {% block content %}
     <main class="main">
@@ -17,10 +14,10 @@
                     <div class="breadcrumbs">
                         <nav>
                             <a href="/">
-                                Home
+                                {% trans 'Home' %}
                             </a>
                             <a href="#">
-                                Noticias
+                                {% trans 'Noticias' %}
                             </a>
                         </nav>
                     </div>
@@ -41,7 +38,7 @@
                                            
                                             {% if obj.user.get_full_name %}<p>Author: {{ obj.user.get_full_name }}</p>{% endif %}
                                             <div class="desc">
-                                                {{ obj.get_markdown|truncatechars_html:300 }}<a href="{{ obj.get_absolute_url }}" role="button"> + Leia a matéria completa</a>
+                                                {{ obj.get_markdown|truncatechars_html:300 }}<a href="{{ obj.get_absolute_url }}" role="button"> {% trans '+ Leia a matéria completa' %}</a>
                                             </div>
                                         </div>
                                     </div>    
@@ -58,7 +55,7 @@
                             {% endif %}
 
                             <span class="current">
-                                Pagina {{ object_list.number }} de {{ object_list.paginator.num_pages }}.
+                                {% trans 'Pagina' %} {{ object_list.number }} {% trans 'de' %} {{ object_list.paginator.num_pages }}.
                             </span>
 
                             {% if object_list.has_next %}
@@ -73,7 +70,7 @@
                             <div class="input-group">
                                 <input class="form-control" type='text' name='q' placeholder='Procurar Matérias' value='{{ request.GET.q }}'/>
                                 <span class="input-group-btn">
-                                    <button class="btn btn-default" type="button"><i class="fa fa-search"></i> Buscar</button>
+                                    <button class="btn btn-default" type="button"><i class="fa fa-search"></i> {% trans 'Buscar' %}</button>
                                 </span>
                             </div>
                         </div>
@@ -85,39 +82,3 @@
     </main>
     
 {% endblock content %}
-
-
-   <div class='col-sm-12 col-sm-offset-3'>
-        <form method='GET' action='' class="row">
-            <div class="col-sm-6">
-                <div class="input-group">
-                    <input class="form-control" type='text' name='q' placeholder='Search posts' value='{{ request.GET.q }}'/>
-                    <span class="input-group-btn">
-        {#              <input class="btn btn-default" type='submit' value='Search' />#}
-                        <button class="btn btn-default" type="button"><i class="fa fa-search"></i> Find</button>
-                    </span>
-                </div>
-            </div>
-        </form>
-        {% for obj in object_list %}
-            <div class="row">
-                <div class="col-sm-12">
-                    <div class="thumbnail">
-                        {% if obj.image %}
-                            <img src='{{ obj.image.url }}' class='img-responsive' />
-                        {% endif %}
-                        <div class="caption post-detail-item">
-                            {% if obj.draft %}<h3>Staff only: Draft</h3>{% endif %} {% if obj.publish > today %}<h3>Staff Only: Future Post</h3>{% endif %}
-                            <h3><a href='{{ obj.get_absolute_url }}'>{{ obj.title }}</a> <small>{{ obj.publish }}</small></h3>
-                            {% if obj.user.get_full_name %}<p>Author: {{ obj.user.get_full_name }}</p>{% endif %}
-                            {{ obj.get_markdown|truncatechars_html:10 }}
-                            <p><a href="{{ obj.get_absolute_url }}" class="btn btn-primary" role="button">View</a></p>
-                        </div>
-                    </div>
-                </div>
-                <hr/>
-            </div>
-        {% endfor %}
-        
-    </div>
-</div> 
