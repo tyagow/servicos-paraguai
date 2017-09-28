@@ -27,13 +27,13 @@
                         <div class="breadcrumbs">
                             <nav>
                                 <a href="/">
-                                    {% trans 'Home' %}
+                                    Home
                                 </a>
-                                <a href="#">
-                                    {% trans 'Noticias' %}       
+                                <a href="{% url 'noticias:list' %}?t={{ instance.get_type_display }}">
+                                    {{ instance.get_type_display }}
                                 </a>
-                                <a href="#">
-                                    Titulo da noticia
+                                <a href="{% url 'noticias:detail' slug=instance.slug %}">
+                                    {{ instance.title }}
                                 </a>
                             </nav>
                         </div>

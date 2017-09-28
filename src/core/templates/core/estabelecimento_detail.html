@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
-}
+
     
 {% block title %}{{ estabelecimento.nome }}{% endblock %}
 
@@ -46,7 +46,7 @@
                     </div>
                     <div class="col-md-6">
                         <div class="about">
-                           <h3>Apresentação</h3>
+                           <h3>{% trans 'Apresentação' %}</h3>
                            <p>
                             {% include 'core/widgets/descricao_estabelecimento.html' %}
                            </p> 

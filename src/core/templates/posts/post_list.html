@@ -12,17 +12,17 @@
             <div class="row">
                 <div class="col-xs-12">
                     <div class="breadcrumbs">
-                        <nav>
-                            <a href="/">
-                                {% trans 'Home' %}
-                            </a>
-                            <a href="#">
-                                {% trans 'Noticias' %}
-                            </a>
-                        </nav>
-                    </div>
+                     <nav>
+                        <a href="/">
+                            Home
+                        </a>
+                        <a href="{% url 'noticias:list' %}?t={{ tipo }}">
+                            {{ tipo }}
+                        </a>
+                    </nav>
                 </div>
-                <div class="col-xs-8">
+                </div>
+                <div class="col-xs-8 col-xs-offset-2">
                     {% for obj in object_list %}
                         <div class="row">
                             <div class="col-sm-12">
@@ -65,16 +65,16 @@
                     </div>
                 </div>
                 <div class="col-xs-4">
-                    <form method='GET' action='' class="row">
-                        <div class="col-sm-12">
-                            <div class="input-group">
-                                <input class="form-control" type='text' name='q' placeholder='Procurar Matérias' value='{{ request.GET.q }}'/>
-                                <span class="input-group-btn">
-                                    <button class="btn btn-default" type="button"><i class="fa fa-search"></i> {% trans 'Buscar' %}</button>
-                                </span>
-                            </div>
-                        </div>
-                    </form>
+{#                    <form method='GET' action='' class="row">#}
+{#                        <div class="col-sm-12">#}
+{#                            <div class="input-group">#}
+{#                                <input class="form-control" type='text' name='q' placeholder='Procurar Matérias' value='{{ request.GET.q }}'/>#}
+{#                                <span class="input-group-btn">#}
+{#                                    <button class="btn btn-default" type="button"><i class="fa fa-search"></i> Buscar</button>#}
+{#                                </span>#}
+{#                            </div>#}
+{#                        </div>#}
+{#                    </form>#}
                 </div>
 
             </div>

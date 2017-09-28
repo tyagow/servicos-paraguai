@@ -99,10 +99,12 @@ def post_list(request):
     tipo = request.GET.get('t')
 
     if tipo:
-        if 'noticia' in tipo:
+        if 'noticia' in tipo.lower():
             queryset_list = Post.objects.noticias()
-        elif 'lazer' in tipo:
+            tipo = 'Noticia'
+        elif 'lazer' in tipo.lower():
             queryset_list = Post.objects.lazer()
+            tipo = 'Lazer'
         else:
             queryset_list = Post.objects.active()
     else:
@@ -134,6 +136,7 @@ def post_list(request):
     context = {
         "object_list": queryset,
         "title": "List",
+        'tipo': tipo,
         "page_request_var": page_request_var,
         "today": today,
     }
