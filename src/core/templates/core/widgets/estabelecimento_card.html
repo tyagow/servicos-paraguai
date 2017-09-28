@@ -1,4 +1,5 @@
 {% load ratings %}
+{% load i18n %}
 {% for e in estabelecimentos %}
     <div class="item">
         <a href="{{ e.get_absolute_url }}">
@@ -10,7 +11,7 @@
                     {{ e.nome }}
                 </div>
                 {% include 'core/widgets/star.html' with total=e.get_average_rate %}
-                <span>{{ e.descricao|truncatechars_html:120 }}... Saiba Mais</span>
+                <span>{{ e.descricao|truncatechars_html:120 }}{% trans '... Saiba Mais' %}</span>
                 <div class="clearfix"></div>
                 
             </div>
